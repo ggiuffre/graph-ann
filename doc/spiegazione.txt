@@ -1,0 +1,1 @@
+La memoria occupata da un oggetto della classe Net è un puntatore ad una matrice di N x N-1 numeri in formato float; ogni elemento della matrice rappresenta una sinapsi (collegamento tra due neuroni) e questa struttura è molto simile alla matrice di adiacenza di un grafo, che rappresenta un insieme di N nodi come una tabella di N x N possibili collegamenti tra questi nodi. [...]

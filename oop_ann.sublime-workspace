@@ -1,0 +1,623 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"Neuro",
+				"Neuron"
+			],
+			[
+				"int",
+				"internal"
+			],
+			[
+				"re",
+				"result"
+			],
+			[
+				"In",
+				"InterNeuron"
+			],
+			[
+				"net",
+				"net_1"
+			],
+			[
+				"de",
+				"dendrites"
+			],
+			[
+				"new",
+				"new_capacity"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "dendrite.h",
+			"settings":
+			{
+				"buffer_size": 283,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "neuron.h",
+			"settings":
+			{
+				"buffer_size": 170,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "inter_neuron.h",
+			"settings":
+			{
+				"buffer_size": 1002,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "input_neuron.h",
+			"settings":
+			{
+				"buffer_size": 352,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "net.h",
+			"settings":
+			{
+				"buffer_size": 357,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "net.cpp",
+			"settings":
+			{
+				"buffer_size": 894,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "main_prova.cpp",
+			"settings":
+			{
+				"buffer_size": 366,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					""
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					"Clean"
+				]
+			],
+			[
+				"Packages/Makefile/Make.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 167.0,
+		"last_filter": "save",
+		"selected_items":
+		[
+			[
+				"save",
+				"Project: Save As"
+			],
+			[
+				"add",
+				"Project: Add Folder"
+			],
+			[
+				"sav",
+				"Project: Save As"
+			]
+		],
+		"width": 392.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann"
+	],
+	"file_history":
+	[
+		"/Applications/MAMP/htdocs/MyANN/ANN_2/webcam/webcam.html",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/activating_functions.h",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/inter_neuron.cpp",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/dendrite.cpp",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/meta_neur.h",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/neuron.h",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/output_neuron.h",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/neuron.cpp",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/oop_ann.sublime-project",
+		"/Users/giorgiogiuffre/Documents/C++/graph_ann/dgraph.h",
+		"/Users/giorgiogiuffre/Documents/C++/graph_ann/graph.cpp",
+		"/Users/giorgiogiuffre/Documents/C++/graph_ann/graph.h",
+		"/Users/giorgiogiuffre/Documents/C++/graph_ann/dlink.h",
+		"/Users/giorgiogiuffre/Documents/C++/graph_ann/link.h",
+		"/Users/giorgiogiuffre/Documents/C++/graph_ann/node.h",
+		"/Users/giorgiogiuffre/Documents/C++/graph_ann/link.cpp",
+		"/Users/giorgiogiuffre/Documents/C++/graph_ann/dlink.cpp",
+		"/Users/giorgiogiuffre/Documents/C++/graph_ann/node.cpp",
+		"/Users/giorgiogiuffre/Documents/C++/graph_ann/graph_ann.sublime-project",
+		"/Applications/MAMP/htdocs/MyANN/gigio_ann/image_ann.cpp",
+		"/Applications/MAMP/htdocs/MyANN/gigio_ann/image_ann.h",
+		"/Applications/MAMP/htdocs/MyANN/gigio_ann/ann.cpp",
+		"/Applications/MAMP/htdocs/MyANN/gigio_ann/ann.h",
+		"/Applications/MAMP/htdocs/MyANN/gigio_ann/graph.h",
+		"/Users/giorgiogiuffre/Library/Application Support/Sublime Text 3/Packages/User/Distraction Free.sublime-settings",
+		"/Users/giorgiogiuffre/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Users/giorgiogiuffre/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/giorgiogiuffre/Library/Application Support/Sublime Text 3/Packages/User/C++.sublime-settings",
+		"/Applications/MAMP/htdocs/MyANN/gigio_ann/main.cpp",
+		"/Applications/MAMP/htdocs/MyANN/gigio_ann/Makefile",
+		"/Applications/MAMP/htdocs/MyANN/gigio_ann/utilities.cpp",
+		"/Applications/MAMP/htdocs/MyANN/gigio_ann/utilities.h",
+		"/Users/giorgiogiuffre/Documents/C++/ideas/concept.h",
+		"/Users/giorgiogiuffre/Documents/C++/ideas/ideas.sublime-project"
+	],
+	"find":
+	{
+		"height": 43.0
+	},
+	"find_in_files":
+	{
+		"height": 117.0,
+		"where_history":
+		[
+			"*.h,*.cpp,",
+			"*.h,*.cpp,."
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"net_1",
+			"u3",
+			"int",
+			"Net",
+			"NET",
+			"search",
+			"i",
+			"int",
+			"push_back",
+			"pop_back",
+			"push_back",
+			"push",
+			"//////",
+			";",
+			"operator",
+			"Val",
+			"Neuron",
+			"NEURON_H",
+			"INP",
+			"IN",
+			"InputNeuron",
+			"Neuron",
+			"NEURON_H",
+			"NEURON",
+			"delete",
+			"typename ",
+			"log",
+			"Log(ceil(log((double) s) / log(2.0))), ",
+			"operator=",
+			"++",
+			"front",
+			"begin",
+			"int",
+			"1 << Log",
+			"for",
+			"initial",
+			"delete",
+			"delete []",
+			"delete[]",
+			"capacity",
+			"size",
+			"Neuron &",
+			"v",
+			"v.",
+			"cpty",
+			"_capacity",
+			"_size",
+			"sz",
+			"index",
+			"size",
+			"unsigned",
+			"T",
+			"iterator",
+			"Iterator",
+			" {",
+			"buffer",
+			"T&",
+			"Log",
+			"log",
+			"Log",
+			"log",
+			"Log",
+			"size",
+			"_capacity",
+			"Vector",
+			"Vector<T>",
+			"template <class T>",
+			"template<class T>",
+			";",
+			"void",
+			"Graph",
+			"Node&",
+			";",
+			"Link<T>",
+			"Node<T>",
+			"T",
+			"Node",
+			"`e",
+			"language",
+			"n_in",
+			"image_ann::",
+			"graysc",
+			"gigio::",
+			"ann",
+			"gigio::",
+			"gigio"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 4,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "dendrite.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 283,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								229,
+								229
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "neuron.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 170,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								159,
+								159
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "inter_neuron.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1002,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								498,
+								498
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "input_neuron.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 352,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								317,
+								317
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "net.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 357,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								346,
+								346
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "net.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 894,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								840,
+								840
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 904.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "main_prova.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 366,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								233,
+								233
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 35.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 358.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 172.0
+	},
+	"pinned_build_system": "",
+	"project": "oop_ann.sublime-project",
+	"replace":
+	{
+		"height": 66.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/Documents/C++/Pong/pong.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 76.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
