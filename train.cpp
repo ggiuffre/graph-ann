@@ -1,4 +1,6 @@
-#include "net.h"
+#include <time.h>
+#include <stdlib.h>
+#include "network.h"
 
 // =============================================
 // =============================================
@@ -8,9 +10,11 @@
 // =============================================
 // =============================================
 
-void Net::incr_training(const int n_examples, const float ** examples, const float ** target, const float learning_rate, const float momentum, const float desired_err)
+void Network::incr_training(const int n_examples, const float ** examples, const float ** target, const float learning_rate, const float momentum, const float desired_err)
 {
-	float	in_momentum_term = 0.0f,
+	float	* hid_delta = new float [n_hid + 1],
+			* out_delta = new float [n_out + 1],
+			in_momentum_term = 0.0f,
 			hid_momentum_term = 0.0f;
 
 
@@ -27,7 +31,7 @@ void Net::incr_training(const int n_examples, const float ** examples, const flo
 	function or can be expressed as an element of the
 	image plus/minus the desired error (e.g. the sigmoid function
 	has image (0,1) so target outputs will have to be in
-	(0-a,1+a) where a is the desired error)  */
+	(0-e,1+e) where e is the desired error)  */
 
 	float tot_err = 0.0f;
 	int num_epochs = 0, i = -1;

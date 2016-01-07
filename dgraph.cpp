@@ -1,90 +1,99 @@
-#include <vector>
+//#include <set>
 #include "dgraph.h"
 
-/*DGraph::iterator& DGraph::iterator::operator++()
-{
-	punt++;
-	return *this;
-}
-
-DGraph::iterator DGraph::iterator::operator++(int)
-{
-	punt++;
-	return *this;
-}
-
-bool DGraph::operator==(const DGraph::iterator& x) const
-{
-	return punt == x.punt;
-}
-
-bool DGraph::operator!=(const DGraph::iterator& x) const
-{
-	return punt != x.punt;
-}*/
-
-DGraph::DGraph(const unsigned int s) : sz(s), cpty(sz ? sz : 4), connections(cpty ? new float * [cpty] : 0)
+dGraph::dGraph(const unsigned int s) : sz(s), cpty(sz ? sz : 4), connections(cpty ? new float * [cpty] : 0)
 {
 	for (unsigned int i = 0; i < cpty; ++i)
 		connections[i] = new float [cpty - 1];
 }
 
-DGraph::DGraph(const DGraph& n) : sz(n.size()), cpty(n.capacity())
+dGraph::dGraph(const dGraph& n) : sz(n.size()), cpty(n.capacity())
 {
-	for (int i = 0; i < sz; ++i)
-		for (int j = 0; j < sz; ++j)
+	for (unsigned int i = 0; i < sz; ++i)
+		for (unsigned int j = 0; j < sz; ++j)
 			connections[i][j] = n.connections[i][j];
 }
 
-DGraph::~DGraph()
+dGraph::~dGraph()
 {
 	delete [] connections;
 }
 
-DGraph& DGraph::operator=(const DGraph& n)
+dGraph& dGraph::operator=(const dGraph& n)
 {
 	sz = n.size();
 	cpty = n.capacity();
-	for (int i = 0; i < sz; ++i)
-		for (int j = 0; j < sz; ++j)
+	for (unsigned int i = 0; i < sz; ++i)
+		for (unsigned int j = 0; j < sz; ++j)
 			connections[i][j] = n.connections[i][j];
 
 	return *this;
 }
 
-unsigned int DGraph::size() const
+unsigned int dGraph::size() const
 {
 	return sz;
 }
 
-unsigned int DGraph::capacity() const
+unsigned int dGraph::capacity() const
 {
 	return cpty;
 }
 
-bool DGraph::empty() const
+bool dGraph::empty() const
 {
 	return sz == 0;
 }
 
-void DGraph::add(const unsigned int n)
+void dGraph::add(const unsigned int n)
 {
-	while (sz + n > cpty)
-		reserve(2 * cpty);
-	sz += n;
+	// crea nuovo spazio e aggiorna sz:
+	resize(sz + n);
 
+	// espandi le righe precedenti con connessioni nulle:
+	for (unsigned int i = 0; i < sz - n; ++i)
+		for (unsigned int j = sz - n - 1; j < sz - 1; ++j)
+			connections[i][j] = 0.0f;
+
+	// crea n nuove righe con connessioni nulle
 	for (unsigned int i = sz - n; i < sz; ++i)
 		for (unsigned int j = 0; j < sz - 1; ++j)
 			connections[i][j] = 0.0f;
+
+//	// segna ogni nuovo nodo come output:
+//	for (unsigned int i = sz - n; i < sz; ++i)
+//		outputs.insert(i);
 }
 
-void DGraph::pop_back(const unsigned int n)
+void dGraph::pop_back(const unsigned int n)
 {
 	if (n <= sz)
-		sz -= n;
+		resize(sz - n);
 }
 
-void DGraph::clear()
+void dGraph::remove(const unsigned int node)
+{
+	if (sz > 0)
+	{
+		// trasla a sinistra le connessioni dei nodi di indice minore:
+		for (unsigned int i = 0; i < node; ++i)
+			for (unsigned int j = node - 1; j < sz - 2; ++j)
+				connections[i][j] = connections[i][j + 1];
+
+		// porta in alto i nodi di indice maggiore, traslando le connessioni reciproche a sinistra:
+		for (unsigned int i = node; i < sz - 1; ++i)
+		{
+			for (unsigned int j = 0; j < node; ++j)
+				connections[i][j] = connections[i + 1][j];
+			for (unsigned int j = node; j < sz - 2; ++j)
+				connections[i][j] = connections[i + 1][j + 1];
+		}
+
+		resize(sz - 1);
+	}
+}
+
+void dGraph::clear()
 {
 	sz = 0;
 	cpty = 0;
@@ -92,57 +101,48 @@ void DGraph::clear()
 	connections = 0;
 }
 
-/*DGraph::iterator DGraph::begin() const
+void dGraph::reserve(const unsigned int new_capacity)
 {
-	iterator aux;
-	aux.punt = 0;
-	return aux;
+	if (sz > new_capacity)
+		sz = new_capacity;		// (?)
+
+	float ** newconnections = new float * [new_capacity];
+	for (unsigned int i = 0; i < new_capacity; ++i)
+		newconnections[i] = new float [new_capacity - 1];
+
+	for (unsigned int i = 0; i < sz; i++)
+		for (unsigned int j = 0; j < sz - 1; ++j)
+			newconnections[i][j] = connections[i][j];
+
+	cpty = new_capacity;
+	delete [] connections;
+	connections = newconnections;
 }
 
-DGraph::iterator DGraph::end() const
+void dGraph::resize(const unsigned int s)
 {
-	iterator aux;
-	aux.punt = sz;
-	return aux;
-}*/
-
-void DGraph::reserve(const unsigned int new_capacity)
-{
-	if (new_capacity > cpty)
-	{
-		float ** newconnections = new float * [new_capacity];
-		for (unsigned int i = 0; i < cpty; ++i)
-			newconnections[i] = new float [cpty - 1];
-
-		for (unsigned int i = 0; i < sz; i++)
-			for (unsigned int j = 0; j < sz - 1; ++j)
-				newconnections[i][j] = connections[i][j];
-
-		cpty = new_capacity;
-		delete [] connections;
-		connections = newconnections;
-	}
+	if (s > cpty)
+		while (s > cpty)
+			reserve(2 * cpty);
 	else
-	{
-		for (unsigned int i = new_capacity; i < cpty; ++i)
-			delete (connections + i);
-		cpty = new_capacity;
-	}
-}
+		while (s < cpty / 2)
+			reserve(cpty / 2);
 
-void DGraph::resize(const unsigned int s)
-{
-	reserve(s);
 	sz = s;
 }
 
-void DGraph::link(const unsigned int a, const unsigned int b, const float w)
+void dGraph::link(const unsigned int a, const unsigned int b, const float w)
 {
 	if (a > b)
 		connections[b][a - 1] = w;
 	else if (a < b)
 		connections[b][a] = w;
 
-	outputs.erase(a);
-	outputs.insert(b);
+//	outputs.erase(a);
+//	outputs.insert(b);
+}
+
+void dGraph::unlink(const unsigned int a, const unsigned int b)
+{
+	link(a, b, 0.0f);
 }

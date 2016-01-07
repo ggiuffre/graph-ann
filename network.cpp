@@ -1,111 +1,46 @@
 #include <time.h>
 #include <stdlib.h>
 #include <vector>
-#include <cmath>		// sigmoid
 #include "network.h"
 
-Network::Network(const unsigned int s) : DGraph(s) {}
+network::network(const unsigned int s) : dGraph(s) {}
 
-/*Network::Network(const unsigned int s) : sz(s), cpty(sz ? sz : 4), connections(cpty ? new float * [cpty] : 0)
+network::network(const network& n) : dGraph(n)
 {
-	for (unsigned int i = 0; i < cpty; ++i)
-		connections[i] = new float [cpty - 1];
+	outputs = n.outputs;
 }
 
-Network::Network(const Network& n) : sz(n.size()), cpty(n.capacity())
+void network::add(const unsigned int n)
 {
-	for (int i = 0; i < sz; ++i)
-		for (int j = 0; j < sz; ++j)
-			connections[i][j] = n.connections[i][j];
+	// aggiorna la matrice di adiacenza:
+	dGraph::add(n);
+
+	// segna ogni nuovo nodo come output:
+	for (unsigned int i = size() - n; i < size(); ++i)
+		outputs.insert(i);
 }
 
-Network::~Network()
+void network::pop_back(const unsigned int n)
 {
-	delete [] connections;
+	for (unsigned int i = size() - 1; i > size() - n - 1; ++i)
+		outputs.erase(i);
+
+	dGraph::pop_back();
 }
 
-Network& Network::operator=(const Network& n)
+void network::remove(const unsigned int node)
 {
-	sz = n.size();
-	cpty = n.capacity();
-	for (int i = 0; i < sz; ++i)
-		for (int j = 0; j < sz; ++j)
-			connections[i][j] = n.connections[i][j];
+	// aggiorna la matrice di adiacenza:
+	dGraph::remove(node);
 
-	return *this;
+	// ricalcola gli indici degli output:
+	outputs.clear();
+	for (unsigned int i = 0; i < size(); ++i)
+		if (is_output(i))
+			outputs.insert(i);
 }
 
-unsigned int Network::size() const
-{
-	return sz;
-}
-
-unsigned int Network::capacity() const
-{
-	return cpty;
-}
-
-bool Network::empty() const
-{
-	return sz == 0;
-}
-
-void Network::add(const unsigned int n)
-{
-	while (sz + n > cpty)
-		reserve(2 * cpty);
-	sz += n;
-
-	for (unsigned int i = sz - n; i < sz; ++i)
-		for (unsigned int j = 0; j < sz - 1; ++j)
-			connections[i][j] = 0.0f;
-}
-
-void Network::pop_back(const unsigned int n)
-{
-	if (n <= sz)
-		sz -= n;
-}
-
-void Network::clear()
-{
-	sz = 0;
-	cpty = 0;
-	delete [] connections;
-	connections = 0;
-}
-
-void Network::reserve(const unsigned int new_capacity)
-{
-	if (new_capacity > cpty)
-	{
-		float ** newconnections = new float * [new_capacity];
-		for (unsigned int i = 0; i < cpty; ++i)
-			newconnections[i] = new float [cpty - 1];
-
-		for (unsigned int i = 0; i < sz; i++)
-			for (unsigned int j = 0; j < sz - 1; ++j)
-				newconnections[i][j] = connections[i][j];
-
-		cpty = new_capacity;
-		delete [] connections;
-		connections = newconnections;
-	}
-	else
-	{
-		for (unsigned int i = new_capacity; i < cpty; ++i)
-			delete (connections + i);
-		cpty = new_capacity;
-	}
-}
-
-void Network::resize(const unsigned int s)
-{
-	reserve(s);
-	sz = s;
-}*/
-
-void Network::init(init_t mode)
+void network::init(init_t mode)
 {
 	if (mode == RAND)
 	{
@@ -125,23 +60,66 @@ void Network::init(init_t mode)
 	}
 }
 
-/*void Network::link(const unsigned int a, const unsigned int b, const float w)
+void network::link(const unsigned int a, const unsigned int b, const float w)
 {
-	if (a > b)
-		connections[b][a - 1] = w;
-	else if (a < b)
-		connections[b][a] = w;
+	dGraph::link(a, b, w);
 
 	outputs.erase(a);
 	outputs.insert(b);
-}*/
+}
 
-float Network::neuron(const unsigned int i) const
+void network::unlink(const unsigned int a, const unsigned int b)
+{
+	// aggiorna la matrice di adiacenza:
+	link(a, b, 0.0f);
+
+	// se il nodo a è diventato un output, aggiorna outputs:
+	if (is_output(a))
+		outputs.insert(a);
+}
+
+bool network::is_output(const unsigned int node) const
+{
+	bool out = true;
+
+	for (unsigned int i = 0; i < node && out; ++i)
+		if (connections[i][node - 1])
+			out = false;
+
+	for (unsigned int i = node + 1; i < size() && out; ++i)
+		if (connections[i][node])
+			out = false;
+
+	return out;
+}
+
+bool network::is_input(const unsigned int node) const
 {
 	bool internal = false;
-	for (unsigned int j = 0; j < size() - 1; ++j)
-		internal = internal || connections[i][j];
-	if (!internal)
+	for (unsigned int i = 0; i < size() - 1; ++i)
+		internal = internal || connections[node][i];
+
+	return !internal;
+}
+
+bool network::is_connected(const unsigned int node) const
+{
+	return !(is_input(node) && is_output(node));
+}
+
+unsigned int network::input_size() const
+{
+	unsigned int input_size = 0;
+	for (unsigned int i = 0; i < size(); ++i)
+		if (is_input(i))
+			input_size++;
+
+	return input_size;
+}
+
+float network::neuron(const unsigned int i) const
+{
+	if (is_input(i))
 		return input_buffer[i];
 
 	float result = 0.0f;
@@ -154,7 +132,7 @@ float Network::neuron(const unsigned int i) const
 	return activation_function(result);
 }
 
-std::vector<float> Network::operator()(const std::vector<float>& in)
+std::vector<float> network::operator()(const std::vector<float>& in)
 {
 	std::vector<float> result;
 	// store(in);
