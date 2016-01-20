@@ -12,6 +12,8 @@ class sigmoidNet : virtual public network
 {
 private:
 	virtual float activation_function(float x) const;
+public:
+	sigmoidNet(unsigned int s = 0);
 };
 
 
@@ -20,12 +22,12 @@ private:
 
 class perceptron : virtual public network
 {
-public:
-	perceptron(float v = 1.0f, float f = 0.0f, unsigned int s = 0);
 private:
 	const float verum;
 	const float falsum;
 	virtual float activation_function(float x) const;
+public:
+	perceptron(float v = 1.0f, float f = 0.0f, unsigned int s = 0);
 };
 
 
@@ -35,7 +37,7 @@ private:
 class layeredSigmoidNet : public layeredNet, public sigmoidNet
 {
 public:
-	layeredSigmoidNet(bool b = false, unsigned int n_l = 0);
+	layeredSigmoidNet(bool b = false);
 };
 
 
@@ -45,7 +47,7 @@ public:
 class layeredPerceptron : public layeredNet, public perceptron
 {
 public:
-	layeredPerceptron(unsigned int n_l = 0);
+	layeredPerceptron();
 };
 
 #endif

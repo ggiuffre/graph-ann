@@ -13,7 +13,7 @@ public:
 	internetwork(unsigned int s = 0);
 	~internetwork();
 	void add(const network& n);		// pushes network n into the internetwork
-	std::vector<float> operator()(const std::vector<float>& in);
+//	std::vector<float> operator()(const std::vector<float>& in);
 
 	friend class iterator;
 	class iterator {

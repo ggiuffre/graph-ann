@@ -4,90 +4,198 @@
 		"selected_items":
 		[
 			[
+				"row",
+				"row_iterator"
+			],
+			[
+				"lay",
+				"layeredNet"
+			],
+			[
+				"inp",
+				"input_size"
+			],
+			[
+				"begi",
+				"begin"
+			],
+			[
+				"uni",
+				"units"
+			],
+			[
+				"layer",
+				"layers"
+			],
+			[
+				"star",
+				"start_prev"
+			],
+			[
+				"del",
+				"deltas"
+			],
+			[
+				"f",
+				"fprintf	fprintf …"
+			],
+			[
+				"net",
+				"nets"
+			],
+			[
+				"la",
+				"layer"
+			],
+			[
+				"is",
+				"is_output"
+			],
+			[
+				"re",
+				"return"
+			],
+			[
+				"n_",
+				"n_layers"
+			],
+			[
+				"be",
+				"begin"
+			],
+			[
+				"er",
+				"erase"
+			],
+			[
+				"ou",
+				"outputs"
+			],
+			[
+				"new",
+				"new_capacity"
+			],
+			[
+				"ne",
+				"new_capacity"
+			],
+			[
+				"con",
+				"connections"
+			],
+			[
+				"fo",
+				"for	For Loop"
+			],
+			[
+				"c",
+				"const"
+			],
+			[
+				"h",
+				"hid_outputs"
+			],
+			[
+				"de",
+				"delete"
+			],
+			[
+				"lin",
+				"linkLayer"
+			],
+			[
+				"in",
+				"index"
+			],
+			[
+				"l",
+				"layers"
+			],
+			[
+				"add",
+				"addLayer"
+			],
+			[
+				"hi",
+				"hid_units"
+			],
+			[
+				"n_laye",
+				"n_layers"
+			],
+			[
+				"n_l",
+				"n_layers"
+			],
+			[
+				"n",
+				"n_layers"
+			],
+			[
+				"out",
+				"outputs"
+			],
+			[
+				"N",
+				"Network"
+			],
+			[
+				"net_",
+				"net_1"
+			],
+			[
+				"In",
+				"Internetwork"
+			],
+			[
+				"pri",
+				"private"
+			],
+			[
+				"un",
+				"unsigned"
+			],
+			[
 				"Neuro",
 				"Neuron"
 			],
 			[
 				"int",
 				"internal"
-			],
-			[
-				"re",
-				"result"
-			],
-			[
-				"In",
-				"InterNeuron"
-			],
-			[
-				"net",
-				"net_1"
-			],
-			[
-				"de",
-				"dendrites"
-			],
-			[
-				"new",
-				"new_capacity"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "dendrite.h",
+			"file": "dgraph.h",
 			"settings":
 			{
-				"buffer_size": 283,
+				"buffer_size": 1559,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "neuron.h",
+			"file": "dgraph.cpp",
 			"settings":
 			{
-				"buffer_size": 170,
+				"buffer_size": 3267,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "inter_neuron.h",
+			"file": "network.h",
 			"settings":
 			{
-				"buffer_size": 1002,
+				"buffer_size": 1208,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "input_neuron.h",
+			"file": "layered_net.h",
 			"settings":
 			{
-				"buffer_size": 352,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "net.h",
-			"settings":
-			{
-				"buffer_size": 357,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "net.cpp",
-			"settings":
-			{
-				"buffer_size": 894,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "main_prova.cpp",
-			"settings":
-			{
-				"buffer_size": 366,
+				"buffer_size": 1116,
 				"line_ending": "Unix"
 			}
 		}
@@ -164,15 +272,38 @@
 	],
 	"file_history":
 	[
+		"/Users/giorgiogiuffre/Documents/TeX output/SO_ggiuffre.tex",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/train.cpp",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/layered_net.cpp",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/dgraph.cpp",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/network.cpp",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/dgraph.h",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/main_prova.cpp",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/internetwork.h",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/internetwork.cpp",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/nets.h",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/nets.cpp",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/oop_ann.sublime-project",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/net.cpp",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/sigmoid.h",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/sigmoid.cpp",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/sigmoid_ascii_net.h",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/data.h",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/inter_neuron.cpp",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/prova_2.cpp",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/graph.h",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/inter_neuron.h",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/doc/spiegazione.txt",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/spiegazione.txt",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/input_neuron.h",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/neuron.h",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/dendrite.h",
 		"/Applications/MAMP/htdocs/MyANN/ANN_2/webcam/webcam.html",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/activating_functions.h",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/inter_neuron.cpp",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/dendrite.cpp",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/meta_neur.h",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/neuron.h",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/output_neuron.h",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/neuron.cpp",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/oop_ann.sublime-project",
 		"/Users/giorgiogiuffre/Documents/C++/graph_ann/dgraph.h",
 		"/Users/giorgiogiuffre/Documents/C++/graph_ann/graph.cpp",
 		"/Users/giorgiogiuffre/Documents/C++/graph_ann/graph.h",
@@ -217,92 +348,134 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"net_1",
-			"u3",
-			"int",
-			"Net",
-			"NET",
-			"search",
-			"i",
-			"int",
-			"push_back",
-			"pop_back",
-			"push_back",
-			"push",
-			"//////",
-			";",
-			"operator",
-			"Val",
-			"Neuron",
-			"NEURON_H",
-			"INP",
-			"IN",
-			"InputNeuron",
-			"Neuron",
-			"NEURON_H",
-			"NEURON",
-			"delete",
-			"typename ",
-			"log",
-			"Log(ceil(log((double) s) / log(2.0))), ",
-			"operator=",
-			"++",
-			"front",
-			"begin",
-			"int",
-			"1 << Log",
-			"for",
-			"initial",
-			"delete",
-			"delete []",
-			"delete[]",
-			"capacity",
-			"size",
-			"Neuron &",
-			"v",
-			"v.",
-			"cpty",
-			"_capacity",
-			"_size",
-			"sz",
-			"index",
-			"size",
-			"unsigned",
-			"T",
+			"row_iterator",
+			"weights",
+			"weights.update();",
+			"row_iterator",
 			"iterator",
-			"Iterator",
-			" {",
-			"buffer",
-			"T&",
-			"Log",
-			"log",
-			"Log",
-			"log",
-			"Log",
-			"size",
-			"_capacity",
-			"Vector",
-			"Vector<T>",
-			"template <class T>",
-			"template<class T>",
-			";",
-			"void",
-			"Graph",
-			"Node&",
-			";",
-			"Link<T>",
-			"Node<T>",
-			"T",
-			"Node",
-			"`e",
-			"language",
+			"dGraph::",
+			"connections",
+			"ul + 1",
+			"n_layers - 2",
+			"i",
+			"l",
+			"int",
+			"i",
+			"const",
+			"start",
+			"begin(l - 1) + layers[l - 1].size",
+			"begin(l) + layers[l].size",
+			"start_prev",
+			"start_curr",
+			"layers[l].begin",
+			"layers[l - 1].begin",
+			"start",
+			"layers[l].begin",
+			"i",
+			"layer",
+			"connections",
+			"layer_2",
+			"n_layers - 2",
+			"n_layers - 1",
+			"out_outputs",
+			"i",
+			"l",
+			"i",
+			"<<",
+			"sigmoid_unit",
+			"for (int",
+			"double",
+			"t",
+			"input_buffer",
+			"Net",
+			"layeredPerceptronNet",
+			"Sigmoid",
+			"thresholded",
+			" = 0",
+			"unsigned",
+			"perceptron",
+			"bias_opt",
+			"	for (unsigned int i = 0; i < size(); ++i)\n	{\n		for (unsigned int j = 0; j < size() - 1; ++j)\n			std::cout << connections[i][j] << ' ';\n		std::cout << std::endl;\n	}\n	std::cout << std::endl;",
+			"int",
+			"i",
 			"n_in",
-			"image_ann::",
-			"graysc",
-			"gigio::",
-			"ann",
-			"gigio::",
-			"gigio"
+			"is_internal",
+			"j",
+			"not_input",
+			"input",
+			"not_input",
+			"is_biased",
+			"biased",
+			"bool biased = UNBIASED",
+			"const bool biased",
+			"index",
+			"out_outputs",
+			"hid_outputs",
+			"// (?)",
+			"Network",
+			"aux",
+			"outputs",
+			"connections",
+			"vector",
+			"resize",
+			"cpty",
+			"resize",
+			"reserve",
+			"resize",
+			"i",
+			"for",
+			"into",
+			"//",
+			"size()",
+			"N[",
+			"N",
+			"BIASED",
+			"NO_BIAS",
+			"unsigned",
+			"hid_outputs",
+			"n_l",
+			"-1",
+			"int",
+			"i",
+			"double",
+			"Perceptron",
+			"perceptron",
+			"Network",
+			"DGraph",
+			"Network",
+			"Internetwork",
+			"Network",
+			"internetwork",
+			"Internetwork",
+			"DGraph",
+			"e",
+			"k",
+			"a",
+			"Net",
+			"net",
+			"Net",
+			".0",
+			"internal",
+			"const",
+			"DGraph",
+			"outputs",
+			"DGraph",
+			"net_2.",
+			"net_1",
+			"net_1.",
+			"net_1",
+			"for (int",
+			"for",
+			"i",
+			"net_1",
+			"remove",
+			"unsigned int n = 1",
+			"graph",
+			"Net",
+			"net",
+			"Net",
+			"short int",
+			"sigmoid"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -320,80 +493,82 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "dendrite.h",
+					"file": "dgraph.h",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 283,
+						"buffer_size": 1559,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								229,
-								229
+								820,
+								820
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/C++/C++.tmLanguage"
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 517.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "neuron.h",
+					"file": "dgraph.cpp",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 170,
+						"buffer_size": 3267,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								159,
-								159
+								137,
+								137
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/C++/C++.tmLanguage"
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "inter_neuron.h",
+					"file": "network.h",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1002,
+						"buffer_size": 1208,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								498,
-								498
+								0,
+								0
 							]
 						],
 						"settings":
@@ -410,111 +585,24 @@
 				},
 				{
 					"buffer": 3,
-					"file": "input_neuron.h",
+					"file": "layered_net.h",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 352,
+						"buffer_size": 1116,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								317,
-								317
+								0,
+								0
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/C++/C++.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "net.h",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 357,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								346,
-								346
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "net.cpp",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 894,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								840,
-								840
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 904.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "main_prova.cpp",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 366,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								233,
-								233
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -532,7 +620,7 @@
 	},
 	"input":
 	{
-		"height": 0.0
+		"height": 43.0
 	},
 	"layout":
 	{
@@ -614,8 +702,8 @@
 	"show_minimap": false,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": true,
-	"side_bar_width": 76.0,
+	"side_bar_visible": false,
+	"side_bar_width": 103.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

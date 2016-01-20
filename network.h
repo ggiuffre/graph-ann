@@ -2,40 +2,31 @@
 #define NETWORK_H
 
 #include <vector>
-#include <set>
-#include "dgraph.h"
+#include <map>
+#include "dag.h"
 
-class network : public dGraph
+class network : public DAG
 {
 private:
-	std::set<unsigned int> outputs;
-	std::vector<float> input_buffer;
-	void store(const std::vector<float>& in);
-	float interpret(float x) const { return x; }		// id (default)
-
-	float neuron(unsigned int index) const;
-	virtual float activation_function(float x) const { return x; }	// id (default)
-	// N.B. : il virtual è necessario, sennò le sottoclassi usano sempre e solo l'identità qui definita.
+	std::map<unsigned int, float> input_map;
+	virtual float activation_function(float x) const;
 
 protected:
-	bool is_output(unsigned int node) const;
-	bool is_input(unsigned int node) const;
-	bool is_connected(unsigned int node) const;
+	float neuron(unsigned int index) const;
+	virtual void store(const std::vector<float>& in);
 
 public:
 	network(unsigned int s = 0);
-	network(const network& n);
-
-	// PROBLEMA: dopo una remove(), gli indici con cui l'utente si interfaccia non sono più validi!
+	network(const network& net);
+	network& operator=(const network& net);
 
 	enum init_t { ZERO, RAND };
-	void init(init_t mode = RAND);
+	void init(init_t mode = RAND, float bound = 0.5f);
+
+	bool is_output(unsigned int node) const;
+	bool is_input(unsigned int node) const;
+	bool is_connected(unsigned int node) const;
 	unsigned int input_size() const;
-	void add(unsigned int n = 1);
-	void pop_back(unsigned int n = 1);
-	void remove(unsigned int node);
-	void link(unsigned int a, unsigned int b, float w = 1.0f);
-	void unlink(unsigned int a, unsigned int b);
 
 	std::vector<float> operator()(const std::vector<float>& in);
 };

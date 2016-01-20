@@ -1,108 +1,119 @@
+#include <iostream>
+#include <vector>
 #include <time.h>
 #include <stdlib.h>
-#include "network.h"
+#include <cmath>
+#include "layered_net.h"
 
-// =============================================
-// =============================================
-// ==================== TUTTO DA RISCRIVERE ====
-// ==================== ___________________ ====
-// =============================================
-// =============================================
-// =============================================
-
-void Network::incr_training(const int n_examples, const float ** examples, const float ** target, const float learning_rate, const float momentum, const float desired_err)
+void layeredNet::incremental_training(const unsigned int n_examples, float ** const examples, float ** const target, const float learning_rate, const float momentum, const float desired_err)
 {
-	float	* hid_delta = new float [n_hid + 1],
-			* out_delta = new float [n_out + 1],
-			in_momentum_term = 0.0f,
-			hid_momentum_term = 0.0f;
+	float * momentum_terms = new float [n_layers];
+	for (layers_iterator i = l_begin(); i < l_end(); ++i)
+		momentum_terms[i] = 0.0f;
+
+	unit * units = new unit [size()];
+	for (nodes_iterator i = begin(l_begin()); i < end(l_end() - 1); ++i)
+		units[i] = unit();		// ma forse ci pensa già il costruttore di default! <<<<<
+
+	init(RAND, 1.0f);
 
 
 
-	// --- set the bias neurons to 1.0f:
-
-	hid_outputs[0] = 1.0f;
-	out_outputs[0] = 1.0f;
-
-
-
-	/* The network will converge if and only if the target
-	outputs are in the image of the activating
-	function or can be expressed as an element of the
-	image plus/minus the desired error (e.g. the sigmoid function
-	has image (0,1) so target outputs will have to be in
-	(0-e,1+e) where e is the desired error)  */
+	/* The training algorithm  will converge only if the target outputs are in the image of the activating function or can be expressed as an element of the image plus/minus the desired error (e.g. the sigmoid function has image (0,1) so target outputs will have to be in (0-e,1+e) where e is the desired error) */
 
 	float tot_err = 0.0f;
-	int num_epochs = 0, i = -1;
-	std::ofstream predictions("log.txt");
-	std::ofstream err_1("err.txt");
+	unsigned int num_epochs = 0;
+	unsigned int output_size = is_biased ? layers[l_end() - 1].size - 1 : layers[l_end() - 1].size;
 
 	do		// --- until the termination condition is met, do...
 	{
 		num_epochs++;
-		predictions << num_epochs << ' ';
-		err_1 << num_epochs << ' ';
+		std::cout << "\n[" << num_epochs << "]\n";
 
 		srand(time(NULL));
 		std::vector<int> inds(n_examples);		// randomly shuffled indexes
-		for (int i = 0; i < n_examples; ++i)
+		for (unsigned int i = 0; i < n_examples; ++i)
 			inds[i] = i;
 		std::random_shuffle(inds.begin(), inds.end());
 
-		for (int t = 0; t < n_examples; ++t)	// --- for each training example, do...
+		for (unsigned int r = 0; r < n_examples; ++r)	// --- for each training example, do...
 		{
-			i = inds[t];
-			//std::cout << "example " << i << std::endl;
+			unsigned int e = inds[r];
+
+			std::cout << "<";
+			for (unsigned int i = 0; i < output_size; ++i)
+				std::cout << target[e][i] << ", ";
+			std::cout << "\b\b>\t";
 
 
 
-			// --- propagate input forward:
+			// --- store the example, input it to the network and store the output of every unit:
 
-			for (int j = 1; j < n_hid + 1; ++j)
-				hid_outputs[j] = sigmoid_unit(examples[i], hid_weights[j], n_in + 1);
+			store(std::vector<float>(examples[e], examples[e] + network::input_size()));
 
-			for (int j = 1; j < n_out + 1; ++j)
-				out_outputs[j] = sigmoid_unit(hid_outputs, out_weights[j], n_hid + 1);
+			for (nodes_iterator i = begin(l_begin()); i < end(l_begin()); ++i)
+				units[i].out = neuron(i);
+
+			for (layers_iterator l = l_begin() + 1; l < l_end(); ++l)
+				for (nodes_iterator i = begin(l); i < end(l); ++i)
+					units[i].out = neuron(i);
+
+			std::cout << "(";
+			for (nodes_iterator i = begin(l_end() - 1); i < end(l_end() - 1); ++i)
+				std::cout << units[i].out << ", ";
+			std::cout << "\b\b)\t";
+
+			// (SI PUO MIGLIORARE!)  ^^^^^
 
 
 
-			// --- compute error terms:
+			// --- compute the error terms:
 
 			float err = 0.0f;
-			for (int j = 1; j < n_out + 1; ++j)
+
+			unsigned int t = 0;
+			for (nodes_iterator i = begin(l_end() - 1) + is_biased; i < end(l_end() - 1); ++i)	// is_biased?
 			{
-				out_delta[j] = out_outputs[j] * (1.0f - out_outputs[j]) * (target[i][j] - out_outputs[j]);
-				predictions << out_outputs[j] << ' ';
-				err += fabs(target[i][j] - out_outputs[j]);
-				err_1 << err << ' ';
+				units[i].delta = units[i].out * (1.0f - units[i].out) * (target[e][t] - units[i].out);
+//				if (!is_biased || i != begin(l_end() - 1))
+					err += fabs(target[e][t] - units[i].out);
+				t++;
 			}
-			err /= n_out;
+			err /= output_size;
+			std::cout << err << "\n";
 
-			for (int j = 1; j < n_hid + 1; ++j)
-			{
-				float tmp_sum = 0.0f;
-				for (int k = 1; k < n_out + 1; ++k)
-					tmp_sum += out_weights[k][j] * out_delta[k];
-				hid_delta[j] = hid_outputs[j] * (1.0f - hid_outputs[j]) * tmp_sum;
-			}
-
-
-
-			// --- update network weights:
-
-			for (int j = 1; j < n_out + 1; ++j)
-				for (int k = 0; k < n_hid + 1; ++k)		// dovrebbe essere giusto cosi'...
+			for (layers_iterator l = l_end() - 2; l != l_begin(); --l)
+				for (nodes_iterator i = begin(l) + is_biased; i < end(l); ++i)	// is_biased?
 				{
-					out_weights[j][k] += learning_rate * out_delta[j] * hid_outputs[k] + momentum * hid_momentum_term;
-					hid_momentum_term = learning_rate * out_delta[j] * hid_outputs[k] + momentum * hid_momentum_term;
+					float downstream = 0.0f;
+					for (nodes_iterator j = begin(l + 1); j < end(l + 1); ++j)
+						downstream += edge(i, j) * units[j].delta;
+					units[i].delta = units[i].out * (1.0f - units[i].out) * downstream;
 				}
 
-			for (int j = 1; j < n_hid + 1; ++j)
-				for (int k = 0; k < n_in + 1; ++k)
+			for (nodes_iterator i = begin(l_begin()) + is_biased; i < end(l_begin()); ++i)	// is_biased?
+			{
+				float downstream = 0.0f;
+				for (nodes_iterator j = begin(l_begin() + 1); j < end(l_begin() + 1); ++j)
+					downstream += edge(i, j) * units[j].delta;
+				units[i].delta = units[i].out * (1.0f - units[i].out) * downstream;
+			}
+
+
+
+			// --- update the network weights:
+
+			for (layers_iterator l = l_begin(); l < l_end() - 1; ++l)
+				for (nodes_iterator i = begin(l) + is_biased; i < end(l); ++i)	// is_biased?
 				{
-					hid_weights[j][k] += learning_rate * hid_delta[j] * examples[i][k] + momentum * in_momentum_term;
-					in_momentum_term = learning_rate * hid_delta[j] * examples[i][k] + momentum * in_momentum_term;
+					for (nodes_iterator j = begin(l + 1); j < end(l + 1); ++j)
+					{
+						if (edge(i, j))
+						{
+							edge(i, j) += learning_rate * units[j].delta * units[i].out + momentum * momentum_terms[l];
+							momentum_terms[l] = learning_rate * units[j].delta * units[i].out + momentum * momentum_terms[l];
+						}
+					}
 				}
 
 
@@ -110,19 +121,9 @@ void Network::incr_training(const int n_examples, const float ** examples, const
 			tot_err += err;
 		}
 		tot_err /= n_examples;
-		std::cout << '\r' << num_epochs << '\t' << tot_err;
-		predictions << std::endl;
-		err_1 << std::endl;
-
+		std::cout << "error: " << tot_err << " > " << desired_err << "\n";
 	} while (tot_err > desired_err);
 
-	delete [] out_outputs;
-	delete [] hid_outputs;
-	delete [] out_delta;
-	delete [] hid_delta;
-
-	std::cout << std::endl;
-	//std::cout << " epochs" << std::endl;
-	predictions.close();
-	err_1.close();
+	delete [] units;
+	delete [] momentum_terms;
 }

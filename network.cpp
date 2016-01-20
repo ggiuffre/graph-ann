@@ -1,105 +1,59 @@
+#include <iostream>
 #include <time.h>
 #include <stdlib.h>
 #include <vector>
 #include "network.h"
 
-network::network(const unsigned int s) : dGraph(s) {}
+network::network(const unsigned int s) : DAG(s) {}
 
-network::network(const network& n) : dGraph(n)
+network::network(const network& net) : DAG(net), input_map() {}
+
+network& network::operator=(const network& net)
 {
-	outputs = n.outputs;
+	return network::operator=(net);
 }
 
-void network::add(const unsigned int n)
-{
-	// aggiorna la matrice di adiacenza:
-	dGraph::add(n);
-
-	// segna ogni nuovo nodo come output:
-	for (unsigned int i = size() - n; i < size(); ++i)
-		outputs.insert(i);
-}
-
-void network::pop_back(const unsigned int n)
-{
-	for (unsigned int i = size() - 1; i > size() - n - 1; ++i)
-		outputs.erase(i);
-
-	dGraph::pop_back();
-}
-
-void network::remove(const unsigned int node)
-{
-	// aggiorna la matrice di adiacenza:
-	dGraph::remove(node);
-
-	// ricalcola gli indici degli output:
-	outputs.clear();
-	for (unsigned int i = 0; i < size(); ++i)
-		if (is_output(i))
-			outputs.insert(i);
-}
-
-void network::init(init_t mode)
+void network::init(init_t mode, const float bound)
 {
 	if (mode == RAND)
 	{
 		srand(time(NULL));
-
-		for (unsigned int i = 0; i < size(); ++i)
-			for (unsigned int j = 0; j < size(); ++j)
-				if (connections[i][j])
-					connections[i][j] = (rand() % 100) / 10.0f;
+		for (nodes_iterator i = begin(); i < end(); ++i)
+			for (weights_iterator j = begin(i); j < end(i); ++j)
+				if (edge(j, i))
+					link(j, i, (rand() % 1000) * ((2.0f * bound) / 1000.0f) - bound);
 	}
 	else if (mode == ZERO)
 	{
-		for (unsigned int i = 0; i < size(); ++i)
-			for (unsigned int j = 0; j < size(); ++j)
-				if (connections[i][j])
-					connections[i][j] = 0.0f;
+		for (nodes_iterator i = begin(); i < end(); ++i)
+			for (weights_iterator j = begin(i); j < end(i); ++j)
+				link(j, i, 0.0f);
 	}
-}
-
-void network::link(const unsigned int a, const unsigned int b, const float w)
-{
-	dGraph::link(a, b, w);
-
-	outputs.erase(a);
-	outputs.insert(b);
-}
-
-void network::unlink(const unsigned int a, const unsigned int b)
-{
-	// aggiorna la matrice di adiacenza:
-	link(a, b, 0.0f);
-
-	// se il nodo a è diventato un output, aggiorna outputs:
-	if (is_output(a))
-		outputs.insert(a);
 }
 
 bool network::is_output(const unsigned int node) const
 {
-	bool out = true;
+	if (node >= size())		// eccezione
+		return 0;
 
-	for (unsigned int i = 0; i < node && out; ++i)
-		if (connections[i][node - 1])
-			out = false;
+	bool is_out = true;
 
-	for (unsigned int i = node + 1; i < size() && out; ++i)
-		if (connections[i][node])
-			out = false;
+	for (nodes_iterator i = begin(); i < end() && is_out; ++i)		// weights_it (?)
+		is_out = !edge(node, i);
 
-	return out;
+	return is_out;
 }
 
 bool network::is_input(const unsigned int node) const
 {
-	bool internal = false;
-	for (unsigned int i = 0; i < size() - 1; ++i)
-		internal = internal || connections[node][i];
+	if (node >= size())		// eccezione
+		return 0;
 
-	return !internal;
+	bool has_in = false;
+	for (weights_iterator i = begin(node); i < end(node) && !has_in; ++i)
+		has_in = edge(i, node);
+
+	return !has_in;
 }
 
 bool network::is_connected(const unsigned int node) const
@@ -110,36 +64,54 @@ bool network::is_connected(const unsigned int node) const
 unsigned int network::input_size() const
 {
 	unsigned int input_size = 0;
-	for (unsigned int i = 0; i < size(); ++i)
+	for (nodes_iterator i = begin(); i < end(); ++i)
 		if (is_input(i))
 			input_size++;
 
 	return input_size;
 }
 
+void network::store(const std::vector<float>& in)
+{
+	if (in.size() >= input_size())
+	{
+		std::vector<float>::const_iterator t = in.begin();
+		for (nodes_iterator i = begin(); i < end(); ++i)
+			if (is_input(i))
+				input_map[i] = *(t++);
+	}
+}
+
 float network::neuron(const unsigned int i) const
 {
+	if (i >= size())		// eccezione
+		return 0.0f;
+
 	if (is_input(i))
-		return input_buffer[i];
+		return input_map.find(i)->second;
 
 	float result = 0.0f;
-	for (unsigned int j = 0; j < i; ++j)
-		if (connections[i][j])
-			result += connections[i][j] * neuron(j);
-	for (unsigned int j = i; j < size() - 1; ++j)
-		if (connections[i][j])
-			result += connections[i][j] * neuron(j + 1);
+	for (weights_iterator j = begin(i); j < end(i); ++j)
+		if (edge(j, i))
+			result += edge(j, i) * neuron(j);
+
 	return activation_function(result);
+}
+
+float network::activation_function(const float x) const
+{
+	return x;
 }
 
 std::vector<float> network::operator()(const std::vector<float>& in)
 {
+	store(in);
+
 	std::vector<float> result;
-	// store(in);
-	input_buffer = in;
+	for (nodes_iterator i = begin(); i < end(); ++i)
+		if (is_output(i))
+			result.push_back(neuron(i));
 
-	for (std::set<unsigned int>::const_iterator it = outputs.begin(); it != outputs.end(); ++it)
-		result.push_back(neuron(*it));
-
+	input_map.clear();
 	return result;
 }

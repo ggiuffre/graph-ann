@@ -1,6 +1,8 @@
 #include <cmath>
 #include "nets.h"
 
+sigmoidNet::sigmoidNet(const unsigned int s) : network(s) {}
+
 float sigmoidNet::activation_function(const float x) const
 {
 	return 1.0f / (1.0f + exp(-x));
@@ -17,8 +19,8 @@ float perceptron::activation_function(const float x) const
 
 
 
-layeredSigmoidNet::layeredSigmoidNet(const bool b, const unsigned int n_l) : layeredNet(b, n_l) {}
+layeredSigmoidNet::layeredSigmoidNet(const bool b) : layeredNet(b) {}
 
 
 
-layeredPerceptron::layeredPerceptron(const unsigned int n_l) : layeredNet(true, n_l) {}
+layeredPerceptron::layeredPerceptron() : layeredNet(true) {}

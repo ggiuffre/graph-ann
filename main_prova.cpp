@@ -32,6 +32,7 @@ int main(int argc, char const *argv[])
 	internetwork nets;
 	nets.add(net_1);
 	nets.add(net_2);
+	nets.link(0, 1);
 
 /*
 	for (internetwork::iterator it = nets.begin(); it != nets.end(); ++it)
