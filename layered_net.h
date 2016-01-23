@@ -2,6 +2,7 @@
 #define LAYERED_NET_H
 
 #include <vector>
+#include <string>
 #include "network.h"
 
 
@@ -18,28 +19,26 @@ public:
 
 class layeredNet : virtual public network
 {
-//	friend class layer;
 private:
 	class layer {
+	private:
+		unsigned int st;
+		unsigned int sz;
 	public:
-		unsigned int start;
-		unsigned int size;
-		layer(unsigned int st = 0, unsigned int si = 0);
+		unsigned int start() const;
+		unsigned int size() const;
+		layer(unsigned int a = 0, unsigned int b = 0);
 	};
 
-	const bool is_biased;
-	const float bias_value;
-	unsigned int n_layers;
+	unsigned int n_lays;
 	layer * layers;
 
-	void reserveLayer(unsigned int n = 0);
-
-protected:
-	void store(const std::vector<float>& in);
+	void reserveLayer(unsigned int start, unsigned int n_nodes);
 
 public:
-	layeredNet(bool b = false, float bv = 1.0f);
+	layeredNet();
 	layeredNet(const layeredNet& net);
+	layeredNet(std::string netfile);
 	virtual ~layeredNet();
 	layeredNet& operator=(const layeredNet& net);
 
@@ -61,15 +60,17 @@ public:
 	nodes_iterator begin(layers_iterator l) const;
 	nodes_iterator end(layers_iterator l) const;
 	unsigned int input_size() const;				// (virtual?)
+	unsigned int output_size() const;
+	unsigned int n_layers() const;
 	bool is_bias(unsigned int n) const;
 
-	void init(init_t mode = RAND, float bound = 0.5f);		// virtual ????
-	void addLayer(unsigned int n_nodes);
-	void linkLayer(unsigned int l);
-	void removeLayer(unsigned int l);
+	void init(init_t mode = RAND, float bound = 0.5f);
+	void init(std::string netfile);
+	void save(std::string netfile = "untitled.net") const;
 
-//	std::vector<float> operator()(const std::vector<float>& in);
-	void incremental_training(unsigned int n_examples, float ** examples, float ** target, float learning_rate, float momentum, float desired_err);
+	virtual void addLayer(unsigned int n_nodes);
+	virtual void linkLayer(unsigned int l);
+	void removeLayer(unsigned int l);
 };
 
 #endif

@@ -1,8 +1,6 @@
 #ifndef GRAPH_H
 #define GRAPH_H
 
-#include <iostream>		// per ostream e istream
-
 class graph
 {
 private:
@@ -15,9 +13,9 @@ private:
 
 public:
 	graph(unsigned int s = 0);
-	graph(const graph& n);
+	graph(const graph& g);
 	virtual ~graph();
-	graph& operator=(const graph& n);
+	graph& operator=(const graph& g);
 
 	class nodes_iterator {
 	private:
@@ -58,8 +56,5 @@ public:
 	virtual void link(unsigned int a, unsigned int b, float w = 1.0f);
 	void unlink(unsigned int a, unsigned int b);
 };
-
-std::ostream& operator<<(std::ostream& os, const graph& g);
-std::istream& operator>>(std::istream& is, const graph& g);
 
 #endif

@@ -1,4 +1,5 @@
 #include <cmath>
+#include <string>
 #include "nets.h"
 
 sigmoidNet::sigmoidNet(const unsigned int s) : network(s) {}
@@ -19,8 +20,10 @@ float perceptron::activation_function(const float x) const
 
 
 
-layeredSigmoidNet::layeredSigmoidNet(const bool b) : layeredNet(b) {}
+layeredSigmoidNet::layeredSigmoidNet(const float bv) : layeredBiasedNet(bv) {}
+
+layeredSigmoidNet::layeredSigmoidNet(const std::string netfile, const float bv) : layeredBiasedNet(netfile, bv) {}
 
 
 
-layeredPerceptron::layeredPerceptron() : layeredNet(true) {}
+layeredPerceptron::layeredPerceptron() : layeredBiasedNet() {}

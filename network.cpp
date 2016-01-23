@@ -1,17 +1,23 @@
 #include <iostream>
+#include <fstream>
+#include <string>
 #include <time.h>
 #include <stdlib.h>
 #include <vector>
 #include "network.h"
 
+
+
+// network
+
 network::network(const unsigned int s) : DAG(s) {}
 
-network::network(const network& net) : DAG(net), input_map() {}
-
-network& network::operator=(const network& net)
+network::network(const std::string netfile)
 {
-	return network::operator=(net);
+	init(netfile);
 }
+
+network::network(const network& net) : DAG(net), input_map() {}
 
 void network::init(init_t mode, const float bound)
 {
@@ -29,6 +35,21 @@ void network::init(init_t mode, const float bound)
 			for (weights_iterator j = begin(i); j < end(i); ++j)
 				link(j, i, 0.0f);
 	}
+}
+
+void network::init(const std::string netfile)
+{
+	std::ifstream fin(netfile);
+
+	if (fin)
+	{
+		unsigned int n_nodes = 0;
+		fin >> n_nodes;
+		*this = network(n_nodes);
+		fin >> *this;
+	}
+
+	fin.close();
 }
 
 bool network::is_output(const unsigned int node) const
@@ -114,4 +135,36 @@ std::vector<float> network::operator()(const std::vector<float>& in)
 
 	input_map.clear();
 	return result;
+}
+
+void network::save(const std::string netfile) const
+{
+	std::ofstream fout(netfile);
+	fout << size() << std::endl << *this;
+}
+
+
+
+// operatori esterni
+
+std::ostream& operator<<(std::ostream& os, const network& net)
+{
+	for (network::nodes_iterator i = net.begin(); i < net.end(); ++i)
+	{
+		os << std::endl;
+		for (network::nodes_iterator j = net.begin(); j < net.end() - 1; ++j)
+			os << net.edge(j, i) << ' ';
+		os << net.edge(net.end() - 1, i);
+	}
+
+	return os;
+}
+
+std::istream& operator>>(std::istream& is, const network& net)
+{
+	for (network::nodes_iterator i = net.begin(); i < net.end(); ++i)
+		for (network::nodes_iterator j = net.begin(); j < net.end(); ++j)
+			is >> net.edge(j, i);
+
+	return is;
 }

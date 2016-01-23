@@ -61,11 +61,11 @@ graph::graph(const unsigned int s) : sz(s), cpty(sz ? sz : 4), weights(cpty ? ne
 	}
 }
 
-graph::graph(const graph& n) : sz(n.size()), cpty(n.capacity())
+graph::graph(const graph& g) : sz(g.size()), cpty(g.capacity()), weights(sz ? new float * [cpty] : nullptr)
 {
 	for (unsigned int i = 0; i < sz; ++i)
 		for (unsigned int j = 0; j < sz; ++j)
-			weights[i][j] = n.weights[i][j];
+			weights[i][j] = g.weights[i][j];
 }
 
 graph::~graph()
@@ -73,13 +73,12 @@ graph::~graph()
 	delete [] weights;
 }
 
-graph& graph::operator=(const graph& n)
+graph& graph::operator=(const graph& g)
 {
-	sz = n.size();
-	cpty = n.capacity();
+	resize(g.size());
 	for (unsigned int i = 0; i < sz; ++i)
 		for (unsigned int j = 0; j < sz; ++j)
-			weights[i][j] = n.weights[i][j];
+			weights[i][j] = g.weights[i][j];
 
 	return *this;
 }
@@ -217,29 +216,4 @@ void graph::link(const unsigned int a, const unsigned int b, const float w)
 void graph::unlink(const unsigned int a, const unsigned int b)
 {
 	link(a, b, 0.0f);
-}
-
-
-
-// operatori esterni
-
-std::ostream& operator<<(std::ostream& os, const graph& g)
-{
-	for (graph::nodes_iterator i = g.begin(); i != g.end(); ++i)
-	{
-		for (graph::nodes_iterator j = g.begin(); j != g.end(); ++j)
-			os << g.edge(j, i) << ' ';
-		os << "\b\n";
-	}
-
-	return os;
-}
-
-std::istream& operator>>(std::istream& is, const graph& g)
-{
-	for (graph::nodes_iterator i = g.begin(); i != g.end(); ++i)
-		for (graph::nodes_iterator j = g.begin(); j != g.end(); ++j)
-			is >> g.edge(j, i);
-
-	return is;
 }

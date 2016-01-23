@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include "layered_net.h"
 
 
@@ -11,7 +12,17 @@ unit::unit() : out(0.0f), delta(0.0f) {}
 
 // layeredNet::layer
 
-layeredNet::layer::layer(const unsigned int st, const unsigned int si) : start(st), size(si) {}
+layeredNet::layer::layer(const unsigned int a, const unsigned int b) : st(a), sz(b) {}
+
+unsigned int layeredNet::layer::start() const
+{
+	return st;
+}
+
+unsigned int layeredNet::layer::size() const
+{
+	return sz;
+}
 
 
 
@@ -52,12 +63,17 @@ layeredNet::layers_iterator layeredNet::layers_iterator::operator--(int)
 
 // layeredNet
 
-layeredNet::layeredNet(const bool b, const float bv) : network(), n_layers(0), layers(nullptr), is_biased(b), bias_value(bv) {}
+layeredNet::layeredNet() : n_lays(0), layers(nullptr) {}
 
-layeredNet::layeredNet(const layeredNet& net) : network(net), is_biased(net.is_biased), bias_value(net.bias_value), n_layers(net.n_layers)
+layeredNet::layeredNet(const layeredNet& net) : network(net), n_lays(net.n_lays)
 {
-	for (unsigned int i = 0; i < n_layers; ++i)
+	for (unsigned int i = 0; i < n_lays; ++i)
 		layers[i] = net.layers[i];
+}
+
+layeredNet::layeredNet(const std::string netfile) : n_lays(0), layers(nullptr)
+{
+	init(netfile);
 }
 
 layeredNet::~layeredNet()
@@ -67,20 +83,18 @@ layeredNet::~layeredNet()
 
 layeredNet& layeredNet::operator=(const layeredNet& net)
 {
-	layeredNet::operator=(net);
-
-	return *this;
+	return layeredNet::operator=(net);
 }
 
-void layeredNet::reserveLayer(const unsigned int n_nodes)
+void layeredNet::reserveLayer(const unsigned int start, const unsigned int n_nodes)
 {
-	n_layers++;
-	layer * aux = new layer [n_layers];
+	n_lays++;
+	layer * aux = new layer [n_lays];
 
 	for (layers_iterator l = l_begin(); l != l_end() - 1; ++l)
 		aux[l] = layers[l];
 
-	aux[l_end() - 1] = layer(size() - n_nodes, n_nodes);
+	aux[l_end() - 1] = layer(start, n_nodes);
 
 	delete [] layers;
 	layers = aux;
@@ -93,111 +107,101 @@ layeredNet::layers_iterator layeredNet::l_begin() const
 
 layeredNet::layers_iterator layeredNet::l_end() const
 {
-	return n_layers;
+	return n_lays;
 }
 
 graph::nodes_iterator layeredNet::begin(const layeredNet::layers_iterator l) const
 {
-	return layers[l].start;
+	return layers[l].start();
 }
 
 graph::nodes_iterator layeredNet::end(const layeredNet::layers_iterator l) const
 {
-	return begin(l) + layers[l].size;
+	return begin(l) + layers[l].size();
 }
 
 unsigned int layeredNet::input_size() const
 {
-	return is_biased ? layers[0].size - 1 : layers[0].size;
+	return layers[0].size();
 }
 
-bool layeredNet::is_bias(unsigned int n) const
+unsigned int layeredNet::output_size() const
 {
-	if (is_biased)
-	{
-		for (layers_iterator l = l_begin(); l != l_end(); ++l)
-			if (n == begin(l))
-				return true;
-	}
+	return layers[n_lays - 1].size();
+}
 
-	return false;
+unsigned int layeredNet::n_layers() const
+{
+	return n_lays;
 }
 
 void layeredNet::init(const init_t mode, const float bound)
 {
 	network::init(mode, bound);
+}
 
-	// eguaglia i pesi dei bias:
-	for (layers_iterator l = l_begin(); l != l_end() - 1; ++l)
-		for (nodes_iterator i = begin(l + 1) + 1; i != end(l + 1); ++i)
-			edge(begin(l), i) = edge(begin(l), begin(l + 1) + 1);
+void layeredNet::init(const std::string netfile)
+{
+	network::init(netfile);
+
+	std::ifstream fin(netfile);
+
+	float idle;
+	for (unsigned int i = 0; i < size() * size() + 1; ++i)
+		fin >> idle;
+
+	unsigned int tmp_n_layers = 0;
+	fin >> tmp_n_layers;
+	for (unsigned int i = 0; i < tmp_n_layers; ++i)
+	{
+		unsigned int layer_start, n_nodes;
+		fin >> layer_start >> n_nodes;
+		reserveLayer(layer_start, n_nodes);
+	}
+
+	fin.close();
+}
+
+void layeredNet::save(const std::string netfile) const
+{
+	network::save(netfile);
+
+	std::ofstream fout(netfile, std::ios::app);
+	fout << std::endl << std::endl << n_lays << std::endl;
+	for (layers_iterator l = l_begin(); l < l_end(); ++l)
+		fout << std::endl << layers[l].start() << ' ' << layers[l].size() << ' ';
 }
 
 void layeredNet::addLayer(const unsigned int n_nodes)
 {
-	if (!is_biased)
-	{
-		add(n_nodes);
-		reserveLayer(n_nodes);
-	}
-	else
-	{
-		add(n_nodes + 1);
-		reserveLayer(n_nodes + 1);
-	}
+	add(n_nodes);
+	reserveLayer(size() - n_nodes, n_nodes);
 
-	if (n_layers > 1)
-		linkLayer(n_layers - 1);
+	if (n_lays > 1)
+		linkLayer(n_lays - 1);
 }
 
 void layeredNet::linkLayer(const unsigned int l)
 {
-	if (l > 0 && l < n_layers)
-	{
-		if (!is_biased)
-			for (nodes_iterator i = begin(l); i != end(l); ++i)
-				for (nodes_iterator j = begin(l - 1); j != end(l - 1); ++j)
-					link(j, i);
-		else
-			for (nodes_iterator i = begin(l) + 1; i != end(l); ++i)
-				for (nodes_iterator j = begin(l - 1); j != end(l - 1); ++j)
-					link(j, i);
-	}
+	if (l > 0 && l < n_lays)
+		for (nodes_iterator i = begin(l); i < end(l); ++i)
+			for (nodes_iterator j = begin(l - 1); j < end(l - 1); ++j)
+				link(j, i);
 }
 
 void layeredNet::removeLayer(const unsigned int lay)
 {
-	if (lay < n_layers)
+	if (lay < n_lays)
 	{
-		for (nodes_iterator i = begin(lay); i != end(lay); ++i)
+		for (nodes_iterator i = begin(lay); i < end(lay); ++i)
 			remove(i);
 
 		for (layers_iterator l = lay; l != l_end() - 1; ++l)
 			layers[l] = layers[l + 1];
 
-		n_layers--;
+		n_lays--;
 
 		// "riempi il vuoto", collegando il vecchio strato lay+1, ora diventato lay:
 		linkLayer(lay);
 	}
-}
-
-void layeredNet::store(const std::vector<float>& in)
-{
-	if (is_biased)
-	{
-		unsigned int t = 0;
-		std::vector<float> aux;
-		for (nodes_iterator i = begin(l_begin()); i < end(l_end() - 1); ++i)
-		{
-			if (is_bias(i))
-				aux.push_back(bias_value);
-			else if (is_input(i))
-				aux.push_back(in[t++]);
-		}
-
-		network::store(aux);
-	}
-	else
-		network::store(in);
 }
