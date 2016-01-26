@@ -5,18 +5,6 @@
 #include <string>
 #include "network.h"
 
-
-
-class unit		// nested ?
-{
-public:
-	float out;
-	float delta;
-	unit();
-};
-
-
-
 class layeredNet : virtual public network
 {
 private:
@@ -27,7 +15,7 @@ private:
 	public:
 		unsigned int start() const;
 		unsigned int size() const;
-		layer(unsigned int a = 0, unsigned int b = 0);
+		explicit layer(unsigned int a = 0, unsigned int b = 0);
 	};
 
 	unsigned int n_lays;
@@ -39,7 +27,7 @@ public:
 	layeredNet();
 	layeredNet(const layeredNet& net);
 	layeredNet(std::string netfile);
-	virtual ~layeredNet();
+	virtual ~layeredNet() override;
 	layeredNet& operator=(const layeredNet& net);
 
 	class layers_iterator {
@@ -59,10 +47,9 @@ public:
 	layers_iterator l_end() const;
 	nodes_iterator begin(layers_iterator l) const;
 	nodes_iterator end(layers_iterator l) const;
-	unsigned int input_size() const;				// (virtual?)
+	unsigned int input_size() const;				// non virtual
 	unsigned int output_size() const;
 	unsigned int n_layers() const;
-	bool is_bias(unsigned int n) const;
 
 	void init(init_t mode = RAND, float bound = 0.5f);
 	void init(std::string netfile);

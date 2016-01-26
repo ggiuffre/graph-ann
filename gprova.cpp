@@ -1,28 +1,29 @@
 #include <iostream>
-#include "layered_net.h"
 #include "nets.h"
-using namespace std;
+using namespace std;	
 
 int main()
 {
 	layeredSigmoidNet net;
-/*
-	net.addLayer(2);
-	net.addLayer(7);
-	net.addLayer(1);
+//	layeredTanhNet net;
 
-	net.incremental_training("./data/sum.data", 0.5f, 0.1f, 0.01f);
-	net.save("./nets/sum.net");
-*/
+	net.addLayer(16);
+	net.addLayer(12);
+	net.addLayer(4);
 
-	net.init("./nets/sum.net");
+	net.incremental_training("./data/mat.data", 0.5f, 0.15f, 0.01f);
+	net.save("./nets/mat.net");
 
-	vector<float> in(2);
+//	net.init("./nets/mat.net");
+
+	vector<float> in(16);
 	cout << "test: ";
-	cin >> in[0] >> in[1];
+	for (unsigned int i = 0; i < in.size(); ++i)
+		cin >> in[i];
 	vector<float> out = net(in);
 
-	for (int i = 0; i < out.size(); ++i)
+	cout << "result: ";
+	for (unsigned int i = 1; i < out.size(); ++i)
 		cout << out[i] << ' ';
 	cout << endl;
 

@@ -1,14 +1,14 @@
 #include <iostream>
 #include <fstream>
+#include <algorithm>
 #include <vector>
 #include <string>
-#include <time.h>
-#include <stdlib.h>
 #include <cmath>
-#include "nets.h"
+#include "layered_biased_net.h"
 
-void layeredSigmoidNet::incremental_training(const unsigned int n_examples, float ** const examples, float ** const targets, const float learning_rate, const float momentum, const float desired_err)
+void layeredBiasedNet::incremental_training(const unsigned int n_examples, float ** const examples, float ** const targets, const float learning_rate, const float momentum, const float desired_err)
 {
+	unsigned int max_epochs = 26000;
 	std::vector<unit> units(size());
 	std::vector<float> momentum_terms(n_layers(), 0.0f);
 
@@ -18,6 +18,9 @@ void layeredSigmoidNet::incremental_training(const unsigned int n_examples, floa
 
 	float tot_err = 0.0f;
 	unsigned int num_epochs = 0;
+	std::vector<unsigned int> inds;
+	for (unsigned int i = 0; i < n_examples; ++i)
+		inds.push_back(i);
 
 
 
@@ -25,26 +28,22 @@ void layeredSigmoidNet::incremental_training(const unsigned int n_examples, floa
 	{
 		tot_err = 0.0f;
 		num_epochs++;
-		std::cout << "[" << num_epochs << "]\t";
+		std::cout << "\r[" << num_epochs << "]\t";
 
-		srand(time(NULL));
-		std::vector<int> inds(n_examples);		// randomly shuffled indexes
-		for (unsigned int i = 0; i < n_examples; ++i)
-			inds[i] = i;
 		std::random_shuffle(inds.begin(), inds.end());
 
-		for (unsigned int r = 0; r < n_examples; ++r)	// --- for each training example, do...
+		for (auto e = inds.begin(); e < inds.end(); ++e)	// --- for each training example, do...
 		{
-			unsigned int e = inds[r];
-
 //			std::cout << "<";
 //			for (unsigned int i = 0; i < output_size(); ++i)
-//				std::cout << targets[e][i] << ", ";
+//				std::cout << targets[*e][i] << ", ";
 //			std::cout << "\b\b>\t";
+
+
 
 			// --- store the example, input it to the network and store the output of every unit:
 
-			store(std::vector<float>(examples[e], examples[e] + network::input_size()));
+			store(std::vector<float>(examples[*e], examples[*e] + network::input_size()));
 
 			for (nodes_iterator i = begin(l_begin()); i < end(l_begin()); ++i)
 				units[i].out = neuron(i);
@@ -53,12 +52,14 @@ void layeredSigmoidNet::incremental_training(const unsigned int n_examples, floa
 				for (nodes_iterator i = begin(l); i < end(l); ++i)
 					units[i].out = neuron(i);
 
+			// (SI PUO MIGLIORARE!)  ^^^^^
+
 //			std::cout << "(";
 //			for (nodes_iterator i = begin(l_end() - 1); i < end(l_end() - 1); ++i)
 //				std::cout << units[i].out << ", ";
 //			std::cout << "\b\b)\t";
 
-			// (SI PUO MIGLIORARE!)  ^^^^^
+
 
 			// --- compute the error terms:
 
@@ -67,21 +68,23 @@ void layeredSigmoidNet::incremental_training(const unsigned int n_examples, floa
 			unsigned int t = 0;
 			for (nodes_iterator i = begin(l_end() - 1) + 1; i < end(l_end() - 1); ++i)
 			{
-				units[i].delta = units[i].out * (1.0f - units[i].out) * (targets[e][t] - units[i].out);
+				units[i].delta = activation_derivative(units[i].out) * (targets[*e][t] - units[i].out);
+//				units[i].delta = units[i].out * (1.0f - units[i].out) * (targets[*e][t] - units[i].out);
 //				if (i != begin(l_end() - 1))
-					err += fabs(targets[e][t] - units[i].out);
+					err += fabs(targets[*e][t] - units[i].out);
 				t++;
 			}
 			err /= output_size();
 //			std::cout << err << '\n';
 
-			for (layers_iterator l = l_end() - 2; l != l_begin(); --l)
+			for (layers_iterator l = l_end() - 2; l > l_begin(); --l)
 				for (nodes_iterator i = begin(l) + 1; i < end(l); ++i)
 				{
 					float downstream = 0.0f;
 					for (nodes_iterator j = begin(l + 1); j < end(l + 1); ++j)
 						downstream += edge(i, j) * units[j].delta;
-					units[i].delta = units[i].out * (1.0f - units[i].out) * downstream;
+					units[i].delta = activation_derivative(units[i].out) * downstream;
+//					units[i].delta = units[i].out * (1.0f - units[i].out) * downstream;
 				}
 
 			for (nodes_iterator i = begin(l_begin()) + 1; i < end(l_begin()); ++i)
@@ -89,32 +92,32 @@ void layeredSigmoidNet::incremental_training(const unsigned int n_examples, floa
 				float downstream = 0.0f;
 				for (nodes_iterator j = begin(l_begin() + 1); j < end(l_begin() + 1); ++j)
 					downstream += edge(i, j) * units[j].delta;
-				units[i].delta = units[i].out * (1.0f - units[i].out) * downstream;
+				units[i].delta = activation_derivative(units[i].out) * downstream;
+//				units[i].delta = units[i].out * (1.0f - units[i].out) * downstream;
 			}
+
+
 
 			// --- update the network weights:
 
 			for (layers_iterator l = l_begin(); l < l_end() - 1; ++l)
 				for (nodes_iterator i = begin(l) + 1; i < end(l); ++i)
-				{
 					for (nodes_iterator j = begin(l + 1); j < end(l + 1); ++j)
-					{
 						if (edge(i, j))
 						{
-							edge(i, j) += learning_rate * units[j].delta * units[i].out + momentum * momentum_terms[l];
+							link(i, j, edge(i, j) + learning_rate * units[j].delta * units[i].out + momentum * momentum_terms[l]);
 							momentum_terms[l] = learning_rate * units[j].delta * units[i].out + momentum * momentum_terms[l];
 						}
-					}
-				}
 
 			tot_err += err;
 		}
 		tot_err /= n_examples;
-		std::cout << "error: " << tot_err << "\r";
-	} while (tot_err > desired_err);
+		std::cout << "error: " << tot_err;
+	} while (tot_err > desired_err && num_epochs < max_epochs);
+	std::cout << '\n';
 }
 
-void layeredSigmoidNet::incremental_training(const std::string data_file, const float learning_rate, const float momentum, const float desired_err)
+void layeredBiasedNet::incremental_training(const std::string data_file, const float learning_rate, const float momentum, const float desired_err)
 {
 	unsigned int n_examples = 0;
 	unsigned int n_in = 0;
@@ -124,12 +127,12 @@ void layeredSigmoidNet::incremental_training(const std::string data_file, const 
 	fin >> n_examples >> n_in >> n_out;
 
 	float ** examples = new float * [n_examples];
-	for (unsigned int i = 0; i < n_examples; ++i)
-		examples[i] = new float [n_in];
+	for (unsigned int e = 0; e < n_examples; ++e)
+		examples[e] = new float [n_in];
 
 	float ** targets = new float * [n_examples];
-	for (unsigned int i = 0; i < n_examples; ++i)
-		targets[i] = new float [n_out];
+	for (unsigned int e = 0; e < n_examples; ++e)
+		targets[e] = new float [n_out];
 
 	for (unsigned int e = 0; e < n_examples; ++e)
 	{

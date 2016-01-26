@@ -4,12 +4,6 @@
 
 
 
-// unit
-
-unit::unit() : out(0.0f), delta(0.0f) {}
-
-
-
 // layeredNet::layer
 
 layeredNet::layer::layer(const unsigned int a, const unsigned int b) : st(a), sz(b) {}
@@ -110,12 +104,12 @@ layeredNet::layers_iterator layeredNet::l_end() const
 	return n_lays;
 }
 
-graph::nodes_iterator layeredNet::begin(const layeredNet::layers_iterator l) const
+DAG::nodes_iterator layeredNet::begin(const layeredNet::layers_iterator l) const
 {
 	return layers[l].start();
 }
 
-graph::nodes_iterator layeredNet::end(const layeredNet::layers_iterator l) const
+DAG::nodes_iterator layeredNet::end(const layeredNet::layers_iterator l) const
 {
 	return begin(l) + layers[l].size();
 }

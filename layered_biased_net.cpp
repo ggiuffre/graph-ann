@@ -1,6 +1,16 @@
 #include <string>
 #include "layered_biased_net.h"
 
+
+
+// unit
+
+unit::unit() : out(0.0f), delta(0.0f) {}
+
+
+
+// layeredBiasedNet
+
 layeredBiasedNet::layeredBiasedNet(const float bv) : bias_value(bv) {}
 
 layeredBiasedNet::layeredBiasedNet(const std::string netfile, const float bv) : layeredNet(netfile), bias_value(bv) {}
@@ -35,7 +45,7 @@ void layeredBiasedNet::init(const init_t mode, const float bound)
 	// eguaglia i pesi dei bias:
 	for (layers_iterator l = l_begin(); l != l_end() - 1; ++l)
 		for (nodes_iterator i = begin(l + 1) + 1; i < end(l + 1); ++i)
-			edge(begin(l), i) = edge(begin(l), begin(l + 1) + 1);
+			link(begin(l), i, edge(begin(l), begin(l + 1) + 1));
 }
 
 void layeredBiasedNet::init(const std::string netfile)

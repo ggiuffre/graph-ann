@@ -12,10 +12,29 @@
 class sigmoidNet : virtual public network
 {
 private:
-	virtual float activation_function(float x) const;
+	virtual float activation_function(float x) const override;
+
+protected:
+	virtual float activation_derivative(float y) const override;
 
 public:
-	sigmoidNet(unsigned int s = 0);
+	explicit sigmoidNet(unsigned int s = 0);
+};
+
+
+
+// Hyperbolic tangent-activated network:
+
+class tanhNet : virtual public network
+{
+private:
+	virtual float activation_function(float x) const override;
+
+protected:
+	virtual float activation_derivative(float y) const override;
+
+public:
+	explicit tanhNet(unsigned int s = 0);
 };
 
 
@@ -27,10 +46,10 @@ class perceptron : virtual public network
 private:
 	const float verum;
 	const float falsum;
-	virtual float activation_function(float x) const;
+	virtual float activation_function(float x) const override;
 
 public:
-	perceptron(float v = 1.0f, float f = 0.0f, unsigned int s = 0);
+	explicit perceptron(float v = 1.0f, float f = 0.0f, unsigned int s = 0);
 };
 
 
@@ -40,11 +59,19 @@ public:
 class layeredSigmoidNet : public layeredBiasedNet, public sigmoidNet
 {
 public:
-	layeredSigmoidNet(float b = 1.0f);
+	explicit layeredSigmoidNet(float b = 1.0f);
 	layeredSigmoidNet(std::string netfile, float b = 1.0f);
+};
 
-	void incremental_training(unsigned int n_examples, float ** examples, float ** target, float learning_rate, float momentum, float desired_err);
-	void incremental_training(std::string data_file, float learning_rate, float momentum, float desired_err);
+
+
+// Hyperbolic tangent-activated layered network:
+
+class layeredTanhNet : public layeredBiasedNet, public tanhNet
+{
+public:
+	explicit layeredTanhNet(float b = 1.0f);
+	layeredTanhNet(std::string netfile, float b = 1.0f);
 };
 
 

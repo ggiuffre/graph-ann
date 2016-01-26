@@ -124,6 +124,11 @@ float network::activation_function(const float x) const
 	return x;
 }
 
+float network::activation_derivative(const float y) const
+{
+	return 1.0f;
+}
+
 std::vector<float> network::operator()(const std::vector<float>& in)
 {
 	store(in);
@@ -149,10 +154,10 @@ void network::save(const std::string netfile) const
 
 std::ostream& operator<<(std::ostream& os, const network& net)
 {
-	for (network::nodes_iterator i = net.begin(); i < net.end(); ++i)
+	for (auto i = net.begin(); i < net.end(); ++i)
 	{
 		os << std::endl;
-		for (network::nodes_iterator j = net.begin(); j < net.end() - 1; ++j)
+		for (auto j = net.begin(); j < net.end() - 1; ++j)
 			os << net.edge(j, i) << ' ';
 		os << net.edge(net.end() - 1, i);
 	}
@@ -160,11 +165,15 @@ std::ostream& operator<<(std::ostream& os, const network& net)
 	return os;
 }
 
-std::istream& operator>>(std::istream& is, const network& net)
+std::istream& operator>>(std::istream& is, network& net)
 {
-	for (network::nodes_iterator i = net.begin(); i < net.end(); ++i)
-		for (network::nodes_iterator j = net.begin(); j < net.end(); ++j)
-			is >> net.edge(j, i);
+	float edge;
+	for (auto i = net.begin(); i < net.end(); ++i)
+		for (auto j = net.begin(); j < net.end(); ++j)
+		{
+			is >> edge;
+			net.link(j, i, edge);
+		}
 
 	return is;
 }
