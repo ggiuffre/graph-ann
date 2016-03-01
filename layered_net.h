@@ -43,12 +43,11 @@ public:
 		layers_iterator operator--(int);
 	};
 
-	layers_iterator l_begin() const;
-	layers_iterator l_end() const;
+	layers_iterator begin() const;
+	layers_iterator end() const;
 	nodes_iterator begin(layers_iterator l) const;
 	nodes_iterator end(layers_iterator l) const;
-	unsigned int input_size() const;				// non virtual
-	unsigned int output_size() const;
+	virtual unsigned int input_size() const override;		// virtual, per internetwork!
 	unsigned int n_layers() const;
 
 	void init(init_t mode = RAND, float bound = 0.5f);

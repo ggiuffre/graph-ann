@@ -61,4 +61,6 @@ layeredTanhNet::layeredTanhNet(const std::string netfile, const float bv) : laye
 
 
 
-layeredPerceptron::layeredPerceptron() : layeredBiasedNet() {}
+layeredPerceptron::layeredPerceptron(const float bv, const float v, const float f) : layeredBiasedNet(bv), perceptron(v, f) {}
+
+layeredPerceptron::layeredPerceptron(const std::string netfile, const float bv, const float v, const float f) : layeredBiasedNet(netfile, bv), perceptron(v, f) {}

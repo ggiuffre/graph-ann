@@ -9,7 +9,11 @@ private:
 	float ** weights;
 
 	void reserve(unsigned int new_capacity);
-	void resize(unsigned int s);
+	void resize(unsigned int new_size);
+
+protected:
+	void remove(unsigned int pos);			// rimuovi il nodo in pos
+	// PROBLEMA: dopo una remove(), gli indici con cui l'utente si interfaccia non sono più validi
 
 public:
 	explicit DAG(unsigned int s = 0);		// un int non caratterizza univocamente un dag
@@ -42,15 +46,14 @@ public:
 	nodes_iterator end() const;
 	weights_iterator begin(nodes_iterator n) const;
 	weights_iterator end(nodes_iterator n) const;
-	float edge(unsigned int a, unsigned int b) const;	// const...?! --- link() inutile? --- ha senso separare DAG e DAG? in quale relazione stanno?
+	float edge(unsigned int a, unsigned int b) const;
 
 	unsigned int size() const;
 	unsigned int capacity() const;
 	bool empty() const;
-	void add(unsigned int n = 1);			// immetti n nodi nel grafo
+	void push_back(unsigned int n = 1);			// inserisci n nodi in testa
 	void pop_back(unsigned int n = 1);		// rimuovi gli ultimi n nodi immessi
-	void remove(unsigned int node);			// rimuovi il nodo n dal grafo
-	// PROBLEMA: dopo una remove(), gli indici con cui l'utente si interfaccia non sono più validi
+//	void insert(unsigned int pos);			// inserisci un nodo in pos
 	void clear();
 
 	void link(unsigned int a, unsigned int b, float w = 1.0f);

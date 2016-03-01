@@ -3,31 +3,28 @@
 
 #include "network.h"
 
-// a network of networks...
 class internetwork : public network
 {
 private:
-	network * nets;
+	network ** nets;		// a network of networks
+	unsigned int nets_sz;
 
 public:
-	internetwork(unsigned int s = 0);
-	~internetwork();
-	void add(const network& n);		// pushes network n into the internetwork
-//	std::vector<float> operator()(const std::vector<float>& in);
+	internetwork();
+	virtual ~internetwork() override;
+	internetwork(const internetwork& net);
+	internetwork& operator=(const internetwork& net);
 
-	friend class iterator;
-	class iterator {
-		friend class internetwork;
-	public:
-		iterator& operator++();		// prefisso
-		iterator operator++(int);	// postfisso
-		bool operator==(const iterator& x) const;
-		bool operator!=(const iterator& x) const;
-	private:
-		network * punt;
-	};
-	iterator begin() const;
-	iterator end() const;
+	void adapt();
+	void add(network& n);		// inserisce la rete n in testa all'interrete
+	void pop_back(unsigned int n = 1);		// rimuovi gli ultimi n nodi immessi
+	void clear();
+
+	void link(unsigned int a, unsigned int b);
+	void unlink(unsigned int a, unsigned int b);
+
+	network& operator[](unsigned int i) const;
+	std::vector<float> operator()(const std::vector<float>& in);
 };
 
 #endif

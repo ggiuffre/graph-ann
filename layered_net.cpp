@@ -39,7 +39,9 @@ layeredNet::layers_iterator& layeredNet::layers_iterator::operator++()
 
 layeredNet::layers_iterator layeredNet::layers_iterator::operator++(int)
 {
-	return ++(*this);
+	layers_iterator aux = *this;
+	index++;
+	return aux;
 }
 
 layeredNet::layers_iterator& layeredNet::layers_iterator::operator--()
@@ -50,7 +52,9 @@ layeredNet::layers_iterator& layeredNet::layers_iterator::operator--()
 
 layeredNet::layers_iterator layeredNet::layers_iterator::operator--(int)
 {
-	return --(*this);
+	layers_iterator aux = *this;
+	index--;
+	return aux;
 }
 
 
@@ -61,6 +65,7 @@ layeredNet::layeredNet() : n_lays(0), layers(nullptr) {}
 
 layeredNet::layeredNet(const layeredNet& net) : network(net), n_lays(net.n_lays)
 {
+	layers = new layer [n_lays];
 	for (unsigned int i = 0; i < n_lays; ++i)
 		layers[i] = net.layers[i];
 }
@@ -82,46 +87,50 @@ layeredNet& layeredNet::operator=(const layeredNet& net)
 
 void layeredNet::reserveLayer(const unsigned int start, const unsigned int n_nodes)
 {
-	n_lays++;
+	++n_lays;
 	layer * aux = new layer [n_lays];
 
-	for (layers_iterator l = l_begin(); l != l_end() - 1; ++l)
+	for (layers_iterator l = begin(); l != end() - 1; ++l)
 		aux[l] = layers[l];
 
-	aux[l_end() - 1] = layer(start, n_nodes);
+	aux[end() - 1] = layer(start, n_nodes);
 
 	delete [] layers;
 	layers = aux;
 }
 
-layeredNet::layers_iterator layeredNet::l_begin() const
+layeredNet::layers_iterator layeredNet::begin() const
 {
 	return 0;
 }
 
-layeredNet::layers_iterator layeredNet::l_end() const
+layeredNet::layers_iterator layeredNet::end() const
 {
 	return n_lays;
 }
 
 DAG::nodes_iterator layeredNet::begin(const layeredNet::layers_iterator l) const
 {
-	return layers[l].start();
+	if (l < n_lays)
+		return layers[l].start();
+
+	return end(end());
 }
 
 DAG::nodes_iterator layeredNet::end(const layeredNet::layers_iterator l) const
 {
-	return begin(l) + layers[l].size();
+	if (l < n_lays)
+		return begin(l) + layers[l].size();
+
+	return end(end());
 }
 
 unsigned int layeredNet::input_size() const
 {
-	return layers[0].size();
-}
+	if (layers)
+		return layers[0].size();
 
-unsigned int layeredNet::output_size() const
-{
-	return layers[n_lays - 1].size();
+	return 0;
 }
 
 unsigned int layeredNet::n_layers() const
@@ -162,13 +171,13 @@ void layeredNet::save(const std::string netfile) const
 
 	std::ofstream fout(netfile, std::ios::app);
 	fout << std::endl << std::endl << n_lays << std::endl;
-	for (layers_iterator l = l_begin(); l < l_end(); ++l)
+	for (layers_iterator l = begin(); l < end(); ++l)
 		fout << std::endl << layers[l].start() << ' ' << layers[l].size() << ' ';
 }
 
 void layeredNet::addLayer(const unsigned int n_nodes)
 {
-	add(n_nodes);
+	push_back(n_nodes);
 	reserveLayer(size() - n_nodes, n_nodes);
 
 	if (n_lays > 1)
@@ -190,10 +199,10 @@ void layeredNet::removeLayer(const unsigned int lay)
 		for (nodes_iterator i = begin(lay); i < end(lay); ++i)
 			remove(i);
 
-		for (layers_iterator l = lay; l != l_end() - 1; ++l)
+		for (layers_iterator l = lay; l != end() - 1; ++l)
 			layers[l] = layers[l + 1];
 
-		n_lays--;
+		--n_lays;
 
 		// "riempi il vuoto", collegando il vecchio strato lay+1, ora diventato lay:
 		linkLayer(lay);

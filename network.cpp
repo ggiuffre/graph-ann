@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <cmath>
 #include <string>
 #include <time.h>
 #include <stdlib.h>
@@ -59,7 +60,7 @@ bool network::is_output(const unsigned int node) const
 
 	bool is_out = true;
 
-	for (nodes_iterator i = begin(); i < end() && is_out; ++i)		// weights_it (?)
+	for (nodes_iterator i = begin(); i < end() && is_out; ++i)
 		is_out = !edge(node, i);
 
 	return is_out;
@@ -77,11 +78,6 @@ bool network::is_input(const unsigned int node) const
 	return !has_in;
 }
 
-bool network::is_connected(const unsigned int node) const
-{
-	return !(is_input(node) && is_output(node));
-}
-
 unsigned int network::input_size() const
 {
 	unsigned int input_size = 0;
@@ -92,15 +88,35 @@ unsigned int network::input_size() const
 	return input_size;
 }
 
+unsigned int network::output_size() const
+{
+	unsigned int output_size = 0;
+	for (nodes_iterator i = begin(); i < end(); ++i)
+		if (is_output(i))
+			output_size++;
+
+	return output_size;
+}
+
 void network::store(const std::vector<float>& in)
 {
 	if (in.size() >= input_size())
 	{
-		std::vector<float>::const_iterator t = in.begin();
+		std::vector<float>::const_iterator it = in.begin();
 		for (nodes_iterator i = begin(); i < end(); ++i)
 			if (is_input(i))
-				input_map[i] = *(t++);
+				input_map[i] = *(it++);
 	}
+}
+
+float network::activation_function(const float x) const
+{
+	return x;
+}
+
+float network::activation_derivative(const float y) const
+{
+	return 1.0f;
 }
 
 float network::neuron(const unsigned int i) const
@@ -117,16 +133,6 @@ float network::neuron(const unsigned int i) const
 			result += edge(j, i) * neuron(j);
 
 	return activation_function(result);
-}
-
-float network::activation_function(const float x) const
-{
-	return x;
-}
-
-float network::activation_derivative(const float y) const
-{
-	return 1.0f;
 }
 
 std::vector<float> network::operator()(const std::vector<float>& in)
@@ -146,6 +152,42 @@ void network::save(const std::string netfile) const
 {
 	std::ofstream fout(netfile);
 	fout << size() << std::endl << *this;
+}
+
+void network::random_pretraining(const std::string datafile, const unsigned int epochs)
+{
+	network random_try(*this);
+	float err_1 = 0.0f;
+	float err_2 = 0.0f;
+	std::ifstream fin;
+	for (unsigned int i = 0; i < epochs; ++i)
+	{
+		float epoch_err = 0.0f;
+		random_try.init(RAND, 0.5f);
+		fin.open(datafile);
+		unsigned int n_examples, n_in, n_out;
+		fin >> n_examples >> n_in >> n_out;
+		for (unsigned int j = 0; j < n_examples; ++j)
+		{
+			float err = 0.0f;
+			std::vector<float> input(n_in);
+			for (unsigned int k = 0; k < n_in; ++k)
+				fin >> input[k];
+			std::vector<float> target(n_out);
+			for (unsigned int k = 0; k < n_out; ++k)
+				fin >> target[k];
+			std::vector<float> output = random_try(input);
+			for (unsigned int k = 0; k < n_out; ++k)
+				err += fabs(output[k] - target[k]);
+			epoch_err += err / n_out;
+		}
+		fin.close();
+		if (i == 0)
+			err_1 = epoch_err / n_examples;
+		err_2 = epoch_err / n_examples;
+		if (err_2 < err_1)
+			*this = random_try;
+	}
 }
 
 

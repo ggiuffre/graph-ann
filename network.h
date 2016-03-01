@@ -28,11 +28,12 @@ public:
 	void init(init_t mode = RAND, float bound = 0.5f);
 	void init(std::string netfile);
 	void save(std::string netfile = "untitled.net") const;
+	void random_pretraining(std::string datafile, unsigned int epochs = 200);	// da togliere prima della consegna...
 
 	bool is_input(unsigned int node) const;
 	bool is_output(unsigned int node) const;
-	bool is_connected(unsigned int node) const;
-	unsigned int input_size() const;
+	virtual unsigned int input_size() const;
+	virtual unsigned int output_size() const;
 
 	std::vector<float> operator()(const std::vector<float>& in);
 };

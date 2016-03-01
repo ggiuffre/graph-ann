@@ -59,8 +59,8 @@ public:
 class layeredSigmoidNet : public layeredBiasedNet, public sigmoidNet
 {
 public:
-	explicit layeredSigmoidNet(float b = 1.0f);
-	layeredSigmoidNet(std::string netfile, float b = 1.0f);
+	explicit layeredSigmoidNet(float bv = 1.0f);
+	layeredSigmoidNet(std::string netfile, float bv = 1.0f);
 };
 
 
@@ -70,8 +70,8 @@ public:
 class layeredTanhNet : public layeredBiasedNet, public tanhNet
 {
 public:
-	explicit layeredTanhNet(float b = 1.0f);
-	layeredTanhNet(std::string netfile, float b = 1.0f);
+	explicit layeredTanhNet(float bv = 1.0f);
+	layeredTanhNet(std::string netfile, float bv = 1.0f);
 };
 
 
@@ -81,7 +81,8 @@ public:
 class layeredPerceptron : public layeredBiasedNet, public perceptron
 {
 public:
-	layeredPerceptron();
+	layeredPerceptron(float bv = 1.0f, float v = 1.0f, float f = 0.0f);
+	layeredPerceptron(std::string netfile, float bv = 1.0f, float v = 1.0f, float f = 0.0f);
 };
 
 #endif

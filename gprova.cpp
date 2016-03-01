@@ -7,16 +7,18 @@ int main()
 	layeredSigmoidNet net;
 //	layeredTanhNet net;
 
-	net.addLayer(16);
-	net.addLayer(12);
-	net.addLayer(4);
+	net.addLayer(2);
+	net.addLayer(5);
+	net.addLayer(1);
 
-	net.incremental_training("./data/mat.data", 0.5f, 0.15f, 0.01f);
-	net.save("./nets/mat.net");
+	net.init(network::RAND, 0.5f);
+	float error = 0.015f;
+	net.incremental_training("./data/or.data", 0.5f, 0.15f, error);
+	net.save("./nets/or.net");
 
-//	net.init("./nets/mat.net");
+//	net.init("./nets/or.net");
 
-	vector<float> in(16);
+	vector<float> in(2);
 	cout << "test: ";
 	for (unsigned int i = 0; i < in.size(); ++i)
 		cin >> in[i];

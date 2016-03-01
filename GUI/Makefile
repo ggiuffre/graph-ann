@@ -14,7 +14,7 @@ CC            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefau
 CXX           = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
 DEFINES       = -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -O2 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk -mmacosx-version-min=10.7 -Wall -W -fPIC $(DEFINES)
-CXXFLAGS      = -pipe -O2 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk -mmacosx-version-min=10.7 -Wall -W -fPIC $(DEFINES)
+CXXFLAGS      = -pipe -O2 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk -std=c++11 -stdlib=libc++ -mmacosx-version-min=10.7 -Wall -W -fPIC $(DEFINES)
 INCPATH       = -I. -I. -I/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers -I/Applications/Qt/5.5/clang_64/lib/QtGui.framework/Headers -I/Applications/Qt/5.5/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/AGL.framework/Headers -I/Applications/Qt/5.5/clang_64/mkspecs/macx-clang -F/Applications/Qt/5.5/clang_64/lib
 QMAKE         = /Applications/Qt/5.5/clang_64/bin/qmake
 DEL_FILE      = rm -f
@@ -35,7 +35,7 @@ COMPRESS      = gzip -9f
 DISTNAME      = GUI1.0.0
 DISTDIR = /Users/giorgiogiuffre/Documents/C++/oop-ann/GUI/.tmp/GUI1.0.0
 LINK          = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
-LFLAGS        = -headerpad_max_install_names -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk -mmacosx-version-min=10.7 -Wl,-rpath,/Applications/Qt/5.5/clang_64/lib
+LFLAGS        = -headerpad_max_install_names -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk -stdlib=libc++ -mmacosx-version-min=10.7 -Wl,-rpath,/Applications/Qt/5.5/clang_64/lib
 LIBS          = $(SUBLIBS) -F/Applications/Qt/5.5/clang_64/lib -framework QtWidgets -framework QtGui -framework QtCore -framework DiskArbitration -framework IOKit -framework OpenGL -framework AGL 
 AR            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar cq
 RANLIB        = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib -s
@@ -49,10 +49,26 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = gui_main.cpp \
-		game.cpp moc_game.cpp
+		dojo.cpp \
+		nets_list.cpp \
+		net_builder_widget.cpp \
+		net_trainer_widget.cpp \
+		net_runner_widget.cpp moc_dojo.cpp \
+		moc_nets_list.cpp \
+		moc_net_builder_widget.cpp \
+		moc_net_trainer_widget.cpp \
+		moc_net_runner_widget.cpp
 OBJECTS       = gui_main.o \
-		game.o \
-		moc_game.o
+		dojo.o \
+		nets_list.o \
+		net_builder_widget.o \
+		net_trainer_widget.o \
+		net_runner_widget.o \
+		moc_dojo.o \
+		moc_nets_list.o \
+		moc_net_builder_widget.o \
+		moc_net_trainer_widget.o \
+		moc_net_runner_widget.o
 DIST          = /Applications/Qt/5.5/clang_64/mkspecs/features/spec_pre.prf \
 		/Applications/Qt/5.5/clang_64/mkspecs/qdevice.pri \
 		/Applications/Qt/5.5/clang_64/mkspecs/features/device_config.prf \
@@ -180,6 +196,7 @@ DIST          = /Applications/Qt/5.5/clang_64/mkspecs/features/spec_pre.prf \
 		/Applications/Qt/5.5/clang_64/mkspecs/features/mac/default_pre.prf \
 		/Applications/Qt/5.5/clang_64/mkspecs/features/resolve_config.prf \
 		/Applications/Qt/5.5/clang_64/mkspecs/features/default_post.prf \
+		/Applications/Qt/5.5/clang_64/mkspecs/features/c++11.prf \
 		/Applications/Qt/5.5/clang_64/mkspecs/features/mac/sdk.prf \
 		/Applications/Qt/5.5/clang_64/mkspecs/features/mac/default_post.prf \
 		/Applications/Qt/5.5/clang_64/mkspecs/features/mac/objective_c.prf \
@@ -195,8 +212,16 @@ DIST          = /Applications/Qt/5.5/clang_64/mkspecs/features/spec_pre.prf \
 		/Applications/Qt/5.5/clang_64/mkspecs/features/exceptions.prf \
 		/Applications/Qt/5.5/clang_64/mkspecs/features/yacc.prf \
 		/Applications/Qt/5.5/clang_64/mkspecs/features/lex.prf \
-		GUI.pro game.h gui_main.cpp \
-		game.cpp
+		GUI.pro dojo.h \
+		nets_list.h \
+		net_builder_widget.h \
+		net_trainer_widget.h \
+		net_runner_widget.h gui_main.cpp \
+		dojo.cpp \
+		nets_list.cpp \
+		net_builder_widget.cpp \
+		net_trainer_widget.cpp \
+		net_runner_widget.cpp
 QMAKE_TARGET  = GUI
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = GUI.app/Contents/MacOS/GUI
@@ -206,6 +231,8 @@ QMAKE_COMP_QMAKE_OBJECTIVE_CFLAGS = -pipe \
 		-O2 \
 		-isysroot \
 		/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk \
+		-std=c++11 \
+		-stdlib=libc++ \
 		-mmacosx-version-min=10.7 \
 		-Wall \
 		-W
@@ -365,6 +392,7 @@ Makefile: GUI.pro /Applications/Qt/5.5/clang_64/mkspecs/macx-clang/qmake.conf /A
 		/Applications/Qt/5.5/clang_64/mkspecs/features/mac/default_pre.prf \
 		/Applications/Qt/5.5/clang_64/mkspecs/features/resolve_config.prf \
 		/Applications/Qt/5.5/clang_64/mkspecs/features/default_post.prf \
+		/Applications/Qt/5.5/clang_64/mkspecs/features/c++11.prf \
 		/Applications/Qt/5.5/clang_64/mkspecs/features/mac/sdk.prf \
 		/Applications/Qt/5.5/clang_64/mkspecs/features/mac/default_post.prf \
 		/Applications/Qt/5.5/clang_64/mkspecs/features/mac/objective_c.prf \
@@ -512,6 +540,7 @@ Makefile: GUI.pro /Applications/Qt/5.5/clang_64/mkspecs/macx-clang/qmake.conf /A
 /Applications/Qt/5.5/clang_64/mkspecs/features/mac/default_pre.prf:
 /Applications/Qt/5.5/clang_64/mkspecs/features/resolve_config.prf:
 /Applications/Qt/5.5/clang_64/mkspecs/features/default_post.prf:
+/Applications/Qt/5.5/clang_64/mkspecs/features/c++11.prf:
 /Applications/Qt/5.5/clang_64/mkspecs/features/mac/sdk.prf:
 /Applications/Qt/5.5/clang_64/mkspecs/features/mac/default_post.prf:
 /Applications/Qt/5.5/clang_64/mkspecs/features/mac/objective_c.prf:
@@ -560,8 +589,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents game.h $(DISTDIR)/
-	$(COPY_FILE) --parents gui_main.cpp game.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents dojo.h nets_list.h net_builder_widget.h net_trainer_widget.h net_runner_widget.h $(DISTDIR)/
+	$(COPY_FILE) --parents gui_main.cpp dojo.cpp nets_list.cpp net_builder_widget.cpp net_trainer_widget.cpp net_runner_widget.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -587,13 +616,96 @@ compiler_objective_c_make_all:
 compiler_objective_c_clean:
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: moc_game.cpp
+compiler_moc_header_make_all: moc_dojo.cpp moc_nets_list.cpp moc_net_builder_widget.cpp moc_net_trainer_widget.cpp moc_net_runner_widget.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_game.cpp
-moc_game.cpp: /Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+	-$(DEL_FILE) moc_dojo.cpp moc_nets_list.cpp moc_net_builder_widget.cpp moc_net_trainer_widget.cpp moc_net_runner_widget.cpp
+moc_dojo.cpp: /Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QMenuBar \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qmenubar.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QStackedWidget \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qstackedwidget.h \
+		net_builder_widget.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		game.h
-	/Applications/Qt/5.5/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Applications/Qt/5.5/clang_64/mkspecs/macx-clang -I/Users/giorgiogiuffre/Documents/C++/oop-ann/GUI -I/Users/giorgiogiuffre/Documents/C++/oop-ann/GUI -I/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers -I/Applications/Qt/5.5/clang_64/lib/QtGui.framework/Headers -I/Applications/Qt/5.5/clang_64/lib/QtCore.framework/Headers -F/Applications/Qt/5.5/clang_64/lib game.h -o moc_game.cpp
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QComboBox \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qcombobox.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QSpinBox \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qspinbox.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QCheckBox \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qcheckbox.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QFormLayout \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qformlayout.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		net_trainer_widget.h \
+		net_runner_widget.h \
+		nets_list.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDockWidget \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdockwidget.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QFileSystemModel \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qfilesystemmodel.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QListView \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qlistview.h \
+		train_operations.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QToolBar \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qtoolbar.h \
+		dojo.h
+	/Applications/Qt/5.5/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Applications/Qt/5.5/clang_64/mkspecs/macx-clang -I/Users/giorgiogiuffre/Documents/C++/oop-ann/GUI -I/Users/giorgiogiuffre/Documents/C++/oop-ann/GUI -I/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers -I/Applications/Qt/5.5/clang_64/lib/QtGui.framework/Headers -I/Applications/Qt/5.5/clang_64/lib/QtCore.framework/Headers -F/Applications/Qt/5.5/clang_64/lib dojo.h -o moc_dojo.cpp
+
+moc_nets_list.cpp: /Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDockWidget \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdockwidget.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QFileSystemModel \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qfilesystemmodel.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QListView \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qlistview.h \
+		nets_list.h
+	/Applications/Qt/5.5/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Applications/Qt/5.5/clang_64/mkspecs/macx-clang -I/Users/giorgiogiuffre/Documents/C++/oop-ann/GUI -I/Users/giorgiogiuffre/Documents/C++/oop-ann/GUI -I/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers -I/Applications/Qt/5.5/clang_64/lib/QtGui.framework/Headers -I/Applications/Qt/5.5/clang_64/lib/QtCore.framework/Headers -F/Applications/Qt/5.5/clang_64/lib nets_list.h -o moc_nets_list.cpp
+
+moc_net_builder_widget.cpp: /Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QComboBox \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qcombobox.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QSpinBox \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qspinbox.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QCheckBox \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qcheckbox.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QFormLayout \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qformlayout.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		net_builder_widget.h
+	/Applications/Qt/5.5/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Applications/Qt/5.5/clang_64/mkspecs/macx-clang -I/Users/giorgiogiuffre/Documents/C++/oop-ann/GUI -I/Users/giorgiogiuffre/Documents/C++/oop-ann/GUI -I/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers -I/Applications/Qt/5.5/clang_64/lib/QtGui.framework/Headers -I/Applications/Qt/5.5/clang_64/lib/QtCore.framework/Headers -F/Applications/Qt/5.5/clang_64/lib net_builder_widget.h -o moc_net_builder_widget.cpp
+
+moc_net_trainer_widget.cpp: /Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QSpinBox \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qspinbox.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QFormLayout \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qformlayout.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		net_trainer_widget.h
+	/Applications/Qt/5.5/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Applications/Qt/5.5/clang_64/mkspecs/macx-clang -I/Users/giorgiogiuffre/Documents/C++/oop-ann/GUI -I/Users/giorgiogiuffre/Documents/C++/oop-ann/GUI -I/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers -I/Applications/Qt/5.5/clang_64/lib/QtGui.framework/Headers -I/Applications/Qt/5.5/clang_64/lib/QtCore.framework/Headers -F/Applications/Qt/5.5/clang_64/lib net_trainer_widget.h -o moc_net_trainer_widget.cpp
+
+moc_net_runner_widget.cpp: /Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QSpinBox \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qspinbox.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QFormLayout \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qformlayout.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		net_runner_widget.h
+	/Applications/Qt/5.5/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Applications/Qt/5.5/clang_64/mkspecs/macx-clang -I/Users/giorgiogiuffre/Documents/C++/oop-ann/GUI -I/Users/giorgiogiuffre/Documents/C++/oop-ann/GUI -I/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers -I/Applications/Qt/5.5/clang_64/lib/QtGui.framework/Headers -I/Applications/Qt/5.5/clang_64/lib/QtCore.framework/Headers -F/Applications/Qt/5.5/clang_64/lib net_runner_widget.h -o moc_net_runner_widget.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -615,20 +727,150 @@ gui_main.o: gui_main.cpp /Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/H
 		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qapplication.h \
 		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
-		game.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		dojo.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QMenuBar \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qmenubar.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QStackedWidget \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qstackedwidget.h \
+		net_builder_widget.h \
 		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QComboBox \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qcombobox.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QSpinBox \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qspinbox.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QCheckBox \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qcheckbox.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QFormLayout \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qformlayout.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		net_trainer_widget.h \
+		net_runner_widget.h \
+		nets_list.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDockWidget \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdockwidget.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QFileSystemModel \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qfilesystemmodel.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QListView \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qlistview.h \
+		train_operations.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QToolBar \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qtoolbar.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o gui_main.o gui_main.cpp
 
-game.o: game.cpp /Applications/Qt/5.5/clang_64/lib/QtGui.framework/Headers/QPainter \
-		/Applications/Qt/5.5/clang_64/lib/QtGui.framework/Headers/qpainter.h \
-		game.h \
+dojo.o: dojo.cpp /Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QFormLayout \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qformlayout.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QComboBox \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qcombobox.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QSpinBox \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qspinbox.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		dojo.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QMenuBar \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qmenubar.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QStackedWidget \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qstackedwidget.h \
+		net_builder_widget.h \
 		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o game.o game.cpp
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QCheckBox \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qcheckbox.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		net_trainer_widget.h \
+		net_runner_widget.h \
+		nets_list.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDockWidget \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdockwidget.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QFileSystemModel \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qfilesystemmodel.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QListView \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qlistview.h \
+		train_operations.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QToolBar \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qtoolbar.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dojo.o dojo.cpp
 
-moc_game.o: moc_game.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_game.o moc_game.cpp
+nets_list.o: nets_list.cpp nets_list.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDockWidget \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdockwidget.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QFileSystemModel \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qfilesystemmodel.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QListView \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qlistview.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o nets_list.o nets_list.cpp
+
+net_builder_widget.o: net_builder_widget.cpp net_builder_widget.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QComboBox \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qcombobox.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QSpinBox \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qspinbox.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QCheckBox \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qcheckbox.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QFormLayout \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qformlayout.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o net_builder_widget.o net_builder_widget.cpp
+
+net_trainer_widget.o: net_trainer_widget.cpp net_trainer_widget.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QSpinBox \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qspinbox.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QFormLayout \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qformlayout.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o net_trainer_widget.o net_trainer_widget.cpp
+
+net_runner_widget.o: net_runner_widget.cpp net_runner_widget.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QSpinBox \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qspinbox.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QFormLayout \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qformlayout.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QSpacerItem \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qlayoutitem.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o net_runner_widget.o net_runner_widget.cpp
+
+moc_dojo.o: moc_dojo.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_dojo.o moc_dojo.cpp
+
+moc_nets_list.o: moc_nets_list.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_nets_list.o moc_nets_list.cpp
+
+moc_net_builder_widget.o: moc_net_builder_widget.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_net_builder_widget.o moc_net_builder_widget.cpp
+
+moc_net_trainer_widget.o: moc_net_trainer_widget.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_net_trainer_widget.o moc_net_trainer_widget.cpp
+
+moc_net_runner_widget.o: moc_net_runner_widget.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_net_runner_widget.o moc_net_runner_widget.cpp
 
 ####### Install
 

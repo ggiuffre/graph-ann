@@ -1,37 +1,21 @@
 #include <string>
 #include "layered_biased_net.h"
 
-
-
-// unit
-
-unit::unit() : out(0.0f), delta(0.0f) {}
-
-
-
-// layeredBiasedNet
-
 layeredBiasedNet::layeredBiasedNet(const float bv) : bias_value(bv) {}
+
+layeredBiasedNet::layeredBiasedNet(const layeredBiasedNet& net) : layeredNet(net) {}
+
+layeredBiasedNet& layeredBiasedNet::operator=(const layeredBiasedNet& net)
+{
+	*this(net);
+	return *this;
+}
 
 layeredBiasedNet::layeredBiasedNet(const std::string netfile, const float bv) : layeredNet(netfile), bias_value(bv) {}
 
-unsigned int layeredBiasedNet::input_size() const
-{
-	return layeredNet::input_size() - 1;
-}
-
-unsigned int layeredBiasedNet::output_size() const
-{
-	unsigned int n_biases = 0;
-	for (nodes_iterator i = begin(l_end() - 1); i < end(l_end() - 1); ++i)
-		n_biases += is_bias(i);
-
-	return layeredNet::output_size() - n_biases;
-}
-
 bool layeredBiasedNet::is_bias(unsigned int n) const
 {
-	for (layers_iterator l = l_begin(); l != l_end(); ++l)
+	for (layers_iterator l = begin(); l != end(); ++l)
 		if (n == begin(l))
 			return true;
 
@@ -43,7 +27,7 @@ void layeredBiasedNet::init(const init_t mode, const float bound)
 	layeredNet::init(mode, bound);
 
 	// eguaglia i pesi dei bias:
-	for (layers_iterator l = l_begin(); l != l_end() - 1; ++l)
+	for (layers_iterator l = begin(); l != end() - 1; ++l)
 		for (nodes_iterator i = begin(l + 1) + 1; i < end(l + 1); ++i)
 			link(begin(l), i, edge(begin(l), begin(l + 1) + 1));
 }
@@ -70,7 +54,7 @@ void layeredBiasedNet::store(const std::vector<float>& in)
 {
 	unsigned int t = 0;
 	std::vector<float> aux;
-	for (nodes_iterator i = begin(l_begin()); i < end(l_end() - 1); ++i)
+	for (nodes_iterator i = begin(begin()); i < end(end() - 1); ++i)
 	{
 		if (is_bias(i))
 			aux.push_back(bias_value);

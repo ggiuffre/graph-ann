@@ -6,7 +6,8 @@ TEMPLATE = app
 TARGET = GUI
 INCLUDEPATH += .
 QT += widgets
+CONFIG += c++11
 
 # Input
-HEADERS += game.h
-SOURCES += gui_main.cpp game.cpp
+HEADERS += dojo.h nets_list.h net_builder_widget.h net_trainer_widget.h net_runner_widget.h
+SOURCES += gui_main.cpp dojo.cpp nets_list.cpp net_builder_widget.cpp net_trainer_widget.cpp net_runner_widget.cpp

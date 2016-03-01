@@ -5,18 +5,6 @@
 #include <string>
 #include "layered_net.h"
 
-
-
-class unit		// nested ?
-{
-public:
-	float out;
-	float delta;
-	unit();
-};
-
-
-
 class layeredBiasedNet : public layeredNet
 {
 private:
@@ -27,10 +15,10 @@ protected:
 
 public:
 	explicit layeredBiasedNet(float bv = 1.0f);		// il float è soltanto un parametro
+	layeredBiasedNet(const layeredBiasedNet& net);
+	layeredBiasedNet& operator=(const layeredBiasedNet& net);
 	layeredBiasedNet(std::string netfile, float bv = 1.0f);
 
-	unsigned int input_size() const;
-	unsigned int output_size() const;
 	bool is_bias(unsigned int n) const;
 
 	void init(init_t mode = RAND, float bound = 0.5f);
@@ -38,8 +26,9 @@ public:
 	virtual void addLayer(unsigned int n_nodes) override;
 	virtual void linkLayer(unsigned int l) override;				// virtual...
 
-	void incremental_training(unsigned int n_examples, float ** examples, float ** target, float learning_rate, float momentum, float desired_err);
-	void incremental_training(std::string data_file, float learning_rate, float momentum, float desired_err);
+	void incremental_training(const std::vector<std::vector<float> >& examples, const std::vector<std::vector<float> >& targets, float learning_rate, float momentum, float& error, unsigned int max_epochs = 28000);
+	void incremental_training(std::string data_file, float learning_rate, float momentum, float& error, unsigned int max_epochs = 28000);
+	void mother_nature(std::string data_file, unsigned int n_pop, float learning_rate, float momentum, float& error, unsigned int epochs = 4000);
 };
 
 #endif

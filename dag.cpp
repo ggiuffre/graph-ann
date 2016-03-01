@@ -1,3 +1,4 @@
+#include <iostream>
 #include "dag.h"
 
 
@@ -11,15 +12,17 @@ DAG::nodes_iterator::operator unsigned int() const
 	return index;
 }
 
-DAG::nodes_iterator& DAG::nodes_iterator::operator++()
+DAG::nodes_iterator& DAG::nodes_iterator::operator++()		// prefisso
 {
 	index++;
 	return *this;
 }
 
-DAG::nodes_iterator DAG::nodes_iterator::operator++(int)
+DAG::nodes_iterator DAG::nodes_iterator::operator++(int)	// postfisso
 {
-	return ++(*this);
+	nodes_iterator aux = *this;
+	index++;
+	return aux;
 }
 
 
@@ -33,7 +36,7 @@ DAG::weights_iterator::operator unsigned int() const
 	return index;
 }
 
-DAG::weights_iterator& DAG::weights_iterator::operator++()
+DAG::weights_iterator& DAG::weights_iterator::operator++()		// prefisso
 {
 	index++;
 	if (index == self)
@@ -42,17 +45,24 @@ DAG::weights_iterator& DAG::weights_iterator::operator++()
 	return *this;
 }
 
-DAG::weights_iterator DAG::weights_iterator::operator++(int)
+DAG::weights_iterator DAG::weights_iterator::operator++(int)	// postfisso
 {
-	return ++(*this);
+	weights_iterator aux = *this;
+	index++;
+	if (index == self)
+		index++;
+
+	return aux;
 }
 
 
 
 // DAG
 
-DAG::DAG(const unsigned int s) : sz(s), cpty(sz ? sz : 4), weights(cpty ? new float * [cpty] : nullptr)
+DAG::DAG(const unsigned int s) : sz(0), cpty(0), weights(cpty ? new float * [cpty] : nullptr)
 {
+	resize(s);
+
 	for (unsigned int i = 0; i < cpty; ++i)
 	{
 		weights[i] = new float [cpty];
@@ -63,6 +73,9 @@ DAG::DAG(const unsigned int s) : sz(s), cpty(sz ? sz : 4), weights(cpty ? new fl
 
 DAG::DAG(const DAG& g) : sz(g.sz), cpty(g.cpty), weights(sz ? new float * [cpty] : nullptr)
 {
+	for (unsigned int i = 0; i < cpty; ++i)
+		weights[i] = new float [cpty];
+
 	for (unsigned int i = 0; i < sz; ++i)
 		for (unsigned int j = 0; j < sz; ++j)
 			weights[i][j] = g.weights[i][j];
@@ -96,14 +109,14 @@ DAG::nodes_iterator DAG::end() const
 DAG::weights_iterator DAG::begin(const nodes_iterator n) const
 {
 	if (n != begin())
-		return weights_iterator(0, n);
+		return {0, n};
 	else
-		return weights_iterator(0, 1);
+		return {0, 1};
 }
 
 DAG::weights_iterator DAG::end(const nodes_iterator n) const
 {
-	return weights_iterator(sz, n);
+	return {sz, n};
 }
 
 float DAG::edge(const unsigned int a, const unsigned int b) const
@@ -129,7 +142,7 @@ bool DAG::empty() const
 	return sz == 0;
 }
 
-void DAG::add(const unsigned int n)
+void DAG::push_back(const unsigned int n)
 {
 	// crea nuovo spazio e aggiorna sz:
 	resize(sz + n);
@@ -151,18 +164,18 @@ void DAG::pop_back(const unsigned int n)
 		resize(sz - n);
 }
 
-void DAG::remove(const unsigned int node)
+void DAG::remove(const unsigned int pos)
 {
-	if (node < sz)
+	if (pos < sz)
 	{
-		// elimina le connessioni di node con tutti:
-		for (unsigned int i = node; i < sz - 1; ++i)
-			for (unsigned int j = 0; j < node; ++j)
+		// trasla in alto (elimina le connessioni del nodo in pos con tutti):
+		for (unsigned int i = pos; i < sz - 1; ++i)
+			for (unsigned int j = 0; j < pos; ++j)
 				weights[i][j] = weights[i + 1][j];
 
-		// elimina le connessioni di tutti con node:
+		// trasla a sinistra (elimina le connessioni di tutti con il nodo in pos):
 		for (unsigned int i = 0; i < sz; ++i)
-			for (unsigned int j = node; j < sz - 1; ++j)
+			for (unsigned int j = pos; j < sz - 1; ++j)
 				weights[i][j] = weights[i][j + 1];
 
 		resize(sz - 1);
@@ -186,7 +199,7 @@ void DAG::reserve(const unsigned int new_capacity)
 	for (unsigned int i = 0; i < new_capacity; ++i)
 		new_weights[i] = new float [new_capacity];
 
-	for (unsigned int i = 0; i < sz; i++)
+	for (unsigned int i = 0; i < sz; ++i)
 		for (unsigned int j = 0; j < sz; ++j)
 			new_weights[i][j] = weights[i][j];
 
@@ -195,16 +208,16 @@ void DAG::reserve(const unsigned int new_capacity)
 	weights = new_weights;
 }
 
-void DAG::resize(const unsigned int s)
+void DAG::resize(const unsigned int new_size)
 {
-	if (s > cpty)
-		while (s > cpty)
-			reserve(2 * cpty);
-	else
-		while (s < cpty / 2)
-			reserve(cpty / 2);
+	unsigned int new_capacity = cpty ? cpty : 1;
+	while (new_size < new_capacity)
+		new_capacity /= 2;
+	while (new_size > new_capacity)
+		new_capacity *= 2;
 
-	sz = s;
+	reserve(new_capacity);
+	sz = new_size;
 }
 
 void DAG::link(const unsigned int a, const unsigned int b, const float w)
