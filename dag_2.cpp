@@ -6,13 +6,13 @@
 
 // DAG_2::weights_iterator
 
-DAG_2::weights_iterator::weights_iterator(const unsigned int i, const nodes_iterator n) : nodes_iterator(i), self(n) {}
+DAG_2::weights_iterator::weights_iterator(const nodes_iterator i, const nodes_iterator n) : nodes_iterator(i), self(n) {}
 
 DAG_2::weights_iterator& DAG_2::weights_iterator::operator++()		// prefisso
 {
-	std::vector<std::vector<float> >::operator++();
+	nodes_iterator::operator++();
 	if (*this == self)
-		std::vector<std::vector<float> >::operator++();
+		nodes_iterator::operator++();
 
 	return *this;
 }
@@ -20,9 +20,9 @@ DAG_2::weights_iterator& DAG_2::weights_iterator::operator++()		// prefisso
 DAG_2::weights_iterator DAG_2::weights_iterator::operator++(int)	// postfisso
 {
 	weights_iterator aux = *this;
-	std::vector<std::vector<float> >::operator++();
+	nodes_iterator::operator++();
 	if (*this == self)
-		std::vector<std::vector<float> >::operator++();
+		nodes_iterator::operator++();
 
 	return aux;
 }
@@ -31,7 +31,7 @@ DAG_2::weights_iterator DAG_2::weights_iterator::operator++(int)	// postfisso
 
 // DAG_2
 
-DAG_2::DAG_2(const unsigned int s) : weights(new std::vector<std::vector<float> >(s, std::vector<float>(s, 0.0f))) {}
+DAG_2::DAG_2(const unsigned int s) : weights(std::vector<std::vector<float> >(s, std::vector<float>(s, 0.0f))) {}
 
 DAG_2::DAG_2(const DAG_2& g) : weights(g.weights) {}
 
@@ -41,27 +41,27 @@ DAG_2& DAG_2::operator=(const DAG_2& g)
 	return *this;
 }
 
-DAG_2::nodes_iterator DAG_2::begin() const
+DAG_2::nodes_iterator DAG_2::begin()
 {
-	return 0;
+	return weights.begin();
 }
 
-DAG_2::nodes_iterator DAG_2::end() const
+DAG_2::nodes_iterator DAG_2::end()
 {
-	return weights.size();
+	return weights.end();
 }
 
-DAG_2::weights_iterator DAG_2::begin(const nodes_iterator n) const
+DAG_2::weights_iterator DAG_2::begin(const unsigned int n)
 {
-	if (n != begin())
-		return {0, n};
+	if (n != 0)
+		return {begin(), weights + n};
 	else
-		return {0, 1};
+		return {begin(), weights + 1};
 }
 
-DAG_2::weights_iterator DAG_2::end(const nodes_iterator n) const
+DAG_2::weights_iterator DAG_2::end(const unsigned int n)
 {
-	return {weights.size(), n};
+	return {weights.end(), weights + n};
 }
 
 float DAG_2::edge(const unsigned int a, const unsigned int b) const

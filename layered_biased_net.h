@@ -28,7 +28,6 @@ public:
 
 	void incremental_training(const std::vector<std::vector<float> >& examples, const std::vector<std::vector<float> >& targets, float learning_rate, float momentum, float& error, unsigned int max_epochs = 28000);
 	void incremental_training(std::string data_file, float learning_rate, float momentum, float& error, unsigned int max_epochs = 28000);
-	void mother_nature(std::string data_file, unsigned int n_pop, float learning_rate, float momentum, float& error, unsigned int epochs = 4000);
 };
 
 #endif

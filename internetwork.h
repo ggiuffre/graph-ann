@@ -21,9 +21,8 @@ public:
 	void clear();
 
 	void link(unsigned int a, unsigned int b);
-	void unlink(unsigned int a, unsigned int b);
 
-	network& operator[](unsigned int i) const;
+	network& operator[](unsigned int i) const;		// ???? TOGLIERE
 	std::vector<float> operator()(const std::vector<float>& in);
 };
 

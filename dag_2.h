@@ -24,15 +24,15 @@ public:
 	private:
 		const nodes_iterator self;
 	public:
-		weights_iterator(unsigned int i, nodes_iterator n);
+		weights_iterator(nodes_iterator i, nodes_iterator n);
 		weights_iterator& operator++();
 		weights_iterator operator++(int);
 	};
 
-	nodes_iterator begin() const;
-	nodes_iterator end() const;
-	weights_iterator begin(nodes_iterator n) const;
-	weights_iterator end(nodes_iterator n) const;
+	nodes_iterator begin();
+	nodes_iterator end();
+	weights_iterator begin(nodes_iterator n);
+	weights_iterator end(nodes_iterator n);
 	float edge(unsigned int a, unsigned int b) const;
 
 	unsigned int size() const;

@@ -1,6 +1,6 @@
-#include <fstream>
-#include <algorithm>
 #include <vector>
+#include <algorithm>
+#include <fstream>
 #include <cmath>
 
 #include <time.h>
@@ -143,74 +143,4 @@ void layeredBiasedNet::incremental_training(const std::string data_file, const f
 	fin.close();
 
 	incremental_training(examples, targets, learning_rate, momentum, error);
-}
-
-
-
-class individual
-{
-public:
-	layeredBiasedNet net;
-	float err;
-	individual(layeredBiasedNet x, const float e = 0.0f) : net(x), err(e) {}
-	bool operator<(const individual& n) const { return err < n.err; }
-};
-
-void rank(vector<individual>& p, const std::string data_file, const float learning_rate, const float momentum, const unsigned int epochs)
-{
-	float strive;
-	for (auto it = p.begin(); it < p.end(); ++it)
-	{
-		strive = 0.0f;
-		it->net.incremental_training(data_file, learning_rate, momentum, strive, epochs);
-		it->err = strive;
-	}
-	std::sort(p.begin(), p.end());
-}
-
-vector<individual> generate(const vector<individual>& p)
-{
-	// ...
-	return vector<individual>(p.size() / 2);
-}
-
-void layeredBiasedNet::mother_nature(const std::string data_file, const unsigned int n_pop, const float learning_rate, const float momentum, float& error, const unsigned int epochs)
-{
-	srand(time(NULL));
-	unsigned int sz = size();
-	unsigned int n_diff = 1 + std::max(sz / 4, 0u);
-
-	vector<individual> p(n_pop, *this);		// popolazione
-	for (auto it = p.begin(); it < p.end(); ++it)
-	{
-		it->net.init(RAND, 0.5f);
-		for (unsigned int j = 0; j < (rand() % n_diff); ++j)
-		{
-			unsigned int x, y;
-			do
-			{
-				x = rand() % sz;
-				y = rand() % sz;
-			} while (!edge(x, y));
-			it->net.unlink(x, y);
-		}
-	}
-
-	rank(p, data_file, learning_rate, momentum, epochs);
-	unsigned int selected = p.size() * 0.7;
-	while (p[0].err > error)
-	{
-		vector<individual> next_gen(p.begin(), p.begin() + selected);
-		vector<individual> tmp = generate(vector<individual>(p.begin() + selected, p.end()));
-		next_gen.insert(next_gen.end(), tmp.begin(), tmp.end());
-
-		for (auto it = p.begin(); it < p.end(); ++it)
-			if (rand() % 100 < 5)
-				it->net.link(rand() % sz, rand() % sz, (static_cast<float>(rand()) / static_cast<float>(RAND_MAX)) * 5.0f);
-
-		p = next_gen;
-		rank(p, data_file, learning_rate, momentum, epochs);
-	}
-
-	*this = p[0].net;
 }

@@ -8,15 +8,15 @@ int main()
 //	layeredTanhNet net;
 
 	net.addLayer(2);
-	net.addLayer(5);
+	net.addLayer(4);
 	net.addLayer(1);
 
 	net.init(network::RAND, 0.5f);
-	float error = 0.015f;
-	net.incremental_training("./data/or.data", 0.5f, 0.15f, error);
-	net.save("./nets/or.net");
+	float err = 0.015f;
+	net.incremental_training("./data/and.data", 0.5f, 0.15f, err);
+	net.save("./nets/and.net");
 
-//	net.init("./nets/or.net");
+//	net.init("./nets/and.net");
 
 	vector<float> in(2);
 	cout << "test: ";
@@ -28,6 +28,4 @@ int main()
 	for (unsigned int i = 1; i < out.size(); ++i)
 		cout << out[i] << ' ';
 	cout << endl;
-
-	return 0;
 }

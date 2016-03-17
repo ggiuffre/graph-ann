@@ -59,13 +59,8 @@ void internetwork::clear()
 void internetwork::link(const unsigned int a, const unsigned int b)
 {
 	// ometto il controllo sulla corerenza dei bias
-	if (a != b && a < size() && b < size() && nets[a]->output_size() == nets[b]->input_size())
+	if (a != b && a < size() && b < size() && nets[a]->output_size() == nets[b]->input_size())											//    <=    (?)
 		network::link(a, b);
-}
-
-void internetwork::unlink(const unsigned int a, const unsigned int b)
-{
-	network::link(a, b, 0.0f);
 }
 
 network& internetwork::operator[](const unsigned int i) const

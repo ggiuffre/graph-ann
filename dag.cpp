@@ -29,18 +29,13 @@ DAG::nodes_iterator DAG::nodes_iterator::operator++(int)	// postfisso
 
 // DAG::weights_iterator
 
-DAG::weights_iterator::weights_iterator(const unsigned int i, const nodes_iterator n) : index(i), self(n) {}
-
-DAG::weights_iterator::operator unsigned int() const
-{
-	return index;
-}
+DAG::weights_iterator::weights_iterator(const unsigned int i, const nodes_iterator n) : nodes_iterator(i), self(n) {}
 
 DAG::weights_iterator& DAG::weights_iterator::operator++()		// prefisso
 {
-	index++;
-	if (index == self)
-		index++;
+	nodes_iterator::operator++();
+	if (*this == self)
+		nodes_iterator::operator++();
 
 	return *this;
 }
@@ -48,9 +43,9 @@ DAG::weights_iterator& DAG::weights_iterator::operator++()		// prefisso
 DAG::weights_iterator DAG::weights_iterator::operator++(int)	// postfisso
 {
 	weights_iterator aux = *this;
-	index++;
-	if (index == self)
-		index++;
+	nodes_iterator::operator++();
+	if (*this == self)
+		nodes_iterator::operator++();
 
 	return aux;
 }

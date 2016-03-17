@@ -3,11 +3,11 @@
 
 layeredBiasedNet::layeredBiasedNet(const float bv) : bias_value(bv) {}
 
-layeredBiasedNet::layeredBiasedNet(const layeredBiasedNet& net) : layeredNet(net) {}
+layeredBiasedNet::layeredBiasedNet(const layeredBiasedNet& net) : layeredNet(net), bias_value(net.bias_value) {}
 
 layeredBiasedNet& layeredBiasedNet::operator=(const layeredBiasedNet& net)
 {
-	*this(net);
+	this->layeredNet::operator=(net);		// bias_value rimane... bisogna forse non permettere l'operatore di uguaglianza? ___________
 	return *this;
 }
 
