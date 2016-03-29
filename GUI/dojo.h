@@ -8,7 +8,7 @@
 #include "net_trainer_widget.h"
 #include "net_runner_widget.h"
 #include "nets_list.h"
-#include "train_operations.h"
+//#include "train_operations.h"
 
 class dojo : public QMainWindow
 {
@@ -28,7 +28,7 @@ private:
 protected slots:
 	void netBuilder();
 	void netTrainer();
-	void netRunner();
+	void netRunner(QString title = "");
 
 	void addNet();
 

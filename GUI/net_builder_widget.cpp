@@ -3,6 +3,7 @@
 
 netBuilderWidget::netBuilderWidget(QWidget * parent) : QWidget(parent)
 {
+//	setStyleSheet( "QWidget{ background-color : rgba(240, 240, 240, 128); }" );
 	name = new QLineEdit;
 
 	neuron_type = new QComboBox;

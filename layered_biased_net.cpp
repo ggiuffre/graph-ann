@@ -1,4 +1,3 @@
-#include <string>
 #include "layered_biased_net.h"
 
 layeredBiasedNet::layeredBiasedNet(const float bv) : bias_value(bv) {}

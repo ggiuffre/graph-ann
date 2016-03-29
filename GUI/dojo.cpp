@@ -12,7 +12,7 @@ dojo::dojo()
 	net_menu = new QMenu("Net");
 	net_menu->addAction("New Network", this, SLOT(netBuilder()));
 	net_menu->addAction("Train Network", this, SLOT(netTrainer()));
-	net_menu->addAction("Open Network...", this, SLOT(netRunner()));
+	net_menu->addAction("Open Network...", this, SLOT(netRunner("")));
 	menu_bar = new QMenuBar;
 	menu_bar->addMenu(net_menu);
 	setMenuBar(menu_bar);
@@ -53,8 +53,13 @@ void dojo::netTrainer()
 	ctrl->setCurrentWidget(trainer);
 }
 
-void dojo::netRunner()
+void dojo::netRunner(const QString t)
 {
+	runner->set_title(t);
+	QMessageBox msgBox;
+	msgBox.setText(t);
+	msgBox.exec();
+
 	ctrl->setCurrentWidget(runner);
 }
 

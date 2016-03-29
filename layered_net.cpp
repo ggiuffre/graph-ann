@@ -22,11 +22,11 @@ unsigned int layeredNet::layer::size() const
 
 // layeredNet::layers_iterator
 
-layeredNet::layers_iterator::layers_iterator(const unsigned int i) : index(i) {}
+layeredNet::layers_iterator::layers_iterator(const int i) : index(i) {}
 
 layeredNet::layers_iterator::layers_iterator(const layeredNet::layers_iterator& l) : index(l.index) {}
 
-layeredNet::layers_iterator::operator unsigned int() const
+layeredNet::layers_iterator::operator int() const
 {
 	return index;
 }
@@ -90,7 +90,7 @@ void layeredNet::reserveLayer(const unsigned int start, const unsigned int n_nod
 	++n_lays;
 	layer * aux = new layer [n_lays];
 
-	for (layers_iterator l = begin(); l != end() - 1; ++l)
+	for (layers_iterator l = begin(); l < end() - 1; ++l)
 		aux[l] = layers[l];
 
 	aux[end() - 1] = layer(start, n_nodes);
@@ -199,7 +199,7 @@ void layeredNet::removeLayer(const unsigned int lay)
 		for (nodes_iterator i = begin(lay); i < end(lay); ++i)
 			remove(i);
 
-		for (layers_iterator l = lay; l != end() - 1; ++l)
+		for (layers_iterator l = lay; l < end() - 1; ++l)
 			layers[l] = layers[l + 1];
 
 		--n_lays;

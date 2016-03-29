@@ -6,6 +6,7 @@
 #include <QFormLayout>
 #include <QPushButton>
 #include <QLineEdit>
+#include <QString>
 
 class netRunnerWidget : public QWidget
 {
@@ -15,12 +16,14 @@ private:
 	QPushButton * trigger;
 	QSpinBox * boh;
 	QFormLayout * layout;
+	QString title;
 
 protected slots:
 	void calculate();
 
 public:
-	netRunnerWidget(QWidget * parent = nullptr);
+	netRunnerWidget(QWidget * parent = nullptr, QString t = "");
+	void set_title(QString t);
 };
 
 #endif

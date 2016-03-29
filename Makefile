@@ -1,5 +1,6 @@
-CC = g++
+CC = clang++
 FLAGS = -Wall -std=c++11
+GDB = -g
 
 build: dag.o network.o net_container.o layered_net.o layered_biased_net.o nets.o train.o
 	$(CC) $(FLAGS) gprova.cpp dag.o network.o net_container.o layered_net.o layered_biased_net.o nets.o train.o
@@ -29,3 +30,6 @@ clean:
 	rm -f *.o
 
 rebuild: clean build
+
+debug: dag.o network.o net_container.o layered_net.o layered_biased_net.o nets.o train.o
+	$(CC) $(GDB) $(FLAGS) gprova.cpp dag.o network.o net_container.o layered_net.o layered_biased_net.o nets.o train.o

@@ -1,10 +1,7 @@
-#include <iostream>
 #include <fstream>
 #include <cmath>
-#include <string>
 #include <time.h>
 #include <stdlib.h>
-#include <vector>
 #include "network.h"
 
 
@@ -160,43 +157,6 @@ void network::save(const std::string netfile) const
 {
 	std::ofstream fout(netfile);
 	fout << size() << std::endl << *this;
-}
-
-// DA ELIMINARE ___________________________________________
-void network::random_pretraining(const std::string datafile, const unsigned int epochs)
-{
-	network random_try(*this);
-	float err_1 = 0.0f;
-	float err_2 = 0.0f;
-	std::ifstream fin;
-	for (unsigned int i = 0; i < epochs; ++i)
-	{
-		float epoch_err = 0.0f;
-		random_try.init(RAND, 0.5f);
-		fin.open(datafile);
-		unsigned int n_examples, n_in, n_out;
-		fin >> n_examples >> n_in >> n_out;
-		for (unsigned int j = 0; j < n_examples; ++j)
-		{
-			float err = 0.0f;
-			std::vector<float> input(n_in);
-			for (unsigned int k = 0; k < n_in; ++k)
-				fin >> input[k];
-			std::vector<float> target(n_out);
-			for (unsigned int k = 0; k < n_out; ++k)
-				fin >> target[k];
-			std::vector<float> output = random_try(input);
-			for (unsigned int k = 0; k < n_out; ++k)
-				err += fabs(output[k] - target[k]);
-			epoch_err += err / n_out;
-		}
-		fin.close();
-		if (i == 0)
-			err_1 = epoch_err / n_examples;
-		err_2 = epoch_err / n_examples;
-		if (err_2 < err_1)
-			*this = random_try;
-	}
 }
 
 

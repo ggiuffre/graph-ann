@@ -5,6 +5,13 @@
 #include <string>
 #include "layered_net.h"
 
+class unit
+{
+public:
+	float out, delta;
+	unit(float o = 0.0f, float d = 0.0f) : out(o), delta(d) {}
+};
+
 class layeredBiasedNet : public layeredNet
 {
 private:

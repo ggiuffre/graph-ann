@@ -649,9 +649,8 @@ moc_dojo.cpp: /Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QMai
 		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qfilesystemmodel.h \
 		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QListView \
 		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qlistview.h \
-		train_operations.h \
-		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QToolBar \
-		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qtoolbar.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
 		dojo.h
 	/Applications/Qt/5.5/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Applications/Qt/5.5/clang_64/mkspecs/macx-clang -I/Users/giorgiogiuffre/Documents/C++/oop-ann/GUI -I/Users/giorgiogiuffre/Documents/C++/oop-ann/GUI -I/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers -I/Applications/Qt/5.5/clang_64/lib/QtGui.framework/Headers -I/Applications/Qt/5.5/clang_64/lib/QtCore.framework/Headers -F/Applications/Qt/5.5/clang_64/lib dojo.h -o moc_dojo.cpp
 
@@ -663,6 +662,8 @@ moc_nets_list.cpp: /Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers
 		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qfilesystemmodel.h \
 		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QListView \
 		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qlistview.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
 		nets_list.h
 	/Applications/Qt/5.5/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Applications/Qt/5.5/clang_64/mkspecs/macx-clang -I/Users/giorgiogiuffre/Documents/C++/oop-ann/GUI -I/Users/giorgiogiuffre/Documents/C++/oop-ann/GUI -I/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers -I/Applications/Qt/5.5/clang_64/lib/QtGui.framework/Headers -I/Applications/Qt/5.5/clang_64/lib/QtCore.framework/Headers -F/Applications/Qt/5.5/clang_64/lib nets_list.h -o moc_nets_list.cpp
 
@@ -758,9 +759,8 @@ gui_main.o: gui_main.cpp /Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/H
 		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qfilesystemmodel.h \
 		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QListView \
 		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qlistview.h \
-		train_operations.h \
-		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QToolBar \
-		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qtoolbar.h
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o gui_main.o gui_main.cpp
 
 dojo.o: dojo.cpp /Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QFormLayout \
@@ -794,9 +794,8 @@ dojo.o: dojo.cpp /Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/Q
 		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qfilesystemmodel.h \
 		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QListView \
 		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qlistview.h \
-		train_operations.h \
-		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QToolBar \
-		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qtoolbar.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
 		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
 		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dojo.o dojo.cpp
@@ -809,7 +808,9 @@ nets_list.o: nets_list.cpp nets_list.h \
 		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QFileSystemModel \
 		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qfilesystemmodel.h \
 		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QListView \
-		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qlistview.h
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qlistview.h \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
+		/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o nets_list.o nets_list.cpp
 
 net_builder_widget.o: net_builder_widget.cpp net_builder_widget.h \

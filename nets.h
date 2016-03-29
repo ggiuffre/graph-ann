@@ -2,6 +2,7 @@
 #define NETS_H
 
 #include <string>
+#include <vector>
 #include "network.h"
 #include "layered_biased_net.h"
 
@@ -41,7 +42,7 @@ public:
 
 // Perceptron:
 
-class perceptron : virtual public network
+class perceptron : public layeredBiasedNet
 {
 private:
 	const float verum;
@@ -49,7 +50,8 @@ private:
 	virtual float activation_function(float x) const override;
 
 public:
-	explicit perceptron(float v = 1.0f, float f = 0.0f, unsigned int s = 0);
+	perceptron(unsigned int n_in = 2, float v = 1.0f, float f = -1.0f);
+	void train(const std::vector<std::vector<float> >& examples, const std::vector<std::vector<float> >& targets, float learning_rate, float& error, unsigned int max_epochs = 1000);
 };
 
 
@@ -72,17 +74,6 @@ class layeredTanhNet : public layeredBiasedNet, public tanhNet
 public:
 	explicit layeredTanhNet(float bv = 1.0f);
 	layeredTanhNet(std::string netfile, float bv = 1.0f);
-};
-
-
-
-// Layered perceptron:
-
-class layeredPerceptron : public layeredBiasedNet, public perceptron
-{
-public:
-	layeredPerceptron(float bv = 1.0f, float v = 1.0f, float f = 0.0f);
-	layeredPerceptron(std::string netfile, float bv = 1.0f, float v = 1.0f, float f = 0.0f);
 };
 
 #endif

@@ -32,11 +32,11 @@ public:
 
 	class layers_iterator {
 	private:
-		unsigned int index;
+		int index;
 	public:
-		layers_iterator(unsigned int i);
+		layers_iterator(int i);
 		layers_iterator(const layers_iterator& l);
-		operator unsigned int() const;		// tutti i confronti passano per gli interi
+		operator int() const;		// tutti i confronti passano per gli interi
 		layers_iterator& operator++();
 		layers_iterator operator++(int);
 		layers_iterator& operator--();
