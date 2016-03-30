@@ -11,7 +11,7 @@ using std::vector;
 
 
 
-void layeredBiasedNet::incremental_training(const vector<vector<float> >& examples, const vector<vector<float> >& targets, const float learning_rate, const float momentum, float& error, const unsigned int max_epochs)
+void layeredBiasedNet::incremental_training(const vector<vector<float> >& examples, const vector<vector<float> >& targets, const float learning_rate, const float momentum, float& error, const bool bias_plasticity, const unsigned int max_epochs)
 {
 	vector<unit> units(size());
 	vector<float> momentum_terms(n_layers(), 0.0f);
@@ -77,8 +77,8 @@ void layeredBiasedNet::incremental_training(const vector<vector<float> >& exampl
 			// --- aggiorna i collegamenti sinaptici:
 
 			for (layers_iterator l = begin(); l < end() - 1; ++l)
-				for (nodes_iterator i = begin(l) + 1; i < end(l); ++i)
-					for (nodes_iterator j = begin(l + 1) + 1; j < end(l + 1); ++j)
+				for (nodes_iterator i = begin(l) + bias_plasticity; i < end(l); ++i)
+					for (nodes_iterator j = begin(l + 1); j < end(l + 1); ++j)
 						if (edge(i, j))
 						{
 							link(i, j, edge(i, j) + learning_rate * units[j].delta * units[i].out + momentum * momentum_terms[l]);
@@ -94,7 +94,7 @@ void layeredBiasedNet::incremental_training(const vector<vector<float> >& exampl
 	std::cout << '\n';
 }
 
-void layeredBiasedNet::incremental_training(const std::string data_file, const float learning_rate, const float momentum, float& error, const unsigned int max_epochs)
+void layeredBiasedNet::incremental_training(const std::string data_file, const float learning_rate, const float momentum, float& error, const bool bias_plasticity, const unsigned int max_epochs)
 {
 	std::ifstream fin(data_file);
 	unsigned int n_examples = 0, n_in = 0, n_out = 0;
@@ -112,5 +112,5 @@ void layeredBiasedNet::incremental_training(const std::string data_file, const f
 
 	fin.close();
 
-	incremental_training(examples, targets, learning_rate, momentum, error, max_epochs);
+	incremental_training(examples, targets, learning_rate, momentum, error, bias_plasticity, max_epochs);
 }

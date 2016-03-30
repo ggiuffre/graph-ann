@@ -33,8 +33,8 @@ public:
 	virtual void addLayer(unsigned int n_nodes) override;
 	virtual void linkLayer(unsigned int l) override;				// virtual...
 
-	void incremental_training(const std::vector<std::vector<float> >& examples, const std::vector<std::vector<float> >& targets, float learning_rate, float momentum, float& error, unsigned int max_epochs = 28000);
-	void incremental_training(std::string data_file, float learning_rate, float momentum, float& error, unsigned int max_epochs = 28000);
+	void incremental_training(const std::vector<std::vector<float> >& examples, const std::vector<std::vector<float> >& targets, float learning_rate, float momentum, float& error, bool bias_plasticity = true, unsigned int max_epochs = 28000);
+	void incremental_training(std::string data_file, float learning_rate, float momentum, float& error, bool bias_plasticity = true, unsigned int max_epochs = 28000);
 };
 
 #endif
