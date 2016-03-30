@@ -6,16 +6,16 @@ int main()
 {
 	const unsigned int n_in = 2;
 
-	perceptron net(n_in);
+/*	perceptron net(n_in);
 	net.init(network::RAND, 0.5f);
 	float err = 0.015f;
 	net.train({{-1, -1}, {-1, 1}, {1, -1}, {1, 1}}, {{-1}, {-1}, {-1}, {1}}, 0.2f, err, 50);
-	cout << net << endl;
+	cout << net << endl;		*/
 
-/*	layeredSigmoidNet net;
+	layeredSigmoidNet net;
 //	layeredTanhNet net;
 
-	net.addLayer(2);
+	net.addLayer(n_in);
 	net.addLayer(4);
 	net.addLayer(1);
 
@@ -25,7 +25,7 @@ int main()
 	net.incremental_training("./data/and.data", 0.5f, 0.15f, err);
 	net.save("./nets/and.net");
 
-//	net.init("./nets/and.net");*/
+//	net.init("./nets/and.net");
 
 	vector<float> in(n_in);
 	cout << "test: ";

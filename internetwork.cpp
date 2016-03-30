@@ -36,9 +36,9 @@ void internetwork::adapt()
 	nets_sz = size();
 }
 
-void internetwork::add(network& net)
+void internetwork::push_back(network& net)
 {
-	network::add();
+	network::push_back();
 	adapt();
 	nets[nets_sz - 1] = &net;
 }

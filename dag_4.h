@@ -1,17 +1,25 @@
-#ifndef DAG_H
-#define DAG_H
+#ifndef DAG_4_H
+#define DAG_4_H
 
-#include <vector>
-
-class DAG : public std::vector<std::vector<float> >
+class DAG_4
 {
+private:
+	unsigned int sz;
+	unsigned int cpty;
+	float ** weights;
+
+	void reserve(unsigned int new_capacity);
+	void resize(unsigned int new_size);
+
 protected:
 	void remove(unsigned int pos);			// rimuovi il nodo in pos
 	// PROBLEMA: dopo una remove(), gli indici con cui l'utente si interfaccia non sono più validi
 
 public:
-	explicit DAG(unsigned int s = 0);		// un int non caratterizza univocamente un dag
-	virtual ~DAG() = default;
+	explicit DAG_4(unsigned int s = 0);		// un int non caratterizza univocamente un DAG_4
+	DAG_4(const DAG_4& g);
+	virtual ~DAG_4();
+	DAG_4& operator=(const DAG_4& g);
 
 	class nodes_iterator {
 	private:
@@ -38,9 +46,13 @@ public:
 	weights_iterator end(nodes_iterator n) const;
 	float edge(unsigned int a, unsigned int b) const;
 
+	unsigned int size() const;
+	unsigned int capacity() const;
+	bool empty() const;
 	void push_back(unsigned int n = 1);		// inserisci n nodi in testa
 	void pop_back(unsigned int n = 1);		// rimuovi gli ultimi n nodi immessi
 //	void insert(unsigned int pos);			// inserisci un nodo in pos
+	void clear();
 
 	void link(unsigned int a, unsigned int b, float w = 1.0f);
 	void unlink(unsigned int a, unsigned int b);

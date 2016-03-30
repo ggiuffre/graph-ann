@@ -26,7 +26,6 @@ public:
 	enum init_t { ZERO, RAND };
 	void init(init_t mode = RAND, float bound = 0.5f);
 	void init(std::string netfile);
-	void sleep(float threshold = 0.1f);		// sperimentale    (threshold va abbassata...?)
 	void save(std::string netfile = "untitled.net") const;
 	void random_pretraining(std::string datafile, unsigned int epochs = 200);	// da togliere prima della consegna...
 

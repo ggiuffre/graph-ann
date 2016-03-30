@@ -50,14 +50,6 @@ void network::init(const std::string netfile)
 	fin.close();
 }
 
-void network::sleep(const float threshold)
-{
-	for (nodes_iterator i = begin(); i < end(); ++i)
-		for (weights_iterator j = begin(i); j < end(i); ++j)
-			if (fabs(edge(j, i)) < threshold)
-				link(j, i, edge(j, i) * 0.8f);
-}
-
 bool network::is_output(const unsigned int node) const
 {
 	if (node >= size())		// eccezione

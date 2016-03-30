@@ -16,7 +16,7 @@ public:
 	internetwork& operator=(const internetwork& net);
 
 	void adapt();
-	void add(network& n);		// inserisce la rete n in testa all'interrete
+	void push_back(network& n);		// inserisce la rete n in testa all'interrete
 	void pop_back(unsigned int n = 1);		// rimuovi gli ultimi n nodi immessi
 	void clear();
 
