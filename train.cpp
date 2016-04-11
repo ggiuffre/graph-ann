@@ -1,17 +1,16 @@
+#include "layered_biased_net.h"
 #include <algorithm>
 #include <fstream>
 #include <cmath>
 #include <time.h>
 #include <stdlib.h>
-
 #include <iostream>	// debugging
-#include "layered_biased_net.h"
 
 using std::vector;
 
 
 
-void layeredBiasedNet::incremental_training(const vector<vector<float> >& examples, const vector<vector<float> >& targets, const float learning_rate, const float momentum, float& error, const bool bias_plasticity, const unsigned int max_epochs)
+void layeredBiasedNet::incremental_training(const vector<vector<float> >& examples, const vector<vector<float> >& targets, float& error, const unsigned int max_epochs)
 {
 	vector<unit> units(size());
 	vector<float> momentum_terms(n_layers(), 0.0f);
@@ -77,12 +76,13 @@ void layeredBiasedNet::incremental_training(const vector<vector<float> >& exampl
 			// --- aggiorna i collegamenti sinaptici:
 
 			for (layers_iterator l = begin(); l < end() - 1; ++l)
-				for (nodes_iterator i = begin(l) + bias_plasticity; i < end(l); ++i)
+				for (nodes_iterator i = begin(l) + !bias_plasticity; i < end(l); ++i)
 					for (nodes_iterator j = begin(l + 1); j < end(l + 1); ++j)
 						if (edge(i, j))
 						{
-							link(i, j, edge(i, j) + learning_rate * units[j].delta * units[i].out + momentum * momentum_terms[l]);
-							momentum_terms[l] = learning_rate * units[j].delta * units[i].out + momentum * momentum_terms[l];
+							float update = learningRate() * units[j].delta * units[i].out + momentum() * momentum_terms[l];
+							link(i, j, edge(i, j) + update);
+							momentum_terms[l] = update;
 						}
 
 			tot_err += err;
@@ -90,19 +90,20 @@ void layeredBiasedNet::incremental_training(const vector<vector<float> >& exampl
 		tot_err /= examples.size();
 		std::cout << "error: " << tot_err;
 	} while (tot_err > error && epoch < max_epochs);
+
 	error = tot_err;
 	std::cout << '\n';
 }
 
-void layeredBiasedNet::incremental_training(const std::string data_file, const float learning_rate, const float momentum, float& error, const bool bias_plasticity, const unsigned int max_epochs)
+void layeredBiasedNet::incremental_training(const std::string data_file, float& error, const unsigned int max_epochs)
 {
 	std::ifstream fin(data_file);
-	unsigned int n_examples = 0, n_in = 0, n_out = 0;
-	fin >> n_examples >> n_in >> n_out;
+	unsigned int n_ex = 0, n_in = 0, n_out = 0;
+	fin >> n_ex >> n_in >> n_out;
 
-	vector<vector<float> > examples(n_examples, vector<float>(n_in));
-	vector<vector<float> > targets(n_examples, vector<float>(n_out));
-	for (unsigned int e = 0; e < n_examples; ++e)
+	vector<vector<float> > examples(n_ex, vector<float>(n_in));
+	vector<vector<float> > targets(n_ex, vector<float>(n_out));
+	for (unsigned int e = 0; e < n_ex; ++e)
 	{
 		for (unsigned int i = 0; i < n_in; ++i)
 			fin >> examples[e][i];
@@ -112,5 +113,5 @@ void layeredBiasedNet::incremental_training(const std::string data_file, const f
 
 	fin.close();
 
-	incremental_training(examples, targets, learning_rate, momentum, error, bias_plasticity, max_epochs);
+	incremental_training(examples, targets, error, max_epochs);
 }

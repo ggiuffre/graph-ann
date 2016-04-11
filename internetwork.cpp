@@ -1,98 +1,88 @@
 #include "internetwork.h"
+#include <iostream>
 
-internetwork::internetwork() : nets(capacity() ? new network * [capacity()] : nullptr) {}
-
-internetwork::~internetwork()
-{
-	delete [] nets;
-}
-
-internetwork::internetwork(const internetwork& net) : network(net)
-{
-	adapt();
-	for (unsigned int i = 0; i < size(); ++i)
-		nets[i] = net.nets[i];
-}
-
-internetwork& internetwork::operator=(const internetwork& net)
-{
-	network::operator=(net);
-
-	adapt();
-	for (unsigned int i = 0; i < net.size(); ++i)
-		nets[i] = net.nets[i];
-
-	return *this;
-}
-
-void internetwork::adapt()
-{
-	network ** aux = new network * [capacity()];
-	for (unsigned int i = 0; i < nets_sz; ++i)
-		aux[i] = nets[i];
-
-	delete [] nets;
-	nets = aux;
-	nets_sz = size();
-}
+using std::vector;
 
 void internetwork::push_back(network& net)
 {
 	network::push_back();
-	adapt();
-	nets[nets_sz - 1] = &net;
+	netContainer::push_back(net);
 }
 
 void internetwork::pop_back(const unsigned int n)
 {
 	network::pop_back(n);
-	adapt();
+	netContainer::pop_back(n);
 }
 
 void internetwork::clear()
 {
 	network::clear();
-	delete [] nets;
-	nets = nullptr;
+	netContainer::clear();
 }
 
-void internetwork::link(const unsigned int a, const unsigned int b)
+unsigned int internetwork::size() const
 {
-	// ometto il controllo sulla corerenza dei bias
-	if (a != b && a < size() && b < size() && nets[a]->output_size() == nets[b]->input_size())											//    <=    (?)
-		network::link(a, b);
+	return netContainer::size();
 }
 
-network& internetwork::operator[](const unsigned int i) const
+unsigned int internetwork::input_size() const
 {
-	return *nets[i];
+	unsigned int in_sz = 0;
+	for (nodes_iterator i = begin(); i < end(); ++i)
+		if (is_input(i))
+			in_sz += (*this)[i].input_size();
+
+	return in_sz;
 }
 
-std::vector<float> internetwork::neuron(const unsigned int i) const
+network::nodes_iterator internetwork::begin() const
+{
+	return network::begin();
+}
+
+network::nodes_iterator internetwork::end() const
+{
+	return network::end();
+}
+
+network::weights_iterator internetwork::begin(const nodes_iterator n) const
+{
+	return network::begin(n);
+}
+
+network::weights_iterator internetwork::end(const nodes_iterator n) const
+{
+	return network::end(n);
+}
+
+network& internetwork::operator[](const int i) const
+{
+	return this->netContainer::operator[](i);
+}
+
+void internetwork::store(const vector<float>& in)
+{
+	if (in.size() >= input_size())		// eccezione...?
+	{
+		auto it = in.begin();
+		for (nodes_iterator i = begin(); i < end(); ++i)
+			if (is_input(i))
+				(*this)[i].store({it, it += (*this)[i].input_size()});
+	}
+}
+
+float internetwork::neuron(const unsigned int i) const
 {
 	if (i >= size())		// eccezione
 		return 0.0f;
 
 	if (is_input(i))
-		return input_map.find(i)->second;
+		return (*this)[i]()[0];
 
-	float result = 0.0f;
+	vector<float> result;
 	for (weights_iterator j = begin(i); j < end(i); ++j)
 		if (edge(j, i))
-			result += neuron(j);
-
-	return result;
-}
-
-std::vector<float> internetwork::operator()(const std::vector<float>& in)
-{
-	network::store(in);
-
-	std::vector<float> result;
-	for (nodes_iterator i = begin(); i < end(); ++i)
-		if (is_output(i))
-			for (unsigned int j = 0; j < nets[j]->output_size(); ++j)
-				result.push_back(neuron(i)[j]);
-
-	return result;
+			result.push_back(edge(j, i) * neuron(j));
+	return (*this)[i](result)[0];
 }

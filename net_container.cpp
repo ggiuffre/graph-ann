@@ -112,6 +112,11 @@ void netContainer::pop_back(const unsigned int n)
 		resize(sz - n);
 }
 
+network& netContainer::operator[](const int i) const
+{
+	return *(nets[i]);
+}
+
 void netContainer::clear()
 {
 	sz = 0;

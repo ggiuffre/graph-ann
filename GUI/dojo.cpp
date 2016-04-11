@@ -1,9 +1,10 @@
+#include "dojo.h"
 #include <QFormLayout>
 #include <QComboBox>
 #include <QSpinBox>
 #include <QLineEdit>
-#include "dojo.h"
-#include <QMessageBox>
+
+#include <QMessageBox>	// debugging
 
 dojo::dojo()
 {
@@ -56,10 +57,7 @@ void dojo::netTrainer()
 void dojo::netRunner(const QString t)
 {
 	runner->set_title(t);
-	QMessageBox msgBox;
-	msgBox.setText(t);
-	msgBox.exec();
-
+	// repaint runner...
 	ctrl->setCurrentWidget(runner);
 }
 

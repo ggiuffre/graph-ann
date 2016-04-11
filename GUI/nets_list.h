@@ -16,12 +16,11 @@ private:
 	QFileSystemModel * fs;
 	QListView * files;
 
-protected slots:
-	void NetClicked(QModelIndex i) const;
-	void prova(QString t);
+public slots:
+	void selectNet(QModelIndex i);
 
 signals:
-	void NetSelected(QString t) const;
+	void netSelected(QString t);
 
 public:
 	nets_list(QWidget * parent = nullptr);

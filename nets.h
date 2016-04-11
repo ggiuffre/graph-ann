@@ -1,10 +1,10 @@
 #ifndef NETS_H
 #define NETS_H
 
+#include "layered_biased_net.h"
+#include "network.h"
 #include <string>
 #include <vector>
-#include "network.h"
-#include "layered_biased_net.h"
 
 
 
@@ -45,13 +45,11 @@ public:
 class perceptron : public layeredBiasedNet
 {
 private:
-	const float verum;
-	const float falsum;
 	virtual float activation_function(float x) const override;
 
 public:
-	perceptron(unsigned int n_in = 2, float v = 1.0f, float f = -1.0f);
-	void train(const std::vector<std::vector<float> >& examples, const std::vector<std::vector<float> >& targets, float learning_rate, float& error, unsigned int max_epochs = 1000);
+	explicit perceptron(unsigned int n_in = 2, float lr = 0.5f);
+	void train(const std::vector<std::vector<float> >& examples, const std::vector<std::vector<float> >& targets, float& error, unsigned int max_epochs = 200);
 };
 
 
@@ -61,8 +59,8 @@ public:
 class layeredSigmoidNet : public layeredBiasedNet, public sigmoidNet
 {
 public:
-	explicit layeredSigmoidNet(float bv = 1.0f);
-	layeredSigmoidNet(std::string netfile, float bv = 1.0f);
+	explicit layeredSigmoidNet(float lr = 0.5f, float m = 0.2f, bool bp = true);
+	layeredSigmoidNet(std::string netfile, float lr = 0.5f, float m = 0.2f, bool bp = true);
 };
 
 
@@ -72,8 +70,8 @@ public:
 class layeredTanhNet : public layeredBiasedNet, public tanhNet
 {
 public:
-	explicit layeredTanhNet(float bv = 1.0f);
-	layeredTanhNet(std::string netfile, float bv = 1.0f);
+	explicit layeredTanhNet(float lr = 0.5f, float m = 0.2f, bool bp = true);
+	layeredTanhNet(std::string netfile, float lr = 0.5f, float m = 0.2f, bool bp = true);
 };
 
 #endif

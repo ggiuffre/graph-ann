@@ -1,13 +1,13 @@
 #ifndef DOJO_H
 #define DOJO_H
 
-#include <QMainWindow>
-#include <QMenuBar>
-#include <QStackedWidget>
 #include "net_builder_widget.h"
 #include "net_trainer_widget.h"
 #include "net_runner_widget.h"
 #include "nets_list.h"
+#include <QMainWindow>
+#include <QMenuBar>
+#include <QStackedWidget>
 //#include "train_operations.h"
 
 class dojo : public QMainWindow
@@ -25,10 +25,10 @@ private:
 
 	nets_list * nets_dock;
 
-protected slots:
+public slots:
 	void netBuilder();
 	void netTrainer();
-	void netRunner(QString title = "");
+	void netRunner(QString t);
 
 	void addNet();
 

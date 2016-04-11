@@ -1,5 +1,5 @@
-#include <iostream>
 #include "dag.h"
+#include <iostream>
 
 using std::vector;
 

@@ -1,8 +1,8 @@
+#include "network.h"
 #include <fstream>
 #include <cmath>
 #include <time.h>
 #include <stdlib.h>
-#include "network.h"
 
 
 
@@ -97,9 +97,9 @@ unsigned int network::output_size() const
 
 void network::store(const std::vector<float>& in)
 {
-	if (in.size() >= input_size())
+	if (in.size() >= input_size())		// eccezione...?
 	{
-		std::vector<float>::const_iterator it = in.begin();
+		auto it = in.begin();
 		for (nodes_iterator i = begin(); i < end(); ++i)
 			if (is_input(i))
 				input_map[i] = *(it++);
@@ -124,7 +124,7 @@ float network::neuron(const unsigned int i) const
 	if (is_input(i))
 		return input_map.find(i)->second;
 
-	float result = 0.0f;
+	float result = 0.0f;	// std::accumulate?
 	for (weights_iterator j = begin(i); j < end(i); ++j)
 		if (edge(j, i))
 			result += edge(j, i) * neuron(j);
@@ -134,7 +134,8 @@ float network::neuron(const unsigned int i) const
 
 std::vector<float> network::operator()(const std::vector<float>& in)
 {
-	store(in);
+	if (!in.empty())
+		store(in);
 
 	std::vector<float> result;
 	for (nodes_iterator i = begin(); i < end(); ++i)
@@ -153,7 +154,7 @@ void network::save(const std::string netfile) const
 
 
 
-// operatori esterni
+// operatori esterni di network
 
 std::ostream& operator<<(std::ostream& os, const network& net)
 {

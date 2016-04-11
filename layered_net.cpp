@@ -1,6 +1,6 @@
+#include "layered_net.h"
 #include <iostream>
 #include <fstream>
-#include "layered_net.h"
 
 
 
@@ -186,7 +186,7 @@ void layeredNet::addLayer(const unsigned int n_nodes)
 
 void layeredNet::linkLayer(const unsigned int l)
 {
-	if (l > 0 && l < n_lays)
+	if (l > begin() && l < end())
 		for (nodes_iterator i = begin(l); i < end(l); ++i)
 			for (nodes_iterator j = begin(l - 1); j < end(l - 1); ++j)
 				link(j, i);

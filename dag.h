@@ -10,7 +10,7 @@ protected:
 	// PROBLEMA: dopo una remove(), gli indici con cui l'utente si interfaccia non sono più validi
 
 public:
-	explicit DAG(unsigned int s = 0);		// un int non caratterizza univocamente un dag
+	explicit DAG(unsigned int s = 0);		// un int non definisce/caratterizza univocamente un dag
 	virtual ~DAG() = default;
 
 	class nodes_iterator {

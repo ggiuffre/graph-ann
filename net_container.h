@@ -48,6 +48,7 @@ public:
 
 	void push_back(network& n);				// inserisce la rete n in testa
 	void pop_back(unsigned int n = 1);		// rimuovi gli ultimi n nodi immessi
+	network& operator[](int i) const;
 	void clear();
 };
 

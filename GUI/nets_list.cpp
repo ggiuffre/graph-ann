@@ -1,6 +1,5 @@
 #include "nets_list.h"
 #include <QListWidgetItem>
-#include <QMessageBox>
 
 nets_list::nets_list(QWidget * parent) : QDockWidget(parent)
 {
@@ -15,9 +14,8 @@ nets_list::nets_list(QWidget * parent) : QDockWidget(parent)
 	files->setModel(fs);
 	files->setRootIndex(fs->index("/Users/giorgiogiuffre/Documents/C++/oop-ann/nets/"));
 	files->setGridSize({90, 30});
-	connect(files, SIGNAL(clicked(QModelIndex)), this, SLOT(NetClicked(QModelIndex)));
-	connect(this, SIGNAL(NetSelected(QString)), parent, SLOT(NetRunner(QString)));
-//	connect(this, SIGNAL(NetSelected(QString)), this, SLOT(prova(QString)));
+	connect(files, SIGNAL(clicked(QModelIndex)), this, SLOT(selectNet(QModelIndex)));
+	connect(this, SIGNAL(netSelected(QString)), parent, SLOT(netRunner(QString)));
 
 	setFeatures(QDockWidget::DockWidgetClosable);
 	files->setMinimumWidth(90);
@@ -25,15 +23,7 @@ nets_list::nets_list(QWidget * parent) : QDockWidget(parent)
 	setWidget(files);
 }
 
-void nets_list::NetClicked(const QModelIndex i) const
+void nets_list::selectNet(const QModelIndex i)
 {
-	QString title = fs->fileName(i);
-	emit NetSelected(title);
-}
-
-void nets_list::prova(const QString title)
-{
-	QMessageBox msgBox;
-	msgBox.setText(title);
-	msgBox.exec();
+	emit netSelected(fs->fileName(i));
 }
