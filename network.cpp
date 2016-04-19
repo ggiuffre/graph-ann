@@ -122,11 +122,7 @@ float network::neuron(const unsigned int i) const
 		return 0.0f;
 
 	if (is_input(i))
-	{
-		if (is_output(i))
-			std::cout << "{" << i << ": " << input_map.find(i)->second << "}";
 		return input_map.find(i)->second;
-	}
 
 	float result = 0.0f;	// std::accumulate?
 	for (weights_iterator j = begin(i); j < end(i); ++j)
