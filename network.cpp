@@ -56,7 +56,6 @@ bool network::is_output(const unsigned int node) const
 		return 0;
 
 	bool is_out = true;
-
 	for (nodes_iterator i = begin(); i < end() && is_out; ++i)
 		is_out = !edge(node, i);
 

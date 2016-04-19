@@ -86,3 +86,9 @@ void layeredBiasedNet::store(const std::vector<float>& in)
 
 	layeredNet::store(aux);
 }
+
+std::vector<float> layeredBiasedNet::operator()(const std::vector<float>& in)
+{
+	std::vector<float> aux = layeredNet::operator()(in);
+	return {aux.begin() + 1, aux.end()};		// togli il bias
+}
