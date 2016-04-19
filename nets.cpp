@@ -54,14 +54,13 @@ void perceptron::train(const std::vector<std::vector<float> >& examples, const s
 		inds.push_back(i);
 
 	unsigned int epoch = 0;
-	float tot_err = 0.0f;
+	float tot_err;
 
 	do
 	{
 		++epoch;
 		tot_err = 0.0f;
-//		std::cout << "\r[" << epoch << "]\t";
-		std::cout << "\n[" << epoch << "]";
+		std::cout << "\r[" << epoch << "]\t";
 
 		std::random_shuffle(inds.begin(), inds.end());
 		for (auto e = inds.begin(); e < inds.end(); ++e)
@@ -71,19 +70,15 @@ void perceptron::train(const std::vector<std::vector<float> >& examples, const s
 				for (nodes_iterator i = begin(l); i < end(l); ++i)
 					units[i].out = neuron(i);
 
-std::cout << "ok\n";
-			std::cout << '{';
 			float err = 0.0f;
 			unsigned int t = 0;
 			for (nodes_iterator i = begin(end() - 1) + 1; i < end(end() - 1); ++i)
 			{
 				units[i].delta = targets[*e][t];
-				std::cout << units[i].delta << ' ';
 				err += fabs(targets[*e][t] - units[i].out);
 				++t;
 			}
 			err /= output_size() - 1;
-			std::cout << "\b} -> " << err << "; ";
 
 			for (nodes_iterator i = begin(begin()); i < end(begin()); ++i)
 				for (nodes_iterator j = begin(end() - 1) + 1; j < end(end() - 1); ++j)
@@ -97,7 +92,7 @@ std::cout << "ok\n";
 	} while (tot_err > error && epoch < max_epochs);
 
 	error = tot_err;
-	std::cout << '\n';
+	std::cout << std::endl;
 }
 
 

@@ -9,7 +9,7 @@ int main()
 	const unsigned int n_in = 2;
 	float err = 0.015f;
 
-	perceptron net_1(n_in);
+/*	perceptron net_1(n_in);
 	net_1.init(network::RAND, 0.5f);
 	net_1.train({{-1, -1}, {-1, 1}, {1, -1}, {1, 1}}, {{-1}, {-1}, {-1}, {1}}, err, 50);
 
@@ -26,20 +26,20 @@ int main()
 	internet.push_back(net_2);
 	internet.push_back(net_3);
 	internet.link(0, 2);
-	internet.link(1, 2);
+	internet.link(1, 2);	*/
 
-	vector<float> in(internet.input_size());
+/*	vector<float> in(net_1.input_size());
 	cout << "test: ";
 	for (unsigned int i = 0; i < in.size(); ++i)
 		cin >> in[i];
-	vector<float> out = internet(in);
+	vector<float> out = net_1(in);
 
 	cout << "result: ";
 	for (unsigned int i = 0; i < out.size(); ++i)
 		cout << out[i] << ' ';
-	cout << endl;
+	cout << endl;	*/
 
-/*	layeredSigmoidNet net;
+	layeredSigmoidNet net;
 //	layeredTanhNet net;
 
 	net.addLayer(n_in);
@@ -52,15 +52,16 @@ int main()
 	net.save("./nets/and.net");
 
 //	net.init("./nets/and.net");
+	cout << net.is_input(8) << ' ' << net.is_output(8) << endl;
 
 	vector<float> in(n_in);
 	cout << "test: ";
 	for (unsigned int i = 0; i < in.size(); ++i)
 		cin >> in[i];
-	vector<float> out = internet[2](in);
+	vector<float> out = net(in);
 
 	cout << "result: ";
-	for (unsigned int i = 1; i < out.size(); ++i)
+	for (unsigned int i = 0; i < out.size(); ++i)
 		cout << out[i] << ' ';
-	cout << endl;		*/
+	cout << endl;
 }
