@@ -43,9 +43,9 @@ float layeredBiasedNet::momentum() const
 	return momentum_coeff;
 }
 
-void layeredBiasedNet::init(const init_t mode, const float bound)
+void layeredBiasedNet::init(const float bound)
 {
-	layeredNet::init(mode, bound);
+	layeredNet::init(bound);
 
 	// eguaglia i pesi dei bias:
 	if (n_layers() > 1)

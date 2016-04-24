@@ -1,5 +1,5 @@
 CC = clang++
-FLAGS = -Wall -std=c++11
+FLAGS = -Wall -std=c++11 -O3
 GDB = -g
 
 build: dag.o network.o net_container.o internetwork.o layered_net.o layered_biased_net.o nets.o train.o

@@ -20,8 +20,6 @@ void layeredBiasedNet::incremental_training(const vector<vector<float> >& exampl
 	float tot_err = 0.0f;
 	unsigned int epoch = 0;
 
-
-
 	do
 	{
 		tot_err = 0.0f;
@@ -81,7 +79,11 @@ void layeredBiasedNet::incremental_training(const vector<vector<float> >& exampl
 						if (edge(i, j))
 						{
 							float update = learningRate() * units[j].delta * units[i].out + momentum() * momentum_terms[l];
-							link(i, j, edge(i, j) + update);
+							if (edge(i, j) + update != 0)
+								link(i, j, edge(i, j) + update);
+							else
+								link(i, j, 0.0000001f);	// <<< un po' troppo artigianale
+							//  --------------------------------------------------------
 							momentum_terms[l] = update;
 						}
 

@@ -5,41 +5,17 @@ using namespace std;
 
 int main()
 {
-	const unsigned int n_in = 2;
-	float err = 0.015f;
-
-	perceptron net_1(n_in);
-	net_1.init(network::RAND, 0.5f);
-	err = 0.015f;
-	net_1.train({{-1, -1}, {-1, 1}, {1, -1}, {1, 1}}, {{-1}, {-1}, {-1}, {1}}, err, 50);
-
-	perceptron net_2(n_in);
-	net_2.init(network::RAND, 0.5f);
-	err = 0.015f;
-	net_2.train({{-1, -1}, {-1, 1}, {1, -1}, {1, 1}}, {{-1}, {1}, {1}, {1}}, err, 50);
-
-/*	perceptron net_3(n_in);
-	net_3.init(network::RAND, 0.5f);
-	err = 0.015f;
-	net_3.train({{-1, -1}, {-1, 1}, {1, -1}, {1, 1}}, {{-1}, {1}, {1}, {1}}, err, 50);	*/
-
-	layeredSigmoidNet net_4;
-	net_4.addLayer(n_in);
-	net_4.addLayer(4);
-	net_4.addLayer(1);
-
-	net_4.init(network::RAND, 0.5f);	// network::ZERO manda in vacca tutto
-										// ----------------------------------
-	err = 0.015f;
-	net_4.incremental_training("./data/or.data", err);
-	net_4.save("./nets/or.net");
+/*	layeredSigmoidNet net_1("./nets/and.net");
+	layeredSigmoidNet net_2("./nets/or.net");
+	layeredSigmoidNet net_3("./nets/xor.net");
 
 	internetwork internet;
-	internet.push_back(net_4);
-	internet.push_back(net_4);
-	internet.push_back(net_4);
-	internet.link(0, 2);			// OCCHIO A NON COLLEGARE RETI BIPOLARI CON RETI BINARIE sennò non ha senso il risultato
+	internet.push_back(net_1);
+	internet.push_back(net_2);
+	internet.push_back(net_3);
+	internet.link(0, 2);
 	internet.link(1, 2);
+	// NON COLLEGARE RETI BIPOLARI CON RETI BINARIE sennò non ha senso il risultato
 
 	vector<float> in(internet.input_size());
 	cout << "test: ";
@@ -50,21 +26,23 @@ int main()
 	cout << "result: ";
 	for (unsigned int i = 0; i < out.size(); ++i)
 		cout << out[i] << ' ';
-	cout << endl;
+	cout << endl;*/
 
-/*	layeredSigmoidNet net;
-//	layeredTanhNet net;
+	const unsigned int n_in = 2;
+	float err = 0.015f;
+
+//	layeredSigmoidNet net;		// --> ideale per input in [0,1]
+//	layeredTanhNet net;			// --> ideale per input in [-1,1]
+	layeredArcTan net;			// --> ideale per input in [-1,1]
 
 	net.addLayer(n_in);
 	net.addLayer(4);
 	net.addLayer(1);
 
-	net.init(network::RAND, 0.5f);	// network::ZERO manda in vacca tutto
-									// ----------------------------------
-	net.incremental_training("./data/and.data", err);
-	net.save("./nets/and.net");
-
-//	net.init("./nets/and.net");
+	net.init(0.5f);
+	net.incremental_training("./data/xor.data", err);
+	net.save("./nets/xor.net");
+//	net.init("./nets/xor.net");
 
 	vector<float> in(n_in);
 	cout << "test: ";
@@ -73,7 +51,7 @@ int main()
 	vector<float> out = net(in);
 
 	cout << "result: ";
-	for (unsigned int i = 1; i < out.size(); ++i)
+	for (unsigned int i = 0; i < out.size(); ++i)
 		cout << out[i] << ' ';
-	cout << endl;		*/
+	cout << endl;
 }

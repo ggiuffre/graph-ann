@@ -34,7 +34,7 @@ public:
 	float learningRate() const;
 	float momentum() const;
 
-	void init(init_t mode = RAND, float bound = 0.5f);
+	void init(float bound = 0.5f);
 	void init(std::string netfile);
 	virtual void addLayer(unsigned int n_nodes) override;
 

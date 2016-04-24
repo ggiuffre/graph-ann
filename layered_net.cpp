@@ -138,9 +138,9 @@ unsigned int layeredNet::n_layers() const
 	return n_lays;
 }
 
-void layeredNet::init(const init_t mode, const float bound)
+void layeredNet::init(const float bound)
 {
-	network::init(mode, bound);
+	network::init(bound);
 }
 
 void layeredNet::init(const std::string netfile)

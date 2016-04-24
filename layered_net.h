@@ -50,7 +50,7 @@ public:
 	virtual unsigned int input_size() const override;		// virtual, per internetwork! <<<<<<<<<<<<<<<
 	unsigned int n_layers() const;
 
-	void init(init_t mode = RAND, float bound = 0.5f);
+	void init(float bound = 0.5f);
 	void init(std::string netfile);
 	void save(std::string netfile = "untitled.net") const;
 

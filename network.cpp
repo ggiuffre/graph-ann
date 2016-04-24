@@ -13,26 +13,23 @@ network::network(const unsigned int s) : DAG(s) {}
 network::network(const std::string netfile)
 {
 	init(netfile);
+	for (unsigned int i = 0; i < input_size(); ++i)
+		input_map[i] = 0.0f;
 }
 
-network::network(const network& net) : DAG(net), input_map() {}
-
-void network::init(init_t mode, const float bound)
+network::network(const network& net) : DAG(net), input_map()
 {
-	if (mode == RAND)
-	{
-		srand(time(NULL));
-		for (nodes_iterator i = begin(); i < end(); ++i)
-			for (weights_iterator j = begin(i); j < end(i); ++j)
-				if (edge(j, i))
-					link(j, i, (rand() % 1000) * ((2.0f * bound) / 1000.0f) - bound);
-	}
-	else if (mode == ZERO)
-	{
-		for (nodes_iterator i = begin(); i < end(); ++i)
-			for (weights_iterator j = begin(i); j < end(i); ++j)
-				link(j, i, 0.0f);
-	}
+	for (unsigned int i = 0; i < input_size(); ++i)
+		input_map[i] = 0.0f;
+}
+
+void network::init(const float bound)
+{
+	srand(time(NULL));
+	for (nodes_iterator i = begin(); i < end(); ++i)
+		for (weights_iterator j = begin(i); j < end(i); ++j)
+			if (edge(j, i))
+				link(j, i, (rand() % 1000) * ((2.0f * bound) / 1000.0f) - bound);
 }
 
 void network::init(const std::string netfile)

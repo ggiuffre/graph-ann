@@ -23,8 +23,7 @@ public:
 	network(std::string netfile);
 	network(const network& net);
 
-	enum init_t { ZERO, RAND };
-	void init(init_t mode = RAND, float bound = 0.5f);
+	void init(float bound = 0.5f);
 	void init(std::string netfile);
 	void save(std::string netfile = "untitled.net") const;
 

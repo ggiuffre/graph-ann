@@ -8,7 +8,7 @@
 
 
 
-// Sigmoid-activated network:
+// Rete con neuroni ad attivazione sigmoidale:
 
 class sigmoidNet : virtual public network
 {
@@ -24,7 +24,7 @@ public:
 
 
 
-// Hyperbolic tangent-activated network:
+// Rete con neuroni attivati da tangente iperbolica:
 
 class tanhNet : virtual public network
 {
@@ -40,21 +40,31 @@ public:
 
 
 
-// Perceptron:
+// Rete con neuroni attivati da arco-tangente:
 
-class perceptron : public layeredBiasedNet
+class arcTan : virtual public network
 {
 private:
 	virtual float activation_function(float x) const override;
 
+protected:
+	virtual float activation_derivative(float y) const override;
+
 public:
-	explicit perceptron(unsigned int n_in = 2, float lr = 0.5f);
-	void train(const std::vector<std::vector<float> >& examples, const std::vector<std::vector<float> >& targets, float& error, unsigned int max_epochs = 200);
+	explicit arcTan(unsigned int s = 0);
 };
 
 
 
-// Sigmoid-activated layered network:
+
+
+
+
+// =====   RETI A STRATI:
+
+
+
+// Rete a strati ad attivazione sigmoidale:
 
 class layeredSigmoidNet : public layeredBiasedNet, public sigmoidNet
 {
@@ -65,13 +75,24 @@ public:
 
 
 
-// Hyperbolic tangent-activated layered network:
+// Rete a strati attivata da tangenti iperboliche:
 
 class layeredTanhNet : public layeredBiasedNet, public tanhNet
 {
 public:
 	explicit layeredTanhNet(float lr = 0.5f, float m = 0.2f, bool bp = true);
 	layeredTanhNet(std::string netfile, float lr = 0.5f, float m = 0.2f, bool bp = true);
+};
+
+
+
+// Rete a strati attivata da arco-tangenti:
+
+class layeredArcTan : public layeredBiasedNet, public arcTan
+{
+public:
+	explicit layeredArcTan(float lr = 0.2f, float m = 0.7f, bool bp = false);
+	layeredArcTan(std::string netfile, float lr = 0.2f, float m = 0.7f, bool bp = false);
 };
 
 #endif
