@@ -1,5 +1,5 @@
-#ifndef DOJO_H
-#define DOJO_H
+#ifndef PALESTRA_H
+#define PALESTRA_H
 
 #include "net_builder_widget.h"
 #include "net_trainer_widget.h"
@@ -8,9 +8,9 @@
 #include <QMainWindow>
 #include <QMenuBar>
 #include <QStackedWidget>
-//#include "train_operations.h"
+#include <QString>
 
-class dojo : public QMainWindow
+class palestra : public QMainWindow
 {
 	Q_OBJECT
 
@@ -30,10 +30,10 @@ public slots:
 	void netTrainer();
 	void netRunner(QString t);
 
-	void addNet();
+	void netAdded(QString t, QString type, int nl, bool b);
 
 public:
-	dojo();
+	palestra();
 	QSize minimumSizeHint() const Q_DECL_OVERRIDE;
 	QSize sizeHint() const Q_DECL_OVERRIDE;
 };

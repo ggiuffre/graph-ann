@@ -6,6 +6,7 @@
 #include <QFormLayout>
 #include <QPushButton>
 #include <QLineEdit>
+#include <QLabel>
 #include <QString>
 
 class netRunnerWidget : public QWidget
@@ -14,16 +15,17 @@ class netRunnerWidget : public QWidget
 
 private:
 	QPushButton * trigger;
-	QSpinBox * boh;
 	QFormLayout * layout;
+	QLabel * result;
 	QString title;
+	float prova;
 
 protected slots:
 	void calculate();
 
 public:
-	netRunnerWidget(QWidget * parent = nullptr, QString t = "");
-	void set_title(QString t);
+	netRunnerWidget(QString t, QWidget * parent = nullptr);
+	void setTitle(QString t);
 };
 
 #endif

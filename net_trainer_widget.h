@@ -13,9 +13,10 @@ class netTrainerWidget : public QWidget
 private:
 	QSpinBox * n_epochs;
 	QFormLayout * layout;
+	QString title;
 
 public:
-	netTrainerWidget(QWidget * parent = nullptr);
+	netTrainerWidget(QString t = "", QWidget * parent = nullptr);
 };
 
 #endif

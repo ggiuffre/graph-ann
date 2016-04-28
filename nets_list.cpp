@@ -12,10 +12,9 @@ nets_list::nets_list(QWidget * parent) : QDockWidget(parent)
 
 	files = new QListView(this);
 	files->setModel(fs);
-	files->setRootIndex(fs->index("/Users/giorgiogiuffre/Documents/C++/oop-ann/nets/"));
+	files->setRootIndex(fs->index("./ann_module/nets/"));
 	files->setGridSize({90, 30});
 	connect(files, SIGNAL(clicked(QModelIndex)), this, SLOT(selectNet(QModelIndex)));
-	connect(this, SIGNAL(netSelected(QString)), parent, SLOT(netRunner(QString)));
 
 	setFeatures(QDockWidget::DockWidgetClosable);
 	files->setMinimumWidth(90);
