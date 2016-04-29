@@ -4,7 +4,7 @@
 nets_list::nets_list(QWidget * parent) : QDockWidget(parent)
 {
 	header = new QLabel(this);
-	header->setText("Open...");
+	header->setText("Apri...");
 	setTitleBarWidget(header);
 
 	fs = new QFileSystemModel(this);
@@ -12,7 +12,7 @@ nets_list::nets_list(QWidget * parent) : QDockWidget(parent)
 
 	files = new QListView(this);
 	files->setModel(fs);
-	files->setRootIndex(fs->index("./ann_module/nets/"));
+	files->setRootIndex(fs->index("./logica/nets/"));
 	files->setGridSize({90, 30});
 	connect(files, SIGNAL(clicked(QModelIndex)), this, SLOT(selectNet(QModelIndex)));
 

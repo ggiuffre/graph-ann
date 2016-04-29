@@ -33,7 +33,7 @@ int main()
 
 //	layeredSigmoidNet net;		// --> ideale per input in [0,1]
 //	layeredTanhNet net;			// --> ideale per input in [-1,1]
-	layeredArcTan net;			// --> ideale per input in [-1,1]
+	layeredArcTanNet net;		// --> ideale per input in [-1,1]
 
 	net.addLayer(n_in);
 	net.addLayer(4);

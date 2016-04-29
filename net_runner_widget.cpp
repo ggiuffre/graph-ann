@@ -5,7 +5,7 @@ netRunnerWidget::netRunnerWidget(const QString t, QWidget * parent) : QWidget(pa
 {
 	prova = 0.90f;
 	layout = new QFormLayout;
-	layout->addRow("input:", new QLineEdit);
+	layout->addRow("Input:", new QLineEdit);
 
 	trigger = new QPushButton("Calcola");
 	layout->addWidget(trigger);

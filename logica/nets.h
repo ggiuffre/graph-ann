@@ -13,10 +13,10 @@
 class sigmoidNet : virtual public network
 {
 private:
-	virtual float activation_function(float x) const override;
+	virtual float activation_function(float x) const /*override*/;
 
 protected:
-	virtual float activation_derivative(float y) const override;
+	virtual float activation_derivative(float y) const /*override*/;
 
 public:
 	explicit sigmoidNet(unsigned int s = 0);
@@ -29,10 +29,10 @@ public:
 class tanhNet : virtual public network
 {
 private:
-	virtual float activation_function(float x) const override;
+	virtual float activation_function(float x) const /*override*/;
 
 protected:
-	virtual float activation_derivative(float y) const override;
+	virtual float activation_derivative(float y) const /*override*/;
 
 public:
 	explicit tanhNet(unsigned int s = 0);
@@ -45,10 +45,10 @@ public:
 class arcTan : virtual public network
 {
 private:
-	virtual float activation_function(float x) const override;
+	virtual float activation_function(float x) const /*override*/;
 
 protected:
-	virtual float activation_derivative(float y) const override;
+	virtual float activation_derivative(float y) const /*override*/;
 
 public:
 	explicit arcTan(unsigned int s = 0);
@@ -88,11 +88,11 @@ public:
 
 // Rete a strati attivata da arco-tangenti:
 
-class layeredArcTan : public layeredBiasedNet, public arcTan
+class layeredArcTanNet : public layeredBiasedNet, public arcTan
 {
 public:
-	explicit layeredArcTan(float lr = 0.2f, float m = 0.7f, bool bp = false);
-	layeredArcTan(std::string netfile, float lr = 0.2f, float m = 0.7f, bool bp = false);
+	explicit layeredArcTanNet(float lr = 0.2f, float m = 0.7f, bool bp = false);
+	layeredArcTanNet(std::string netfile, float lr = 0.2f, float m = 0.7f, bool bp = false);
 };
 
 #endif

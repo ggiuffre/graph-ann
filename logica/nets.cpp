@@ -67,6 +67,6 @@ layeredTanhNet::layeredTanhNet(const std::string netfile, const float lr, const 
 
 
 
-layeredArcTan::layeredArcTan(const float lr, const float m, const bool bp) : layeredBiasedNet(lr, m, bp) {}
+layeredArcTanNet::layeredArcTanNet(const float lr, const float m, const bool bp) : layeredBiasedNet(lr, m, bp) {}
 
-layeredArcTan::layeredArcTan(const std::string netfile, const float lr, const float m, const bool bp) : layeredBiasedNet(netfile, lr, m, bp) {}
+layeredArcTanNet::layeredArcTanNet(const std::string netfile, const float lr, const float m, const bool bp) : layeredBiasedNet(netfile, lr, m, bp) {}
