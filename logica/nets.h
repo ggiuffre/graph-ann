@@ -13,10 +13,10 @@
 class sigmoidNet : virtual public network
 {
 private:
-	virtual float activation_function(float x) const /*override*/;
+	virtual float activation_function(float x) const override;
 
 protected:
-	virtual float activation_derivative(float y) const /*override*/;
+	virtual float activation_derivative(float y) const override;
 
 public:
 	explicit sigmoidNet(unsigned int s = 0);
@@ -29,10 +29,10 @@ public:
 class tanhNet : virtual public network
 {
 private:
-	virtual float activation_function(float x) const /*override*/;
+	virtual float activation_function(float x) const override;
 
 protected:
-	virtual float activation_derivative(float y) const /*override*/;
+	virtual float activation_derivative(float y) const override;
 
 public:
 	explicit tanhNet(unsigned int s = 0);
@@ -42,16 +42,16 @@ public:
 
 // Rete con neuroni attivati da arco-tangente:
 
-class arcTan : virtual public network
+class atanNet : virtual public network
 {
 private:
-	virtual float activation_function(float x) const /*override*/;
+	virtual float activation_function(float x) const override;
 
 protected:
-	virtual float activation_derivative(float y) const /*override*/;
+	virtual float activation_derivative(float y) const override;
 
 public:
-	explicit arcTan(unsigned int s = 0);
+	explicit atanNet(unsigned int s = 0);
 };
 
 
@@ -69,8 +69,8 @@ public:
 class layeredSigmoidNet : public layeredBiasedNet, public sigmoidNet
 {
 public:
-	explicit layeredSigmoidNet(float lr = 0.5f, float m = 0.2f, bool bp = true);
-	layeredSigmoidNet(std::string netfile, float lr = 0.5f, float m = 0.2f, bool bp = true);
+	explicit layeredSigmoidNet(float lr = 0.5f, float m = 0.7f, bool bp = true);
+	layeredSigmoidNet(std::string netfile, float lr = 0.5f, float m = 0.7f, bool bp = true);
 };
 
 
@@ -88,11 +88,11 @@ public:
 
 // Rete a strati attivata da arco-tangenti:
 
-class layeredArcTanNet : public layeredBiasedNet, public arcTan
+class layeredAtanNet : public layeredBiasedNet, public atanNet
 {
 public:
-	explicit layeredArcTanNet(float lr = 0.2f, float m = 0.7f, bool bp = false);
-	layeredArcTanNet(std::string netfile, float lr = 0.2f, float m = 0.7f, bool bp = false);
+	explicit layeredAtanNet(float lr = 0.2f, float m = 0.7f, bool bp = false);
+	layeredAtanNet(std::string netfile, float lr = 0.2f, float m = 0.7f, bool bp = false);
 };
 
 #endif

@@ -105,7 +105,7 @@ void layeredBiasedNet::incremental_training(const std::string data_file, float& 
 
 	vector<vector<float> > examples(n_ex, vector<float>(n_in));
 	vector<vector<float> > targets(n_ex, vector<float>(n_out));
-	for (unsigned int e = 0; e < n_ex; ++e)
+	for (unsigned int e = 0; e < n_ex && !fin.eof(); ++e)
 	{
 		for (unsigned int i = 0; i < n_in; ++i)
 			fin >> examples[e][i];

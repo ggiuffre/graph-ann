@@ -58,7 +58,7 @@ DAG::weights_iterator DAG::weights_iterator::operator++(int)	// postfisso
 
 DAG::DAG(const unsigned int s) : vector<vector<float> >(s, vector<float>(s, 0.0f)) {}
 
-DAG::~DAG() {}
+//DAG::~DAG() {}
 
 DAG::nodes_iterator DAG::begin() const
 {

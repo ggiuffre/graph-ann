@@ -4,18 +4,6 @@
 		"selected_items":
 		[
 			[
-				"QS",
-				"QSpinBox"
-			],
-			[
-				"data",
-				"data_builder"
-			],
-			[
-				"net",
-				"net_menu"
-			],
-			[
 				"inp",
 				"input_map"
 			],
@@ -42,6 +30,10 @@
 			[
 				"inte",
 				"internet"
+			],
+			[
+				"net",
+				"net_container"
 			],
 			[
 				"sted",
@@ -124,6 +116,10 @@
 				"addNet"
 			],
 			[
+				"QS",
+				"QString"
+			],
+			[
 				"Qm",
 				"QMessageBox"
 			],
@@ -146,6 +142,10 @@
 			[
 				"netwo",
 				"network"
+			],
+			[
+				"data",
+				"datafiles_list"
 			],
 			[
 				"n_l",
@@ -336,26 +336,10 @@
 	"buffers":
 	[
 		{
-			"file": "logica/internetwork.h",
+			"file": "logica/gprova.cpp",
 			"settings":
 			{
-				"buffer_size": 762,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "logica/layered_biased_net.h",
-			"settings":
-			{
-				"buffer_size": 1584,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "logica/layered_net.h",
-			"settings":
-			{
-				"buffer_size": 1515,
+				"buffer_size": 1400,
 				"line_ending": "Unix"
 			}
 		},
@@ -363,119 +347,44 @@
 			"file": "logica/nets.h",
 			"settings":
 			{
-				"buffer_size": 1937,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "nets_list.h",
-			"settings":
-			{
-				"buffer_size": 415,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "nets_list.cpp",
-			"settings":
-			{
-				"buffer_size": 701,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "net_builder_widget.h",
-			"settings":
-			{
-				"buffer_size": 617,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "net_builder_widget.cpp",
-			"settings":
-			{
-				"buffer_size": 2213,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "net_trainer_widget.h",
-			"settings":
-			{
-				"buffer_size": 349,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "net_trainer_widget.cpp",
-			"settings":
-			{
-				"buffer_size": 500,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "net_runner_widget.h",
-			"settings":
-			{
-				"buffer_size": 471,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "net_runner_widget.cpp",
-			"settings":
-			{
-				"buffer_size": 554,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "data_builder_widget.h",
-			"settings":
-			{
-				"buffer_size": 335,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "data_builder_widget.cpp",
-			"settings":
-			{
-				"buffer_size": 135,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "palestra.h",
-			"settings":
-			{
-				"buffer_size": 861,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "palestra.cpp",
-			"settings":
-			{
-				"buffer_size": 1870,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "gui_main.cpp",
-			"settings":
-			{
-				"buffer_size": 347,
+				"buffer_size": 1904,
 				"line_ending": "Unix"
 			}
 		}
 	],
 	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					""
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					"Clean"
+				]
+			],
+			[
+				"Packages/Makefile/Make.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
 	"command_palette":
 	{
 		"height": 167.0,
+		"last_filter": "save",
 		"selected_items":
 		[
 			[
@@ -495,7 +404,10 @@
 	},
 	"console":
 	{
-		"height": 0.0
+		"height": 0.0,
+		"history":
+		[
+		]
 	},
 	"distraction_free":
 	{
@@ -506,53 +418,52 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
+	"expanded_folders":
+	[
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/logica"
+	],
 	"file_history":
 	[
-		"/home/0/2014/ggiuffre/Documents/ann_2/GUI.pro",
-		"/home/0/2014/ggiuffre/Documents/ann_2/logica/nets.cpp",
-		"/home/0/2014/ggiuffre/Documents/ann_2/logica/gprova.cpp",
-		"/home/0/2014/ggiuffre/Documents/ann_2/logica/internetwork.cpp",
-		"/home/0/2014/ggiuffre/Documents/ann_2/logica/internetwork.h",
-		"/home/0/2014/ggiuffre/Documents/ann_2/logica/network.cpp",
-		"/home/0/2014/ggiuffre/Documents/ann_2/logica/network.h",
-		"/home/0/2014/ggiuffre/Documents/ann_2/logica/dag.h",
-		"/home/0/2014/ggiuffre/Documents/ann_2/logica/dag.cpp",
-		"/home/0/2014/ggiuffre/Documents/ann_2/logica/Makefile",
-		"/home/0/2014/ggiuffre/Documents/ann_2/palestra.h",
-		"/home/0/2014/ggiuffre/Documents/ann_2/nets_list.cpp",
-		"/home/0/2014/ggiuffre/Documents/ann_2/nets.h",
-		"/home/0/2014/ggiuffre/Documents/ann_2/net_container.h",
-		"/home/0/2014/ggiuffre/Documents/ann_2/dag.h",
-		"/home/0/2014/ggiuffre/Documents/ann_2/network.h",
-		"/home/0/2014/ggiuffre/Documents/ann_2/internetwork.h",
-		"/home/0/2014/ggiuffre/Documents/ann_2/layered_net.h",
-		"/home/0/2014/ggiuffre/Documents/ann_2/layered_biased_net.h",
-		"/home/0/2014/ggiuffre/Documents/ann_2/GUI/gui_main.cpp",
-		"/home/0/2014/ggiuffre/Documents/ann_2/GUI/dojo.cpp",
-		"/home/0/2014/ggiuffre/Documents/ann_2/GUI/dojo.h",
-		"/home/0/2014/ggiuffre/Documents/ann_2/GUI/net_runner_widget.cpp",
-		"/home/0/2014/ggiuffre/Documents/ann_2/GUI/net_runner_widget.h",
-		"/home/0/2014/ggiuffre/Documents/ann_2/GUI/nets_list.cpp",
-		"/home/0/2014/ggiuffre/Documents/ann_2/gprova.cpp",
-		"/home/0/2014/ggiuffre/Documents/ann_2/GUI/nets_list.h",
+		"/Users/giorgiogiuffre/Desktop/uni/Basi di Dati/progetto/relazione.tex",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/logica/data/tris.data",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/logica/train.cpp",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/logica/layered_net.cpp",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/logica/network.cpp",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/logica/dag.cpp",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/logica/gprova.cpp",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/palestra.cpp",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/GUI/gui_main.cpp",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/GUI/dojo.cpp",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/GUI/dojo.h",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/GUI/net_runner_widget.cpp",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/GUI/net_runner_widget.h",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/GUI/nets_list.h",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/GUI/nets_list.cpp",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/gprova.cpp",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/nets.h",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/layered_biased_net.h",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/layered_net.h",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/internetwork.h",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/net_container.h",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/network.h",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/dag.cpp",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/dag.h",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/internetwork.cpp",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/dag_4.cpp",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/layered_net.cpp",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/layered_biased_net.cpp",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/internetwork.cpp",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/network.cpp",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/dag.cpp",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/nets.cpp",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/train.cpp",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/Makefile",
 		"/Users/giorgiogiuffre/Documents/Python/pybrain/build/lib/pybrain/supervised/trainers/backprop.py",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/net_container.cpp",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/dag.h",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/GUI/GUI.pro",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/layered_network.h",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/layered_network.cpp",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/GUI/dojo.cpp",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/data/shift_left.data",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/dag_4.h",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/dag_4.cpp",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/dag_3.h",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/dag_3.cpp",
 		"/Applications/MAMP/htdocs/home.html",
@@ -562,14 +473,10 @@
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/data/debug.data",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/GUI/net_trainer_widget.h",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/GUI/net_builder_widget.h",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/GUI/net_runner_widget.cpp",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/GUI/net_builder_widget.cpp",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/net_container.h",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/internetwork.h",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/My_Makefile",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/Makefile.make",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/GUI/net_trainer_widget.cpp",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/GUI/nets_list.cpp",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/cazzo.cpp",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/element.h",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/char_element.h",
@@ -579,8 +486,6 @@
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/structures/ascii.html",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/structures/phonemes.struct",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/nets/pigeon.net",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/nets.h",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/layered_biased_net.h",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/prepare.cpp",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/nets/bin++.net",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/data/bin++.data",
@@ -602,7 +507,6 @@
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/data/shift_left_2.data",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/GUI/lcdgrid.h",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/GUI/lcdgrid.cpp",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/network.h",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/data/shif_left.data",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/data/sum.data",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/data/bin.data",
@@ -619,8 +523,6 @@
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/or.net",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/makefile",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/makefile.GNUmakefile",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/gprova.cpp",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/layered_net.h",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/dgraph.cpp",
 		"/Users/giorgiogiuffre/Documents/TeX output/SO_ggiuffre.tex",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/dgraph.h",
@@ -635,7 +537,22 @@
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/prova_2.cpp",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/inter_neuron.h",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/doc/spiegazione.txt",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/spiegazione.txt"
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/spiegazione.txt",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/input_neuron.h",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/neuron.h",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/dendrite.h",
+		"/Applications/MAMP/htdocs/MyANN/ANN_2/webcam/webcam.html",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/activating_functions.h",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/dendrite.cpp",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/meta_neur.h",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/output_neuron.h",
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/neuron.cpp",
+		"/Users/giorgiogiuffre/Documents/C++/graph_ann/dgraph.h",
+		"/Users/giorgiogiuffre/Documents/C++/graph_ann/graph.cpp",
+		"/Users/giorgiogiuffre/Documents/C++/graph_ann/graph.h",
+		"/Users/giorgiogiuffre/Documents/C++/graph_ann/dlink.h",
+		"/Users/giorgiogiuffre/Documents/C++/graph_ann/link.h",
+		"/Users/giorgiogiuffre/Documents/C++/graph_ann/node.h"
 	],
 	"find":
 	{
@@ -643,7 +560,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 117.0,
 		"where_history":
 		[
 			"*.h,*.cpp,",
@@ -655,33 +572,14 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"trigger",
-			"new QPushButton",
-			"setNet",
-			"netAdded",
-			"trigger",
-			"n_layers",
-			"new",
-			"netAdded",
-			"net",
-			"BuilderWidget::netBuilderWidget(QWidget * parent) : QWidget(parent)\n",
-			"builder",
-			"Builder",
-			"builder",
-			"runner",
-			"Runner",
-			"runner",
-			"QSpinBox",
-			"netTrain",
-			"NET_TRAIN",
-			"NET",
-			"layeredArcTan",
-			"; break;",
-			" override",
-			"override",
-			".cpp",
-			".h",
-			"ann_module",
+			"tris",
+			"-1 1 0\n0 -1 0\n1 1 -1",
+			"1 0 0\n1 -1 1\n1 -1 -1",
+			"1 1 -1\n0 -1 -1\n1 1 -1",
+			"1 1 -1\n0 -1 1\n-1 0 0",
+			"1 1 -1\n-1 -1 1\n-1 0 0",
+			"xor",
+			"1 -1 -1\n-1 1 0\n1 0 1",
 			"init",
 			"ZERO",
 			"shift_left",
@@ -782,7 +680,26 @@
 			"size",
 			"network",
 			"net_2",
-			"net"
+			"net",
+			"cout << net << endl;",
+			"input_map",
+			"shift_left",
+			"bool bias_plasticity = true",
+			"0.1",
+			"0.3",
+			"0.6",
+			"0.7",
+			"-",
+			"0.",
+			"and",
+			"dag_4",
+			"dag_3",
+			"DAG_3",
+			"DAG",
+			"dag",
+			"DAG",
+			"dag",
+			"remove"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -790,7 +707,6 @@
 		"regex": false,
 		"replace_history":
 		[
-			" /*override*/",
 			"begin",
 			"end"
 		],
@@ -803,461 +719,65 @@
 	"groups":
 	[
 		{
-			"selected": 7,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "logica/internetwork.h",
+					"file": "logica/gprova.cpp",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 762,
+						"buffer_size": 1400,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								558,
-								558
+								1020,
+								1020
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/C++/C++.tmLanguage",
+							"syntax": "Packages/C++/C++.sublime-syntax",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 306.0,
 						"zoom_level": 1.0
 					},
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "logica/layered_biased_net.h",
-					"settings":
-					{
-						"buffer_size": 1584,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1192,
-								1192
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 414.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "logica/layered_net.h",
-					"settings":
-					{
-						"buffer_size": 1515,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
 					"file": "logica/nets.h",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1937,
+						"buffer_size": 1904,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1757,
-								1757
+								1318,
+								1318
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/C++/C++.tmLanguage",
+							"syntax": "Packages/C++/C++.sublime-syntax",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1587.0,
+						"translation.y": 1633.0,
 						"zoom_level": 1.0
 					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "nets_list.h",
-					"settings":
-					{
-						"buffer_size": 415,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "nets_list.cpp",
-					"settings":
-					{
-						"buffer_size": 701,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "net_builder_widget.h",
-					"settings":
-					{
-						"buffer_size": 617,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "net_builder_widget.cpp",
-					"settings":
-					{
-						"buffer_size": 2213,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "net_trainer_widget.h",
-					"settings":
-					{
-						"buffer_size": 349,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "net_trainer_widget.cpp",
-					"settings":
-					{
-						"buffer_size": 500,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 10,
-					"file": "net_runner_widget.h",
-					"settings":
-					{
-						"buffer_size": 471,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 11,
-					"file": "net_runner_widget.cpp",
-					"settings":
-					{
-						"buffer_size": 554,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 12,
-					"file": "data_builder_widget.h",
-					"settings":
-					{
-						"buffer_size": 335,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								295,
-								295
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 13,
-					"file": "data_builder_widget.cpp",
-					"settings":
-					{
-						"buffer_size": 135,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								134,
-								134
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 14,
-					"file": "palestra.h",
-					"settings":
-					{
-						"buffer_size": 861,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 15,
-					"file": "palestra.cpp",
-					"settings":
-					{
-						"buffer_size": 1870,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 16,
-					"file": "gui_main.cpp",
-					"settings":
-					{
-						"buffer_size": 347,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								21,
-								21
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -1306,6 +826,8 @@
 	{
 		"height": 172.0
 	},
+	"pinned_build_system": "",
+	"project": "oop_ann.sublime-project",
 	"replace":
 	{
 		"height": 60.0
@@ -1314,6 +836,7 @@
 	"select_file":
 	{
 		"height": 0.0,
+		"last_filter": "",
 		"selected_items":
 		[
 		],
@@ -1322,6 +845,7 @@
 	"select_project":
 	{
 		"height": 500.0,
+		"last_filter": "",
 		"selected_items":
 		[
 			[
@@ -1331,10 +855,26 @@
 		],
 		"width": 380.0
 	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
 	"show_minimap": false,
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
 	"side_bar_width": 103.0,
-	"status_bar_visible": true
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
 }

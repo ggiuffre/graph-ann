@@ -32,7 +32,7 @@ public:
 	virtual unsigned int input_size() const;
 	virtual unsigned int output_size() const;
 
-	virtual std::vector<float> operator()(const std::vector<float>& in = std::vector<float>());
+	virtual std::vector<float> operator()(const std::vector<float>& in = {});
 };
 
 std::ostream& operator<<(std::ostream& os, const network& net);

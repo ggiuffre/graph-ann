@@ -12,13 +12,13 @@ protected:
 	virtual float neuron(unsigned int index) const;
 
 public:
-	void push_back(network& n);		// inserisce la rete n in testa all'internetwork
-	void pop_back(unsigned int n = 1);		// rimuove gli ultimi n nodi immessi
+	void push_back(network& n);		// inserisce la rete n in testa all'interrete
+	void pop_back(unsigned int n = 1);		// rimuovi gli ultimi n nodi immessi
 	void clear();
 	virtual void store(const std::vector<float>& in);
 
 	unsigned int size() const;
-	virtual unsigned int input_size() const /*override*/;
+	virtual unsigned int input_size() const override;
 	nodes_iterator begin() const;
 	nodes_iterator end() const;
 	weights_iterator begin(nodes_iterator n) const;

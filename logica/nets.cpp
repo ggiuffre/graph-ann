@@ -35,14 +35,14 @@ float tanhNet::activation_derivative(const float y) const
 
 
 
-arcTan::arcTan(const unsigned int s) : network(s) {}
+atanNet::atanNet(const unsigned int s) : network(s) {}
 
-float arcTan::activation_function(const float x) const
+float atanNet::activation_function(const float x) const
 {
 	return atan(x);
 }
 
-float arcTan::activation_derivative(const float y) const
+float atanNet::activation_derivative(const float y) const
 {
 	return 1.0f / (pow(tan(y), 2) + 1.0f);
 }
@@ -67,6 +67,6 @@ layeredTanhNet::layeredTanhNet(const std::string netfile, const float lr, const 
 
 
 
-layeredArcTanNet::layeredArcTanNet(const float lr, const float m, const bool bp) : layeredBiasedNet(lr, m, bp) {}
+layeredAtanNet::layeredAtanNet(const float lr, const float m, const bool bp) : layeredBiasedNet(lr, m, bp) {}
 
-layeredArcTanNet::layeredArcTanNet(const std::string netfile, const float lr, const float m, const bool bp) : layeredBiasedNet(netfile, lr, m, bp) {}
+layeredAtanNet::layeredAtanNet(const std::string netfile, const float lr, const float m, const bool bp) : layeredBiasedNet(netfile, lr, m, bp) {}
