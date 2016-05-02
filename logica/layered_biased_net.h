@@ -38,7 +38,7 @@ public:
 	void init(std::string netfile);
 	virtual void addLayer(unsigned int n_nodes) /*override*/;
 
-	virtual std::vector<float> operator()(const std::vector<float>& in = {}) /*override*/;
+	virtual std::vector<float> operator()(const std::vector<float>& in = std::vector<float>()) /*override*/;
 
 	void incremental_training(const std::vector<std::vector<float> >& examples, const std::vector<std::vector<float> >& targets, float& error, unsigned int max_epochs = 28000);
 	void incremental_training(std::string data_file, float& error, unsigned int max_epochs = 28000);

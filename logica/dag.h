@@ -11,7 +11,7 @@ protected:
 
 public:
 	explicit DAG(unsigned int s = 0);		// un int non definisce/caratterizza univocamente un DAG
-	virtual ~DAG() = default;
+	virtual ~DAG();
 
 	class nodes_iterator {
 	private:
