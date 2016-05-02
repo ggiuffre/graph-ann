@@ -14,10 +14,10 @@ class netRunnerWidget : public QWidget
 	Q_OBJECT
 
 private:
-	QPushButton * trigger;
-	QFormLayout * layout;
-	QLabel * result;
 	QString title;
+	QFormLayout * layout;
+	QPushButton * trigger;
+	QLabel * result;
 	float prova;
 
 protected slots:
@@ -25,7 +25,6 @@ protected slots:
 
 public:
 	netRunnerWidget(QString t, QWidget * parent = nullptr);
-	void setTitle(QString t);
 };
 
 #endif

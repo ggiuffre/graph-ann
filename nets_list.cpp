@@ -1,16 +1,13 @@
 #include "nets_list.h"
 #include <QListWidgetItem>
 
-nets_list::nets_list(QWidget * parent) : QDockWidget(parent)
+nets_list::nets_list(QWidget * parent) : QDockWidget(parent), header(new QLabel(this)), fs(new QFileSystemModel(this)), files(new QListView(this))
 {
-	header = new QLabel(this);
 	header->setText("Apri...");
 	setTitleBarWidget(header);
 
-	fs = new QFileSystemModel(this);
 	fs->setRootPath(QDir::currentPath());
 
-	files = new QListView(this);
 	files->setModel(fs);
 	files->setRootIndex(fs->index("./logica/nets/"));
 	files->setGridSize({90, 30});

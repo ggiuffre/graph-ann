@@ -10,6 +10,7 @@
 #include <QMenuBar>
 #include <QStackedWidget>
 #include <QString>
+#include "logica/nets.h"
 
 class palestra : public QMainWindow
 {
@@ -33,7 +34,7 @@ public slots:
 	void netTrainer();
 	void netRunner(QString t);
 	void dataBuilder();
-	void netAdded(QString t, QString type, int nl, bool b);
+	void addNet(layeredBiasedNet * new_net);
 
 public:
 	palestra();

@@ -1,13 +1,11 @@
 #include "palestra.h"
-#include "logica/nets.h"
 #include <QFormLayout>
 #include <QComboBox>
 #include <QSpinBox>
 #include <QLineEdit>
-
 #include <QMessageBox>	// debugging
 
-palestra::palestra() : net_menu(new QMenu("Rete")), data_menu(new QMenu("Dati")), menu_bar(new QMenuBar),
+palestra::palestra() : menu_bar(new QMenuBar), net_menu(new QMenu("Rete")), data_menu(new QMenu("Dati")),
 			ctrl(new QStackedWidget(this)), builder(new netBuilderWidget), trainer(new netTrainerWidget),
 			runner(nullptr), data_builder(nullptr), nets_dock(new nets_list(this))
 {
@@ -23,13 +21,13 @@ palestra::palestra() : net_menu(new QMenu("Rete")), data_menu(new QMenu("Dati"))
 	setMenuBar(menu_bar);
 
 //	intro = [presentazione di come si usa l'app... disegni, frecce... boh]
-	connect(builder, SIGNAL(newNet(QString, QString, int, bool)), this, SLOT(netAdded(QString, QString, int, bool)));
+
+	connect(builder, SIGNAL(newNet(layeredBiasedNet *)), this, SLOT(addNet(layeredBiasedNet *)));
+	connect(nets_dock, SIGNAL(netSelected(QString)), this, SLOT(netRunner(QString)));
 
 //	ctrl->addWidget(intro);
 	ctrl->addWidget(builder);
 	ctrl->addWidget(trainer);
-
-	connect(nets_dock, SIGNAL(netSelected(QString)), this, SLOT(netRunner(QString)));
 
 	setCentralWidget(ctrl);
 	addDockWidget(Qt::LeftDockWidgetArea, nets_dock);
@@ -73,15 +71,7 @@ void palestra::dataBuilder()
 	ctrl->setCurrentWidget(data_builder);
 }
 
-void palestra::netAdded(const QString t, const QString type, const int nl, const bool biased)
+void palestra::addNet(layeredBiasedNet * const new_net)
 {
-	layeredBiasedNet * new_net;
-
-	if (type == "Sigmoide")
-		new_net = new layeredSigmoidNet;
-	else if (type == "Tangente Iperbolica")
-		new_net = new layeredTanhNet;
-	else if (type == "Arcotangente")
-		new_net = new layeredArcTanNet;
-	// else ... default ... eccezione
+	// ...
 }

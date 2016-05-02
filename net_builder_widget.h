@@ -4,29 +4,29 @@
 #include <QWidget>
 #include <QComboBox>
 #include <QSpinBox>
-#include <QCheckBox>
 #include <QFormLayout>
 #include <QLineEdit>
 #include <QPushButton>
 #include <QString>
+#include <vector>
+#include "logica/nets.h"
 
 class netBuilderWidget : public QWidget
 {
 	Q_OBJECT
 
 private:
+	QFormLayout * layout;
 	QLineEdit * name;
 	QComboBox * neuron_type;
 	QSpinBox * n_layers;
-	QCheckBox * biased;
-	QPushButton * trigger;
-	QFormLayout * layout;
+	QPushButton * next, * trigger;
+	layeredBiasedNet * new_net;
+	std::vector<QSpinBox *> layers_arch;
 
 public slots:
-	void netAdded();
-
-signals:
-	void newNet(QString t, QString type, int nl, bool b);
+	void setLayers();
+	void addNet();
 
 public:
 	netBuilderWidget(QWidget * parent = nullptr);

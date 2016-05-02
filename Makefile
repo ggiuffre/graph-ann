@@ -618,9 +618,6 @@ moc_palestra.cpp: net_builder_widget.h \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtCore/qabstractitemmodel.h \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/QSpinBox \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/qspinbox.h \
-		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/QCheckBox \
-		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/qcheckbox.h \
-		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/qabstractbutton.h \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/QFormLayout \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/qformlayout.h \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/QLayout \
@@ -636,7 +633,13 @@ moc_palestra.cpp: net_builder_widget.h \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtGui/qtextoption.h \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/QPushButton \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/qpushbutton.h \
+		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/qabstractbutton.h \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtCore/QString \
+		logica/nets.h \
+		logica/layered_biased_net.h \
+		logica/layered_net.h \
+		logica/network.h \
+		logica/dag.h \
 		net_trainer_widget.h \
 		net_runner_widget.h \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/QLabel \
@@ -919,9 +922,6 @@ moc_net_builder_widget.cpp: /usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWi
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtCore/qabstractitemmodel.h \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/QSpinBox \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/qspinbox.h \
-		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/QCheckBox \
-		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/qcheckbox.h \
-		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/qabstractbutton.h \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/QFormLayout \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/qformlayout.h \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/QLayout \
@@ -937,7 +937,13 @@ moc_net_builder_widget.cpp: /usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWi
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtGui/qtextoption.h \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/QPushButton \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/qpushbutton.h \
+		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/qabstractbutton.h \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtCore/QString \
+		logica/nets.h \
+		logica/layered_biased_net.h \
+		logica/layered_net.h \
+		logica/network.h \
+		logica/dag.h \
 		net_builder_widget.h
 	/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/bin/moc $(DEFINES) -I/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/mkspecs/linux-g++ -I/server0/0/2014/ggiuffre/Documents/ann_2 -I/server0/0/2014/ggiuffre/Documents/ann_2 -I/server0/0/2014/ggiuffre/Documents/ann_2/logica -I/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include -I/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets -I/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtGui -I/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtCore net_builder_widget.h -o moc_net_builder_widget.cpp
 
@@ -1447,9 +1453,6 @@ gui_main.o: gui_main.cpp palestra.h \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtCore/qabstractitemmodel.h \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/QSpinBox \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/qspinbox.h \
-		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/QCheckBox \
-		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/qcheckbox.h \
-		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/qabstractbutton.h \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/QFormLayout \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/qformlayout.h \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/QLayout \
@@ -1465,7 +1468,13 @@ gui_main.o: gui_main.cpp palestra.h \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtGui/qtextoption.h \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/QPushButton \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/qpushbutton.h \
+		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/qabstractbutton.h \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtCore/QString \
+		logica/nets.h \
+		logica/layered_biased_net.h \
+		logica/layered_net.h \
+		logica/network.h \
+		logica/dag.h \
 		net_trainer_widget.h \
 		net_runner_widget.h \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/QLabel \
@@ -1628,9 +1637,6 @@ palestra.o: palestra.cpp palestra.h \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtCore/qabstractitemmodel.h \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/QSpinBox \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/qspinbox.h \
-		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/QCheckBox \
-		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/qcheckbox.h \
-		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/qabstractbutton.h \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/QFormLayout \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/qformlayout.h \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/QLayout \
@@ -1646,7 +1652,13 @@ palestra.o: palestra.cpp palestra.h \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtGui/qtextoption.h \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/QPushButton \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/qpushbutton.h \
+		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/qabstractbutton.h \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtCore/QString \
+		logica/nets.h \
+		logica/layered_biased_net.h \
+		logica/layered_net.h \
+		logica/network.h \
+		logica/dag.h \
 		net_trainer_widget.h \
 		net_runner_widget.h \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/QLabel \
@@ -1677,11 +1689,6 @@ palestra.o: palestra.cpp palestra.h \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/qactiongroup.h \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/QStackedWidget \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/qstackedwidget.h \
-		logica/nets.h \
-		logica/layered_biased_net.h \
-		logica/layered_net.h \
-		logica/network.h \
-		logica/dag.h \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/QMessageBox \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/qmessagebox.h \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/qdialog.h
@@ -1939,9 +1946,6 @@ net_builder_widget.o: net_builder_widget.cpp net_builder_widget.h \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtCore/qabstractitemmodel.h \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/QSpinBox \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/qspinbox.h \
-		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/QCheckBox \
-		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/qcheckbox.h \
-		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/qabstractbutton.h \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/QFormLayout \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/qformlayout.h \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/QLayout \
@@ -1957,7 +1961,13 @@ net_builder_widget.o: net_builder_widget.cpp net_builder_widget.h \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtGui/qtextoption.h \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/QPushButton \
 		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/qpushbutton.h \
-		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtCore/QString
+		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/usr/local/Trolltech/Qt5.3.2/5.3/gcc_64/include/QtCore/QString \
+		logica/nets.h \
+		logica/layered_biased_net.h \
+		logica/layered_net.h \
+		logica/network.h \
+		logica/dag.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o net_builder_widget.o net_builder_widget.cpp
 
 net_trainer_widget.o: net_trainer_widget.cpp net_trainer_widget.h \

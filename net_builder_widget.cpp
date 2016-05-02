@@ -1,35 +1,74 @@
 #include "net_builder_widget.h"
+#include <QLayoutItem>
+#include <QLabel>
 
-netBuilderWidget::netBuilderWidget(QWidget * parent) : QWidget(parent)
+netBuilderWidget::netBuilderWidget(QWidget * parent) : QWidget(parent), layout(new QFormLayout), name(new QLineEdit), neuron_type(new QComboBox), n_layers(new QSpinBox), next(new QPushButton("Prosegui...")), trigger(new QPushButton("Crea")), new_net(nullptr)
 {
 //	setStyleSheet( "QWidget{ background-color : rgba(240, 240, 240, 128); }" );
-	name = new QLineEdit;
 
-	neuron_type = new QComboBox;
 	neuron_type->insertItem(0, "Sigmoide");
 	neuron_type->insertItem(1, "Tangente Iperbolica");
 	neuron_type->insertItem(2, "Arcotangente");
 
-	n_layers = new QSpinBox;
 	n_layers->setMinimum(1);
-	n_layers->setMaximum(10);
+	n_layers->setMaximum(8);
 
-	biased = new QCheckBox;
-
-	layout = new QFormLayout;
 	layout->addRow("Nome della rete:", name);
 	layout->addRow("Tipo di neurone:", neuron_type);
 	layout->addRow("Numero di livelli:", n_layers);
-	layout->addRow("La rete è biased:", biased);
 
-	trigger = new QPushButton("Crea");
-	connect(trigger, SIGNAL(clicked()), this, SLOT(netAdded()));
-	layout->addWidget(trigger);
-
+	layout->addWidget(next);
 	setLayout(layout);
+
+	connect(next, SIGNAL(clicked()), this, SLOT(setLayers()));
 }
 
-void netBuilderWidget::netAdded()
+void netBuilderWidget::setLayers()
 {
-	emit newNet(name->text(), neuron_type->currentText(), n_layers->value(), biased->isChecked());
+	layout->removeWidget(next);
+	delete next;
+
+	name->setEnabled(false);
+	neuron_type->setEnabled(false);
+	n_layers->setEnabled(false);
+
+	const QString type = neuron_type->currentText();
+	if (type == "Sigmoide")
+		new_net = new layeredSigmoidNet;
+	else if (type == "Tangente Iperbolica")
+		new_net = new layeredTanhNet;
+	else if (type == "Arcotangente")
+		new_net = new layeredArcTanNet;
+//	else ... default ... eccezione
+
+//	emit newNet(name->text(), neuron_type->currentText(), n_layers->value());
+
+	QSpacerItem * spacer = new QSpacerItem(1, 20);
+	layout->addItem(spacer);
+	layout->addRow("Numero di unità per livello:", new QLabel);
+	for (unsigned int i = 0; i < n_layers->value(); ++i)
+	{
+		layers_arch.push_back(new QSpinBox);
+		layers_arch[i]->setMinimum(1);
+		layers_arch[i]->setMaximum(64);
+		layout->addRow("Livello " + QString::number(i) + ":", layers_arch[i]);
+	}
+
+	layout->addWidget(trigger);
+	connect(trigger, SIGNAL(clicked()), this, SLOT(addNet()));
+}
+
+void netBuilderWidget::addNet()
+{
+	for (auto it = layers_arch.begin(); it < layers_arch.end(); ++it)
+		(*it)->setEnabled(false);
+
+	if (new_net)
+	{
+		for (unsigned int i = 0; i < n_layers->value(); ++i)
+			new_net->addLayer(layers_arch[i]->value());
+
+		new_net->init(0.5f);
+		new_net->save("./logica/nets/" + name->text().toStdString() + ".net");
+	}
 }

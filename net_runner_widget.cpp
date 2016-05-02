@@ -1,27 +1,18 @@
 #include "net_runner_widget.h"
 #include <QLabel>
 
-netRunnerWidget::netRunnerWidget(const QString t, QWidget * parent) : QWidget(parent), title(t)
+netRunnerWidget::netRunnerWidget(const QString t, QWidget * parent) : QWidget(parent), title(t), layout(new QFormLayout), trigger(new QPushButton("Calcola")), result(new QLabel)
 {
 	prova = 0.90f;
-	layout = new QFormLayout;
 	layout->addRow("Input:", new QLineEdit);
 
-	trigger = new QPushButton("Calcola");
 	layout->addWidget(trigger);
 	connect(trigger, SIGNAL(clicked()), this, SLOT(calculate()));
 
-	result = new QLabel;
 	layout->addRow(result);
 
 	setLayout(layout);
 
-}
-
-void netRunnerWidget::setTitle(const QString t)
-{
-//	title = t;
-//	update();
 }
 
 void netRunnerWidget::calculate()

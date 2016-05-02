@@ -11,9 +11,9 @@ class netTrainerWidget : public QWidget
 	Q_OBJECT
 
 private:
+	QString title;
 	QSpinBox * n_epochs;
 	QFormLayout * layout;
-	QString title;
 
 public:
 	netTrainerWidget(QString t = "", QWidget * parent = nullptr);
