@@ -13,10 +13,10 @@
 class sigmoidNet : virtual public network
 {
 private:
-	virtual float activation_function(float x) const override;
+	virtual float activation_function(float x) const /*override*/;
 
 protected:
-	virtual float activation_derivative(float y) const override;
+	virtual float activation_derivative(float y) const /*override*/;
 
 public:
 	explicit sigmoidNet(unsigned int s = 0);
@@ -29,10 +29,10 @@ public:
 class tanhNet : virtual public network
 {
 private:
-	virtual float activation_function(float x) const override;
+	virtual float activation_function(float x) const /*override*/;
 
 protected:
-	virtual float activation_derivative(float y) const override;
+	virtual float activation_derivative(float y) const /*override*/;
 
 public:
 	explicit tanhNet(unsigned int s = 0);
@@ -45,10 +45,10 @@ public:
 class atanNet : virtual public network
 {
 private:
-	virtual float activation_function(float x) const override;
+	virtual float activation_function(float x) const /*override*/;
 
 protected:
-	virtual float activation_derivative(float y) const override;
+	virtual float activation_derivative(float y) const /*override*/;
 
 public:
 	explicit atanNet(unsigned int s = 0);

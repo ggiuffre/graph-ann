@@ -18,7 +18,7 @@ public:
 	virtual void store(const std::vector<float>& in);
 
 	unsigned int size() const;
-	virtual unsigned int input_size() const override;
+	virtual unsigned int input_size() const /*override*/;
 	nodes_iterator begin() const;
 	nodes_iterator end() const;
 	weights_iterator begin(nodes_iterator n) const;
