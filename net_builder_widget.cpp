@@ -38,7 +38,7 @@ void netBuilderWidget::setLayers()
 	else if (type == "Tangente Iperbolica")
 		new_net = new layeredTanhNet;
 	else if (type == "Arcotangente")
-		new_net = new layeredArcTanNet;
+		new_net = new layeredAtanNet;
 //	else ... default ... eccezione
 
 //	emit newNet(name->text(), neuron_type->currentText(), n_layers->value());
