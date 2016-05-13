@@ -1,4 +1,5 @@
 #include "data_builder_widget.h"
+#include <QRegularExpression>
 #include <QInputDialog>
 #include <QMessageBox>
 #include <fstream>
@@ -26,16 +27,16 @@ void dataBuilderWidget::addExample()
 	{
 		n_in = in_count;
 		n_out = out_count;
-		tot_data += num2str(n_examples) + " " + num2str(n_in) + " " + num2str(n_out) + " ";
+		tot_data += QString::number(n_examples) + " " + QString::number(n_in) + " " + QString::number(n_out);
 	}
 	else if (in_count != n_in || out_count != n_out)
 	{
 		QMessageBox err_box;
-		QString err_msg = "Il numero di elementi deve essere coerente con gli esempi precedenti:":
+		QString err_msg = "Il numero di elementi deve essere coerente con gli esempi precedenti:";
 		if (in_count != n_in)
-			err_msg += "\nhai immesso" + num2str(in_count) + "elementi di input anziché" + num2str(n_in);
+			err_msg += "\nhai immesso" + QString::number(in_count) + "elementi di input anziché" + QString::number(n_in);
 		if (out_count != n_out)
-			err_msg += "\nhai immesso" + num2str(out_count) + "elementi di output anziché" + num2str(n_out);
+			err_msg += "\nhai immesso" + QString::number(out_count) + "elementi di output anziché" + QString::number(n_out);
 		err_box.setText(err_msg);
 		err_box.exec();
 		return;
@@ -52,7 +53,7 @@ void dataBuilderWidget::storeData()
 {
 	addExample();
 	QString file_title = QInputDialog::getText(this, "Save File", "Datafile title:");
-	ofstream result("./logica/data/" + file_title + ".data");
-	result << tot_data;
+	std::ofstream result("./logica/data/" + file_title.toStdString() + ".data");
+	result << tot_data.toStdString();
 	result.close();
 }
