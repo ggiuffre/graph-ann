@@ -32,11 +32,11 @@ void dataBuilderWidget::addExample()
 	else if (in_count != n_in || out_count != n_out)
 	{
 		QMessageBox err_box;
-		QString err_msg = "Il numero di elementi deve essere coerente con gli esempi precedenti:";
+		QString err_msg = "Il numero di elementi deve essere coerente con gli esempi precedenti: ";
 		if (in_count != n_in)
-			err_msg += "\nhai immesso" + QString::number(in_count) + "elementi di input anziché" + QString::number(n_in);
+			err_msg += "Hai immesso " + QString::number(in_count) + " elementi di input anziché " + QString::number(n_in) + ". ";
 		if (out_count != n_out)
-			err_msg += "\nhai immesso" + QString::number(out_count) + "elementi di output anziché" + QString::number(n_out);
+			err_msg += "Hai immesso " + QString::number(out_count) + " elementi di output anziché " + QString::number(n_out) + ".";
 		err_box.setText(err_msg);
 		err_box.exec();
 		return;

@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"add",
+				"addRow"
+			],
+			[
+				"QM",
+				"QMenuBar"
+			],
+			[
 				"ad",
 				"addExample"
 			],
@@ -118,10 +126,6 @@
 			[
 				"n",
 				"n_input"
-			],
-			[
-				"add",
-				"addNet"
 			],
 			[
 				"QS",
@@ -367,7 +371,39 @@
 			"file": "data_builder_widget.cpp",
 			"settings":
 			{
-				"buffer_size": 1487,
+				"buffer_size": 2146,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "palestra.h",
+			"settings":
+			{
+				"buffer_size": 861,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "palestra.cpp",
+			"settings":
+			{
+				"buffer_size": 1870,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "net_runner_widget.h",
+			"settings":
+			{
+				"buffer_size": 471,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "net_runner_widget.cpp",
+			"settings":
+			{
+				"buffer_size": 749,
 				"line_ending": "Unix"
 			}
 		}
@@ -408,6 +444,8 @@
 	},
 	"file_history":
 	[
+		"/home/0/2014/ggiuffre/Documents/ann_2/net_trainer_widget.cpp",
+		"/home/0/2014/ggiuffre/Documents/ann_2/net_trainer_widget.h",
 		"/home/0/2014/ggiuffre/Documents/graph-ann/logica/nets.h",
 		"/home/0/2014/ggiuffre/Documents/graph-ann/logica/gprova.cpp",
 		"/Users/giorgiogiuffre/Desktop/uni/Basi di Dati/progetto/relazione.tex",
@@ -533,9 +571,7 @@
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/output_neuron.h",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/neuron.cpp",
 		"/Users/giorgiogiuffre/Documents/C++/graph_ann/dgraph.h",
-		"/Users/giorgiogiuffre/Documents/C++/graph_ann/graph.cpp",
-		"/Users/giorgiogiuffre/Documents/C++/graph_ann/graph.h",
-		"/Users/giorgiogiuffre/Documents/C++/graph_ann/dlink.h"
+		"/Users/giorgiogiuffre/Documents/C++/graph_ann/graph.cpp"
 	],
 	"find":
 	{
@@ -555,6 +591,12 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"builder",
+			"Builder",
+			"builder",
+			"Builder",
+			"builder",
+			"setLayers",
 			"\"\\\\d\"",
 			"numbers",
 			"in",
@@ -676,13 +718,7 @@
 			"shift_left",
 			"bool bias_plasticity = true",
 			"0.1",
-			"0.3",
-			"0.6",
-			"0.7",
-			"-",
-			"0.",
-			"and",
-			"dag_4"
+			"0.3"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -702,7 +738,7 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 5,
 			"sheets":
 			[
 				{
@@ -717,8 +753,8 @@
 						"selection":
 						[
 							[
-								0,
-								0
+								271,
+								271
 							]
 						],
 						"settings":
@@ -744,8 +780,8 @@
 						"selection":
 						[
 							[
-								332,
-								332
+								413,
+								413
 							]
 						],
 						"settings":
@@ -790,15 +826,96 @@
 					"file": "data_builder_widget.cpp",
 					"settings":
 					{
-						"buffer_size": 1487,
+						"buffer_size": 2146,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								817,
-								817
+								1644,
+								1644
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 690.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "palestra.h",
+					"settings":
+					{
+						"buffer_size": 861,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								302,
+								302
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "palestra.cpp",
+					"settings":
+					{
+						"buffer_size": 1870,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1042,
+								1042
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 207.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "net_runner_widget.h",
+					"settings":
+					{
+						"buffer_size": 471,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
 							]
 						],
 						"settings":
@@ -806,7 +923,33 @@
 							"syntax": "Packages/C++/C++.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 138.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "net_runner_widget.cpp",
+					"settings":
+					{
+						"buffer_size": 749,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								68,
+								68
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
