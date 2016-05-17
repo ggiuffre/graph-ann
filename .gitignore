@@ -1,2 +1,5 @@
 # ignore object files:
 *.o
+
+#ignore meta object compiler files:
+moc_*

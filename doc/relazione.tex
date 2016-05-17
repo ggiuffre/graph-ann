@@ -35,7 +35,7 @@
 %%% ========================================
 
 \begin{abstract}
-\textsc{CORN} (COstruttore di Reti Neurali) è una piccola piattaforma che permette di progettare e allenare semplici reti neurali artificiali, per poi  testarle su input numerici.
+\textsc{CORN} (COstruttore di Reti Neurali) è una piccola piattaforma che permette di progettare e allenare semplici reti neurali artificiali acicliche, per poi collaudarle su input numerici.
 \end{abstract}
 
 
@@ -48,13 +48,16 @@
 \subsection{Cos'è una rete neurale?}
 
 \paragraph{}
-Il miglior esempio di rete neurale è senz'altro il cervello umano: una rete di cellule collegate tra loro, dette neuroni, alcune delle quali si interfacciano con l'ambiente esterno (i neuroni sensoriali e i neuroni motori) mentre altre stanno “nascoste” dall'esterno, nei meandri della rete. Ciò che succede nel cervello umano è abbastanza caotico: ogni neurone manda segnali a più neuroni e riceve segnali da neuroni diversi, determinando un'intricata catena parallela di segnali che termina con i neuroni motori, collegati ai muscoli delle gambe, della bocca, delle mani eccetera.
+Il miglior esempio di rete neurale è senz'altro il cervello umano: una rete di cellule collegate tra loro, dette neuroni, alcune delle quali si interfacciano con l'ambiente esterno (i neuroni sensoriali e i neuroni motori) mentre altre stanno “nascoste” dall'esterno, nei meandri della rete. Ciò che succede nel cervello umano è apparentemente caotico: ogni neurone manda segnali a più neuroni e riceve segnali da neuroni diversi, determinando un'intricata catena parallela di segnali che termina con i neuroni motori, collegati ai muscoli delle gambe, della bocca, delle mani eccetera. Eppure, questa architettura intricata è alla base del pensiero e del comportamento umano.
 
 \paragraph{}
-In poche parole, una rete neurale è un grafo orientato in cui ogni nodo è un \textbf{neurone} e ogni arco è un \textbf{segnale} che viene mandato da un neurone a un altro. Un neurone è una cellula che riceve uno o più segnali di input, li somma ed emette un solo segnale di output (quindi è una funzione $f : \mathbb{R}^n \rightarrow \mathbb{R}$, dove $n \ge 1$ è il numero di segnali in ingresso). In base al segnale totale di input $x$, ogni neurone emette quindi un certo segnale di output $f(x)$ che può poi ramificarsi, cioè può essere mandato a più di un neurone, a seconda di com'è disegnato il grafo. Le connessioni (gli archi) tra un neurone e l'altro sono pesate, cioè ogni input $x_i$ viene moltiplicato per una costante reale $w_i$ che può essere modificata dalla rete nel corso del tempo.
+Con un po' di fantasia, possiamo vedere i neuroni di input e di ouput (detti neuroni “visibili”) come l'\textit{interfaccia} della rete con l'utente, mentre i neuroni nascosti costituiscono l'\textit{implementazione} di un certo algoritmo.
 
 \paragraph{}
-Tutti i neuroni della rete implementano la stessa semplice funzione $f$, detta \textbf{funzione di attivazione}. Chiaramente, l'output di due neuroni può essere diverso, per il fatto che gli archi della rete non hanno tutti lo stesso peso. La capacità di modificare i pesi delle proprie connessioni fa sì che la rete sia capace di associare ad ogni input un certo output desiderato. Ad esempio, una rete con due neuroni di input e un neurone di output (oltre ad eventuali neuroni intermedi), può modificare i propri pesi in modo da imparare a calcolare la media di due numeri che le vengono presentati:
+In poche parole, una rete neurale è un grafo orientato in cui ogni nodo è un \textbf{neurone} e ogni arco è un \textbf{collegamento} che va da un neurone a un altro. Un neurone è una cellula che riceve uno o più segnali di input, li somma ed emette un solo segnale di output (quindi è una funzione $f : \mathbb{R}^n \rightarrow \mathbb{R}$, dove $n \ge 1$ è il numero di segnali in ingresso). In base al segnale totale di input $x$, ogni neurone emette quindi un certo segnale di output $f(x)$ che può poi ramificarsi, cioè può essere mandato a più di un neurone, a seconda di com'è disegnato il grafo. Le connessioni (gli archi) tra un neurone e l'altro sono pesate, cioè ogni input $x_i$ viene moltiplicato per una costante reale $w_i$ che può essere modificata dalla rete nel corso del tempo.
+
+\paragraph{}
+Tutti i neuroni della rete implementano la stessa semplice funzione $f$, detta \textbf{funzione di attivazione}. Chiaramente, l'output di due neuroni può essere diverso, per il fatto che gli archi della rete non hanno tutti lo stesso peso. La capacità della rete di modificare i pesi delle proprie connessioni fa sì che essa sia capace di associare ad ogni input un certo output desiderato. Ad esempio, una rete con due neuroni di input e un neurone di output (oltre ad eventuali neuroni intermedi), può modificare i propri pesi in modo da imparare a calcolare la media di due numeri che le vengono presentati:
 
 \begin{center}
 \begin{tikzpicture}[x=1.5cm, y=1.5cm, >=stealth]
@@ -80,10 +83,10 @@ Tutti i neuroni della rete implementano la stessa semplice funzione $f$, detta \
 \end{tikzpicture}
 \end{center}
 
-La rete apprende grazie ad una serie di \textbf{esempi} che le vengono presentati: $(0.04, 0.08 \rightarrow 0.06)$, $(0.05, 0.01 \rightarrow 0.03)$, $(0.02, 0.05 \rightarrow 0.035)$, $(0.09, 0.08 \rightarrow 0.085)$ e così via. Più esempi vengono forniti, più è preciso l'apprendimento.
+La rete apprende grazie ad una serie di \textbf{esempi} che le vengono presentati: $(0.04, 0.08 \rightarrow 0.06)$, $(0.05, 0.01 \rightarrow 0.03)$, $(0.02, 0.05 \rightarrow 0.035)$, $(0.09, 0.08 \rightarrow 0.085)$ e così via. Più esempi vengono forniti, più è preciso l'apprendimento. A questo proposito, è importante notare che la rete fornisce risposte \textit{approssimate}, dovendo imparare da un insieme di esempi anziché da delle regole esplicite.
 
 \paragraph{}
-Oppure, una rete con 4 neuroni in ingresso e 4 in uscita potrebbe imparare a calcolare il successore di un numero in formato binario:
+Come ulteriore esempio, una rete con 4 neuroni in ingresso e 4 in uscita potrebbe imparare a calcolare il successore di un numero in formato binario:
 
 \begin{center}
 \begin{tikzpicture}[x=1.5cm, y=1.5cm, >=stealth]
@@ -97,11 +100,11 @@ Oppure, una rete con 4 neuroni in ingresso e 4 in uscita potrebbe imparare a cal
 \foreach \m [count=\y] in {1,2,3,4}
 	\node [every neuron/.try, neuron \m/.try ] (output-\m) at (4,2-\y) {};
 
-\foreach \l [count=\i] in {0, 0, 1, 0}
+\foreach \l [count=\i] in {0,0,1,0}
 	\draw [<-] (input-\i) -- ++(-1,0)
 		node [above, midway] {$\l$};
 
-\foreach \l [count=\i] in {0, 0, 1, 1}
+\foreach \l [count=\i] in {0,0,1,1}
 	\draw [->] (output-\i) -- ++(1,0)
 		node [above, midway] {$\l$};
 
@@ -119,7 +122,7 @@ Oppure, una rete con 4 neuroni in ingresso e 4 in uscita potrebbe imparare a cal
 \subsection{Cosa può fare \textsc{CORN}?}
 
 \paragraph{}
-Insomma, i compiti che una rete può imparare sono numerosissimi e \textsc{CORN} si propone di offrire un'interfaccia semplice per specificare sia la configurazione della rete sia i compiti da farle imparare. La creazione di una rete neurale artificiale si articola in tre fasi: Definizione dell'architettura della rete; definizione di alcuni esempi da presentare alla rete; allenamento della rete.
+Insomma, i compiti che una rete può imparare sono numerosissimi e \textsc{CORN} si propone di offrire un'interfaccia semplice per specificare sia la configurazione della rete sia i compiti da farle imparare. La progettazione di una rete neurale artificiale si articola in tre fasi: Definizione dell'architettura della rete; definizione degli esempi da presentare alla rete; allenamento della rete. Una volta allenata la rete, la si può interrogare su degli input numerici.
 
 
 
@@ -137,53 +140,47 @@ Insomma, i compiti che una rete può imparare sono numerosissimi e \textsc{CORN}
 
 \section{Implementazione}
 
+Il programma è stato progettato seguendo lo schema \textit{Model View}. L'utente si interfaccia con una sola finestra principale, che cambia apparenza durante le varie fasi della progettazione di una rete neurale. Le reti neurali progettate (o quelle già disponibili come esempi) sono controllate da una classe “Model” ...
+
 \subsection{Parte logica}
 
 \begin{center}
 \begin{tikzpicture}
-%\SetVertexNormal[Shape = rectangle,
-%				Fill = white]
-\tikzset{VertexStyle/.style = {
-		shape = rectangle,
-		fill = white,
-		draw}}
-\tikzset{EdgeStyle/.style = {
-		->,
-		double distance = 0.6pt}}
+\tikzset{VertexStyle/.style = {shape=rectangle, fill=white, draw}}
+\tikzset{EdgeStyle/.style = {->}}
 
-\Vertex[L=$std::vector$] {vector}
-	\Vertex[x=0,y=-2]{DAG}
-		\Vertex[x=0,y=-4]{network}
-			\Vertex[x=-6,y=-6]{netContainer}
-			\Vertex[x=-2,y=-6]{layeredNetwork}
-				\Vertex[x=-2,y=-8]{layeredBiasedNetwork}
-			\Vertex[x=1,y=-6]{sigmoidNet}
-			\Vertex[x=3.5,y=-6]{tanhNet}
-			\Vertex[x=6,y=-6]{arcTanNet}
+\Vertex[L=\textit{std::vector}]{vector}
+	\Vertex[x=0,y=-1]{DAG}
+		\Vertex[x=0,y=-2]{network}
+			\Vertex[x=-2,y=-4]{layeredNetwork}
+				\Vertex[x=-3,y=-5.5]{layeredBiasedNetwork}
+			\Vertex[x=1.5,y=-4]{sigmoidNet}
+			\Vertex[x=3.9,y=-4]{tanhNet}
+			\Vertex[x=6,y=-4]{atanNet}
 
-					\Vertex[x=-2,y=-10]{layeredSigmoidNetwork}
-					\Vertex[x=1.5,y=-11]{layeredTanhNetwork}
-					\Vertex[x=5,y=-10]{layeredarcTanNetwork}
+					\Vertex[x=-2.8,y=-8]{layeredSigmoidNet}
+					\Vertex[x=1.3,y=-8]{layeredTanhNet}
+					\Vertex[x=5,y=-8]{layeredAtanNet}
 
-					\Vertex[x=-6,y=-13]{internetwork}
+					\Vertex[x=-6,y=-4]{internetwork}
 
-\Edges(DAG,vector)
-\Edges(network,DAG)
-\Edges(layeredNetwork,network)
-\Edges(netContainer,network)
-\Edges(layeredBiasedNetwork,layeredNetwork)
-\Edges(sigmoidNet,network)
-\Edges(tanhNet,network)
-\Edges(arcTanNet,network)
-\Edges(layeredSigmoidNetwork,sigmoidNet)
-\Edges(layeredSigmoidNetwork,layeredBiasedNetwork)
-\Edges(layeredTanhNetwork,tanhNet)
-\Edges(layeredTanhNetwork,layeredBiasedNetwork)
-\Edges(layeredarcTanNetwork,arcTanNet)
-\Edges(layeredarcTanNetwork,layeredBiasedNetwork)
-\Edges(internetwork,network)
-\Edges(internetwork,netContainer)
+		\Vertex[x=-6,y=-2,L=\textbf{netContainer}]{netContainer}
 
+\Edge(DAG)(vector)
+\Edge(network)(DAG)
+\Edge[style={dashed}](layeredNetwork)(network)
+\Edge(layeredBiasedNetwork)(layeredNetwork)
+\Edge[style={dashed}](sigmoidNet)(network)
+\Edge[style={dashed}](tanhNet)(network)
+\Edge[style={dashed}](atanNet)(network)
+\Edge(layeredSigmoidNet)(sigmoidNet)
+\Edge(layeredSigmoidNet)(layeredBiasedNetwork)
+\Edge(layeredTanhNet)(tanhNet)
+\Edge(layeredTanhNet)(layeredBiasedNetwork)
+\Edge(layeredAtanNet)(atanNet)
+\Edge(layeredAtanNet)(layeredBiasedNetwork)
+\Edge(internetwork)(network)
+\Edge(internetwork)(netContainer)
 \end{tikzpicture}
 \end{center}
 
