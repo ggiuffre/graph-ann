@@ -1,10 +1,14 @@
 #include "net_builder_widget.h"
 #include <QLayoutItem>
 #include <QLabel>
+#include <QPalette>
 
 netBuilderWidget::netBuilderWidget(QWidget * parent) : QWidget(parent), layout(new QFormLayout), name(new QLineEdit), neuron_type(new QComboBox), n_layers(new QSpinBox), next(new QPushButton("Prosegui...")), trigger(new QPushButton("Crea")), new_net(nullptr)
 {
-//	setStyleSheet( "QWidget{ background-color : rgba(240, 240, 240, 128); }" );
+//	QPalette pal(palette());
+//	pal.setColor(QPalette::Background, Qt::black);
+//	setAutoFillBackground(true);
+//	setPalette(pal);
 
 	neuron_type->insertItem(0, "Sigmoide");
 	neuron_type->insertItem(1, "Tangente Iperbolica");

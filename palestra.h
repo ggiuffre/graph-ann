@@ -1,16 +1,14 @@
 #ifndef PALESTRA_H
 #define PALESTRA_H
 
+#include "net_interface.h"
 #include "net_builder_widget.h"
-#include "net_trainer_widget.h"
-#include "net_runner_widget.h"
 #include "data_builder_widget.h"
 #include "nets_list.h"
 #include <QMainWindow>
 #include <QMenuBar>
 #include <QStackedWidget>
 #include <QString>
-#include "logica/nets.h"
 
 class palestra : public QMainWindow
 {
@@ -22,19 +20,15 @@ private:
 	QMenu * data_menu;
 
 	QStackedWidget * ctrl;
-	netBuilderWidget * builder;
-	netTrainerWidget * trainer;
-	netRunnerWidget * runner;
+	netInterface * net_interface;
+	netBuilderWidget * net_builder;
 	dataBuilderWidget * data_builder;
-
 	nets_list * nets_dock;
 
 public slots:
-	void netBuilder();
-	void netTrainer();
-	void netRunner(QString t);
-	void dataBuilder();
-	void addNet(layeredBiasedNet * new_net);
+	void showNetInterface(QString t);
+	void showNetBuilder();
+	void showDataBuilder();
 
 public:
 	palestra();
