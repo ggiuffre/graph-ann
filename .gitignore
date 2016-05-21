@@ -1,5 +1,11 @@
-# ignore object files:
+# ignora i file oggetto:
 *.o
 
-#ignore meta object compiler files:
+# ignora i meta object compiler files:
 moc_*
+
+# ignora il makefile:
+Makefile
+
+# ignore l'eseguibile:
+GUI
