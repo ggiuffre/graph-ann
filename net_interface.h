@@ -14,10 +14,6 @@ private:
 	QString title;
 	netRunnerWidget * runner;
 	netTrainerWidget * trainer;
-/*
-public slots:
-	void run();
-	void train();*/
 
 public:
 	netInterface(QString t = "", QWidget * parent = nullptr);

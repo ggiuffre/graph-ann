@@ -2,17 +2,15 @@
 #define NETS_LIST
 
 #include <QDockWidget>
-#include <QLabel>
 #include <QFileSystemModel>
 #include <QListView>
 #include <QString>
 
-class nets_list : public QDockWidget
+class netsList : public QDockWidget
 {
 	Q_OBJECT
 
 private:
-	QLabel * header;
 	QFileSystemModel * fs;
 	QListView * files;
 
@@ -23,7 +21,7 @@ signals:
 	void netSelected(QString t);
 
 public:
-	nets_list(QWidget * parent = nullptr);
+	netsList(QWidget * parent = nullptr);
 };
 
 #endif

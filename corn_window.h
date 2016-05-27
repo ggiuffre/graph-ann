@@ -1,5 +1,5 @@
-#ifndef PALESTRA_H
-#define PALESTRA_H
+#ifndef CORN_WINDOW_H
+#define CORN_WINDOW_H
 
 #include "net_interface.h"
 #include "net_builder_widget.h"
@@ -10,7 +10,7 @@
 #include <QStackedWidget>
 #include <QString>
 
-class palestra : public QMainWindow
+class CornWindow : public QMainWindow
 {
 	Q_OBJECT
 
@@ -23,7 +23,7 @@ private:
 	netInterface * net_interface;
 	netBuilderWidget * net_builder;
 	dataBuilderWidget * data_builder;
-	nets_list * nets_dock;
+	netsList * nets_dock;
 
 public slots:
 	void showNetInterface(QString t);
@@ -31,7 +31,7 @@ public slots:
 	void showDataBuilder();
 
 public:
-	palestra();
+	CornWindow();
 	QSize minimumSizeHint() const Q_DECL_OVERRIDE;
 	QSize sizeHint() const Q_DECL_OVERRIDE;
 };

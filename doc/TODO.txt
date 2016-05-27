@@ -1,5 +1,7 @@
-TODO:
+DA FARE:
 
+(.) possibilità di creare inter-reti   <<<<<<<<<<<
+    ==============================================
 (.) possibilità di creare una rete con UN SOLO livello (input = output)
 (.) documentazione built-in delle varie funzioni di attivazione
 (?) pagina iniziale con disegno carino

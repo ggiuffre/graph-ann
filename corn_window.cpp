@@ -1,14 +1,14 @@
-#include "palestra.h"
+#include "corn_window.h"
 
-palestra::palestra() : menu_bar(new QMenuBar), net_menu(new QMenu("Rete")), data_menu(new QMenu("Dati")),
-			ctrl(new QStackedWidget(this)), net_interface(nullptr), net_builder(new netBuilderWidget), data_builder(nullptr), nets_dock(new nets_list(this))
+CornWindow::CornWindow() : menu_bar(new QMenuBar), net_menu(new QMenu("Rete")), data_menu(new QMenu("Dati")),
+			ctrl(new QStackedWidget(this)), net_interface(nullptr), net_builder(new netBuilderWidget), data_builder(nullptr), nets_dock(new netsList(this))
 {
 	setWindowTitle("Piattaforma per allenare reti neurali");
 //	setStyleSheet("QMainWindow {border-image: url(./sfondo.jpg); border-width: 200px;}");
 
 	net_menu->addAction("Nuova Rete", this, SLOT(showNetBuilder()));
 	menu_bar->addMenu(net_menu);
-	data_menu->addAction("Nuovo foglio di esempi", this, SLOT(showDataBuilder()));
+	data_menu->addAction("Nuovo Foglio di Esempi", this, SLOT(showDataBuilder()));
 	menu_bar->addMenu(data_menu);
 	setMenuBar(menu_bar);
 
@@ -19,22 +19,22 @@ palestra::palestra() : menu_bar(new QMenuBar), net_menu(new QMenu("Rete")), data
 	setCentralWidget(ctrl);
 }
 
-QSize palestra::minimumSizeHint() const
+QSize CornWindow::minimumSizeHint() const
 {
 	return QSize(600, 337);
 }
 
-QSize palestra::sizeHint() const
+QSize CornWindow::sizeHint() const
 {
 	return QSize(810, 500);
 }
 
-void palestra::showNetBuilder()
+void CornWindow::showNetBuilder()
 {
 	ctrl->setCurrentWidget(net_builder);
 }
 
-void palestra::showNetInterface(const QString t)
+void CornWindow::showNetInterface(const QString t)
 {
 	if (net_interface)
 		delete net_interface;
@@ -43,7 +43,7 @@ void palestra::showNetInterface(const QString t)
 	ctrl->setCurrentWidget(net_interface);
 }
 
-void palestra::showDataBuilder()
+void CornWindow::showDataBuilder()
 {
 	if (data_builder)
 		delete data_builder;
