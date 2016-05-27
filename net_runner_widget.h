@@ -5,10 +5,10 @@
 #include <QSpinBox>
 #include <QFormLayout>
 #include <QPushButton>
-#include <QLineEdit>
+#include <QTextEdit>
 #include <QLabel>
 #include <QString>
-#include "logica/layered_biased_net.h"		// meglio: nets.h
+#include "logica/layered_biased_net.h"		// meglio: nets.h   ?
 
 class netRunnerWidget : public QWidget
 {
@@ -17,11 +17,10 @@ class netRunnerWidget : public QWidget
 private:
 	QString title;
 	QFormLayout * layout;
-	QLineEdit * input_text;
+	QTextEdit * input_text;
 	QPushButton * trigger;
 	QLabel * result;
 	layeredBiasedNet * net;
-	float prova;
 
 protected slots:
 	void calculate();

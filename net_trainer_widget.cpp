@@ -6,10 +6,7 @@ netTrainerWidget::netTrainerWidget(const QString t, QWidget * parent) : QWidget(
 	n_epochs->setMinimum(1);
 	n_epochs->setMaximum(100000);
 
-	if (title == "")
-		layout->addRow("Rete da allenare:", new QLineEdit);
-	else
-		layout->addRow(title, new QLabel);
+	layout->addRow(title, new QLabel);
 	layout->addRow("File di allenamento:", new QLineEdit);
 	layout->addRow("Numero di epoche:", n_epochs);
 

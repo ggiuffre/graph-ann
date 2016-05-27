@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"inpu",
+				"input_list"
+			],
+			[
 				"QM",
 				"QMenu"
 			],
@@ -351,7 +355,7 @@
 			"file": "net_runner_widget.h",
 			"settings":
 			{
-				"buffer_size": 471,
+				"buffer_size": 569,
 				"line_ending": "Unix"
 			}
 		},
@@ -359,7 +363,7 @@
 			"file": "net_runner_widget.cpp",
 			"settings":
 			{
-				"buffer_size": 536,
+				"buffer_size": 1098,
 				"line_ending": "Unix"
 			}
 		},
@@ -367,7 +371,7 @@
 			"file": "net_trainer_widget.h",
 			"settings":
 			{
-				"buffer_size": 349,
+				"buffer_size": 344,
 				"line_ending": "Unix"
 			}
 		},
@@ -375,7 +379,7 @@
 			"file": "net_trainer_widget.cpp",
 			"settings":
 			{
-				"buffer_size": 500,
+				"buffer_size": 421,
 				"line_ending": "Unix"
 			}
 		},
@@ -383,7 +387,7 @@
 			"file": "net_interface.h",
 			"settings":
 			{
-				"buffer_size": 404,
+				"buffer_size": 366,
 				"line_ending": "Unix"
 			}
 		},
@@ -391,23 +395,7 @@
 			"file": "net_interface.cpp",
 			"settings":
 			{
-				"buffer_size": 662,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "palestra.h",
-			"settings":
-			{
-				"buffer_size": 757,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "palestra.cpp",
-			"settings":
-			{
-				"buffer_size": 1546,
+				"buffer_size": 311,
 				"line_ending": "Unix"
 			}
 		}
@@ -448,6 +436,11 @@
 	},
 	"file_history":
 	[
+		"/home/0/2014/ggiuffre/Documents/graph-ann/nets_list.cpp",
+		"/home/0/2014/ggiuffre/Documents/graph-ann/corn_window.cpp",
+		"/home/0/2014/ggiuffre/Documents/graph-ann/corn_window.h",
+		"/home/0/2014/ggiuffre/Documents/graph-ann/palestra.cpp",
+		"/home/0/2014/ggiuffre/Documents/graph-ann/palestra.h",
 		"/home/0/2014/ggiuffre/Documents/ann_2/GUI.pro",
 		"/home/0/2014/ggiuffre/Documents/ann_2/net_builder_widget.cpp",
 		"/home/0/2014/ggiuffre/Documents/ann_2/net_builder_widget.h",
@@ -570,12 +563,7 @@
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/prova_2.cpp",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/inter_neuron.h",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/doc/spiegazione.txt",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/spiegazione.txt",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/input_neuron.h",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/neuron.h",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/dendrite.h",
-		"/Applications/MAMP/htdocs/MyANN/ANN_2/webcam/webcam.html",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/activating_functions.h"
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/spiegazione.txt"
 	],
 	"find":
 	{
@@ -595,6 +583,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"QStringList",
+			"foreach",
+			"list",
+			"Line",
 			"SLOT",
 			"this, ",
 			"addAction",
@@ -718,11 +710,7 @@
 			"0.2f",
 			"//protected",
 			"learning",
-			"bv",
-			"const float bv",
-			"protected",
-			", float lr = 0.5f, float m = 0.2f",
-			"= "
+			"bv"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -742,7 +730,7 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -750,33 +738,7 @@
 					"file": "net_runner_widget.h",
 					"settings":
 					{
-						"buffer_size": 471,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "net_runner_widget.cpp",
-					"settings":
-					{
-						"buffer_size": 536,
+						"buffer_size": 569,
 						"regions":
 						{
 						},
@@ -799,11 +761,38 @@
 					"type": "text"
 				},
 				{
+					"buffer": 1,
+					"file": "net_runner_widget.cpp",
+					"settings":
+					{
+						"buffer_size": 1098,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1048,
+								1048
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 360.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
 					"buffer": 2,
 					"file": "net_trainer_widget.h",
 					"settings":
 					{
-						"buffer_size": 349,
+						"buffer_size": 344,
 						"regions":
 						{
 						},
@@ -829,15 +818,15 @@
 					"file": "net_trainer_widget.cpp",
 					"settings":
 					{
-						"buffer_size": 500,
+						"buffer_size": 421,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								293,
+								293
 							]
 						],
 						"settings":
@@ -855,7 +844,7 @@
 					"file": "net_interface.h",
 					"settings":
 					{
-						"buffer_size": 404,
+						"buffer_size": 366,
 						"regions":
 						{
 						},
@@ -882,61 +871,7 @@
 					"file": "net_interface.cpp",
 					"settings":
 					{
-						"buffer_size": 662,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "palestra.h",
-					"settings":
-					{
-						"buffer_size": 757,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "palestra.cpp",
-					"settings":
-					{
-						"buffer_size": 1546,
+						"buffer_size": 311,
 						"regions":
 						{
 						},

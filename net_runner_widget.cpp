@@ -1,9 +1,9 @@
 #include "net_runner_widget.h"
+#include <QStringList>
 #include <vector>
 
-netRunnerWidget::netRunnerWidget(const QString t, QWidget * parent) : QWidget(parent), title(t), layout(new QFormLayout), input_text(new QLineEdit), trigger(new QPushButton("Calcola")), result(new QLabel), net(title == "" ? nullptr : new layeredBiasedNet("logica/nets/" + title.toStdString()))
+netRunnerWidget::netRunnerWidget(const QString t, QWidget * parent) : QWidget(parent), title(t), layout(new QFormLayout), input_text(new QTextEdit), trigger(new QPushButton("Calcola")), result(new QLabel), net(new layeredBiasedNet("logica/nets/" + title.toStdString() + ".net")) // assume che t sia valido
 {
-	prova = 0.90f;
 	layout->addRow("Input:", input_text);
 
 	layout->addWidget(trigger);
@@ -19,10 +19,16 @@ void netRunnerWidget::calculate()
 {
 	if (net)
 	{
-//		std::vector<float> input = input_text->toPlainText().split(" ").filter(QRegularExpression("\\d+"));
-//		std::vector<float> ans = (*net)();
-		prova += 0.1f;
-		result->setText(title + ": " + QString::number(prova));
+		QStringList input_list = input_text->toPlainText().split(" ", QString::SkipEmptyParts).filter(QRegularExpression("\\d+")); // QInputValidator ?
+		std::vector<float> input;
+		for(auto it = input_list.begin(); it < input_list.end(); ++it)
+    		input.push_back(it->toFloat());
+		std::vector<float> ans = (*net)();
+
+		QString output_list;
+		for (auto it = ans.begin(); it < ans.end(); ++it)
+			output_list += QString::number(*it) + " ";
+		result->setText(output_list);
 		update();
 	}
 }

@@ -16,7 +16,7 @@ private:
 	QFormLayout * layout;
 
 public:
-	netTrainerWidget(QString t = "", QWidget * parent = nullptr);
+	netTrainerWidget(QString t, QWidget * parent = nullptr);
 };
 
 #endif

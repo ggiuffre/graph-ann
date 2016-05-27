@@ -17,5 +17,5 @@ netsList::netsList(QWidget * parent) : QDockWidget(parent), fs(new QFileSystemMo
 
 void netsList::selectNet(const QModelIndex i)
 {
-	emit netSelected(fs->fileName(i));
+	emit netSelected(fs->fileInfo(i).completeBaseName());
 }
