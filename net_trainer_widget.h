@@ -5,6 +5,7 @@
 #include <QSpinBox>
 #include <QFormLayout>
 #include <QLineEdit>
+#include "logica/layered_biased_net.h"		// meglio: nets.h   ?
 
 class netTrainerWidget : public QWidget
 {
@@ -14,9 +15,10 @@ private:
 	QString title;
 	QSpinBox * n_epochs;
 	QFormLayout * layout;
+	layeredBiasedNet * net;
 
 public:
-	netTrainerWidget(QString t, QWidget * parent = nullptr);
+	netTrainerWidget(QString t, layeredBiasedNet * n, QWidget * parent = nullptr);
 };
 
 #endif

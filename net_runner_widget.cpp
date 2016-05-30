@@ -2,7 +2,7 @@
 #include <QStringList>
 #include <vector>
 
-netRunnerWidget::netRunnerWidget(const QString t, QWidget * parent) : QWidget(parent), title(t), layout(new QFormLayout), input_text(new QTextEdit), trigger(new QPushButton("Calcola")), result(new QLabel)
+netRunnerWidget::netRunnerWidget(const QString t, layeredBiasedNet * n, QWidget * parent) : QWidget(parent), title(t), net(n), layout(new QFormLayout), input_text(new QTextEdit), trigger(new QPushButton("Calcola")), result(new QLabel)
 {
 	layout->addRow("Input:", input_text);
 
@@ -23,7 +23,7 @@ void netRunnerWidget::calculate()
 		std::vector<float> input;
 		for(auto it = input_list.begin(); it < input_list.end(); ++it)
     		input.push_back(it->toFloat());
-		std::vector<float> ans = (*net)();
+		std::vector<float> ans = (*net)(input);
 
 		QString output_list;
 		for (auto it = ans.begin(); it < ans.end(); ++it)

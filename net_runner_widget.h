@@ -8,7 +8,7 @@
 #include <QTextEdit>
 #include <QLabel>
 #include <QString>
-//#include "logica/layered_biased_net.h"		// meglio: nets.h   ?
+#include "logica/layered_biased_net.h"		// meglio: nets.h   ?
 
 class netRunnerWidget : public QWidget
 {
@@ -20,10 +20,10 @@ private:
 	QTextEdit * input_text;
 	QPushButton * trigger;
 	QLabel * result;
-//	layeredBiasedNet * net;
+	layeredBiasedNet * net;
 
 public:
-	netRunnerWidget(QString t, QWidget * parent = nullptr);
+	netRunnerWidget(QString t, layeredBiasedNet * n, QWidget * parent = nullptr);
 
 protected slots:
 	void calculate();
