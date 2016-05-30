@@ -59,5 +59,4 @@ void dataBuilderWidget::storeData()
 	QString file_title = QInputDialog::getText(this, "Save File", "Datafile title:");
 	std::ofstream result("./logica/data/" + file_title.toStdString() + ".data");
 	result << tot_data.toStdString();
-	result.close();
 }

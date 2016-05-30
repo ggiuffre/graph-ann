@@ -161,8 +161,6 @@ void layeredNet::init(const std::string netfile)
 		fin >> layer_start >> n_nodes;
 		reserveLayer(layer_start, n_nodes);
 	}
-
-	fin.close();
 }
 
 void layeredNet::save(const std::string netfile) const

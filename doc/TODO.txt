@@ -10,3 +10,4 @@ DA FARE:
 (.) POSSIBILITA' DI SALVARE NEL FOGLIO .net ANCHE IL TIPO DI NEURONE
 (?) usare QHBoxLayout per mettere in riga (anziché in colonna) i vari pulsanti e i textedit
 (.) aggiungere esempio di creazione foglio dati sulla documentazione
+(?) trasferire il peso di indicare "logica/nets/... .net" al modulo logico

@@ -43,8 +43,6 @@ void network::init(const std::string netfile)
 		*this = network(n_nodes);
 		fin >> *this;
 	}
-
-	fin.close();
 }
 
 bool network::is_output(const unsigned int node) const

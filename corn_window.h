@@ -25,15 +25,16 @@ private:
 	dataBuilderWidget * data_builder;
 	netsList * nets_dock;
 
-public slots:
-	void showNetInterface(QString t);
-	void showNetBuilder();
-	void showDataBuilder();
-
 public:
 	CornWindow();
 	QSize minimumSizeHint() const Q_DECL_OVERRIDE;
 	QSize sizeHint() const Q_DECL_OVERRIDE;
+
+public slots:
+	void showNetInterface(QString t);
+	void showNetBuilder();
+	void showInternetBuilder();
+	void showDataBuilder();
 };
 
 #endif

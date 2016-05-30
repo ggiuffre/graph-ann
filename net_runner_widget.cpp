@@ -2,7 +2,7 @@
 #include <QStringList>
 #include <vector>
 
-netRunnerWidget::netRunnerWidget(const QString t, QWidget * parent) : QWidget(parent), title(t), layout(new QFormLayout), input_text(new QTextEdit), trigger(new QPushButton("Calcola")), result(new QLabel), net(new layeredBiasedNet("logica/nets/" + title.toStdString() + ".net")) // assume che t sia valido
+netRunnerWidget::netRunnerWidget(const QString t, QWidget * parent) : QWidget(parent), title(t), layout(new QFormLayout), input_text(new QTextEdit), trigger(new QPushButton("Calcola")), result(new QLabel)
 {
 	layout->addRow("Input:", input_text);
 
