@@ -13,9 +13,9 @@ class netTrainerWidget : public QWidget
 
 private:
 	QString title;
+	layeredBiasedNet * net;
 	QSpinBox * n_epochs;
 	QFormLayout * layout;
-	layeredBiasedNet * net;
 
 public:
 	netTrainerWidget(QString t, layeredBiasedNet * n, QWidget * parent = nullptr);

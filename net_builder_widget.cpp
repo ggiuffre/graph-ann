@@ -50,7 +50,7 @@ void netBuilderWidget::setLayers()
 	QSpacerItem * spacer = new QSpacerItem(1, 20);
 	layout->addItem(spacer);
 	layout->addRow("Numero di unità per livello:", new QLabel);
-	for (unsigned int i = 0; i < n_layers->value(); ++i)
+	for (unsigned int i = 0; i < static_cast<unsigned int>(n_layers->value()); ++i)
 	{
 		layers_arch.push_back(new QSpinBox);
 		layers_arch[i]->setMinimum(1);
@@ -69,7 +69,7 @@ void netBuilderWidget::addNet()
 
 	if (new_net)
 	{
-		for (unsigned int i = 0; i < n_layers->value(); ++i)
+		for (unsigned int i = 0; i < static_cast<unsigned int>(n_layers->value()); ++i)
 			new_net->addLayer(layers_arch[i]->value());
 
 		new_net->init(0.5f);
