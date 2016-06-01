@@ -3,7 +3,6 @@
 
 #include "network.h"
 #include "net_container.h"
-#include <map>
 #include <vector>
 
 class internetwork : public network, public netContainer

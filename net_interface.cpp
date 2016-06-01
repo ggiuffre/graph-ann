@@ -1,8 +1,20 @@
 #include "net_interface.h"
+#include <QMessageBox>
+#include <QDir>
 
-netInterface::netInterface(const QString t, QWidget * parent) : QTabWidget(parent), title(t), net(new layeredBiasedNet("logica/nets/" + title.toStdString() + ".net")), runner(new netRunnerWidget(title, net)), trainer(new netTrainerWidget(title, net)) // assume che t sia valido
+netInterface::netInterface(const QFileInfo i, QWidget * parent) : QTabWidget(parent), info(i), net(new layeredBiasedNet(info.absoluteFilePath().toStdString()))//, runner(new netRunnerWidget(info.completeBaseName(), net)), trainer(new netTrainerWidget(info.completeBaseName(), net)) // assume che i sia valido
 {
-	// aggiungere controllo nome rete...?
+	QString dir = info.absoluteDir().dirName();
+	if (dir == "sigmoid")
+		net = dynamic_cast<layeredSigmoidNet *>(net);
+	else if (dir == "arctan")
+		net = dynamic_cast<layeredAtanNet *>(net);
+	else if (dir == "tanh")
+		net = dynamic_cast<layeredTanhNet *>(net);
+
+	runner = new netRunnerWidget(info.completeBaseName(), net);
+	trainer = new netTrainerWidget(info.completeBaseName(), net);
+
 	addTab(runner, "Collauda la rete");
 	addTab(trainer, "Allena la rete");
 }

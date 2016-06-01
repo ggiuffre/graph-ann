@@ -18,7 +18,8 @@ public slots:
 	void selectNet(QModelIndex i);
 
 signals:
-	void netSelected(QString t);
+//	void netSelected(QString t);
+	void netSelected(QFileInfo net_info);
 
 public:
 	netsList(QWidget * parent = nullptr);

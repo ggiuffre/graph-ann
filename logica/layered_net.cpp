@@ -111,7 +111,7 @@ layeredNet::layers_iterator layeredNet::end() const
 
 DAG::nodes_iterator layeredNet::begin(const layeredNet::layers_iterator l) const
 {
-	if (l < n_lays)
+	if (l < static_cast<int>(n_lays))
 		return layers[l].start();
 
 	return end(end());
@@ -119,7 +119,7 @@ DAG::nodes_iterator layeredNet::begin(const layeredNet::layers_iterator l) const
 
 DAG::nodes_iterator layeredNet::end(const layeredNet::layers_iterator l) const
 {
-	if (l < n_lays)
+	if (l < static_cast<int>(n_lays))
 		return begin(l) + layers[l].size();
 
 	return end(end());
@@ -182,7 +182,7 @@ void layeredNet::addLayer(const unsigned int n_nodes)
 		linkLayer(n_lays - 1);
 }
 
-void layeredNet::linkLayer(const unsigned int l)
+void layeredNet::linkLayer(const layeredNet::layers_iterator l)
 {
 	if (l > begin() && l < end())
 		for (nodes_iterator i = begin(l); i < end(l); ++i)

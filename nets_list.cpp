@@ -5,6 +5,7 @@ netsList::netsList(QWidget * parent) : QDockWidget(parent), fs(new QFileSystemMo
 	setFeatures(NoDockWidgetFeatures);
 
 	fs->setRootPath(QDir::currentPath());
+	fs->setFilter(QDir::AllEntries | QDir::NoDot);
 	files->setModel(fs);
 	files->setRootIndex(fs->index("./logica/nets/"));
 	files->setGridSize({90, 30});
@@ -17,5 +18,9 @@ netsList::netsList(QWidget * parent) : QDockWidget(parent), fs(new QFileSystemMo
 
 void netsList::selectNet(const QModelIndex i)
 {
-	emit netSelected(fs->fileInfo(i).completeBaseName());
+	if (fs->fileInfo(i).isDir())
+		files->setRootIndex(fs->index(fs->fileInfo(i).absoluteFilePath()));
+	else
+		emit netSelected(fs->fileInfo(i));
+//		emit netSelected(fs->fileInfo(i).completeBaseName());
 }

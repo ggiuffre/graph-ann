@@ -55,7 +55,7 @@ void netBuilderWidget::setLayers()
 		layers_arch.push_back(new QSpinBox);
 		layers_arch[i]->setMinimum(1);
 		layers_arch[i]->setMaximum(64);
-		layout->addRow("Livello " + QString::number(i) + ":", layers_arch[i]);
+		layout->addRow("Livello " + QString::number(i + 1) + ":", layers_arch[i]);
 	}
 
 	layout->addWidget(trigger);

@@ -22,7 +22,7 @@ private:
 
 protected:
 	virtual void store(const std::vector<float>& in) /*override*/;
-	virtual void linkLayer(unsigned int l) /*override*/;			// virtual...
+	virtual void linkLayer(layers_iterator l) /*override*/;			// virtual...
 
 public:
 	explicit layeredBiasedNet(float lr = 0.5f, float m = 0.2f, bool bp = true);		// i float sono soltanto parametri, non caratterizzano univocamente la rete

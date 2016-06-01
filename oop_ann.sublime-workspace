@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"laye",
+				"layers_iterator"
+			],
+			[
 				"inpu",
 				"input_list"
 			],
@@ -50,10 +54,6 @@
 			[
 				"link",
 				"linkLayer"
-			],
-			[
-				"laye",
-				"layeredNet"
 			],
 			[
 				"ly",
@@ -355,7 +355,7 @@
 			"file": "net_runner_widget.h",
 			"settings":
 			{
-				"buffer_size": 569,
+				"buffer_size": 591,
 				"line_ending": "Unix"
 			}
 		},
@@ -363,7 +363,7 @@
 			"file": "net_runner_widget.cpp",
 			"settings":
 			{
-				"buffer_size": 1098,
+				"buffer_size": 1100,
 				"line_ending": "Unix"
 			}
 		},
@@ -371,7 +371,7 @@
 			"file": "net_trainer_widget.h",
 			"settings":
 			{
-				"buffer_size": 344,
+				"buffer_size": 453,
 				"line_ending": "Unix"
 			}
 		},
@@ -379,7 +379,7 @@
 			"file": "net_trainer_widget.cpp",
 			"settings":
 			{
-				"buffer_size": 421,
+				"buffer_size": 451,
 				"line_ending": "Unix"
 			}
 		},
@@ -387,7 +387,7 @@
 			"file": "net_interface.h",
 			"settings":
 			{
-				"buffer_size": 366,
+				"buffer_size": 459,
 				"line_ending": "Unix"
 			}
 		},
@@ -395,7 +395,23 @@
 			"file": "net_interface.cpp",
 			"settings":
 			{
-				"buffer_size": 311,
+				"buffer_size": 885,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "nets_list.cpp",
+			"settings":
+			{
+				"buffer_size": 789,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "corn_window.cpp",
+			"settings":
+			{
+				"buffer_size": 1679,
 				"line_ending": "Unix"
 			}
 		}
@@ -436,15 +452,28 @@
 	},
 	"file_history":
 	[
+		"/home/0/2014/ggiuffre/Documents/ann_2/corn_window.h",
+		"/home/0/2014/ggiuffre/Documents/ann_2/nets_list.h",
+		"/home/0/2014/ggiuffre/Documents/ann_2/oop_ann.sublime-project",
+		"/home/0/2014/ggiuffre/Documents/ann_2/data_builder_widget.cpp",
+		"/home/0/2014/ggiuffre/Documents/ann_2/logica/network.cpp",
+		"/home/0/2014/ggiuffre/Documents/ann_2/logica/network.h",
+		"/home/0/2014/ggiuffre/Documents/ann_2/logica/layered_net.cpp",
+		"/home/0/2014/ggiuffre/Documents/ann_2/logica/layered_net.h",
+		"/home/0/2014/ggiuffre/Documents/ann_2/logica/layered_biased_net.h",
+		"/home/0/2014/ggiuffre/Documents/ann_2/logica/layered_biased_net.cpp",
+		"/home/0/2014/ggiuffre/Documents/ann_2/net_builder_widget.cpp",
+		"/home/0/2014/ggiuffre/Documents/ann_2/logica/internetwork.cpp",
+		"/home/0/2014/ggiuffre/Documents/ann_2/logica/internetwork.h",
+		"/home/0/2014/ggiuffre/Documents/ann_2/logica/net_container.h",
+		"/home/0/2014/ggiuffre/Documents/ann_2/corn_window.cpp",
 		"/home/0/2014/ggiuffre/Documents/graph-ann/nets_list.cpp",
 		"/home/0/2014/ggiuffre/Documents/graph-ann/corn_window.cpp",
 		"/home/0/2014/ggiuffre/Documents/graph-ann/corn_window.h",
 		"/home/0/2014/ggiuffre/Documents/graph-ann/palestra.cpp",
 		"/home/0/2014/ggiuffre/Documents/graph-ann/palestra.h",
 		"/home/0/2014/ggiuffre/Documents/ann_2/GUI.pro",
-		"/home/0/2014/ggiuffre/Documents/ann_2/net_builder_widget.cpp",
 		"/home/0/2014/ggiuffre/Documents/ann_2/net_builder_widget.h",
-		"/home/0/2014/ggiuffre/Documents/ann_2/data_builder_widget.cpp",
 		"/home/0/2014/ggiuffre/Documents/ann_2/data_builder_widget.h",
 		"/home/0/2014/ggiuffre/Documents/ann_2/logica/gprova.cpp",
 		"/home/0/2014/ggiuffre/Documents/ann_2/net_trainer_widget.cpp",
@@ -550,20 +579,7 @@
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/makefile",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/makefile.GNUmakefile",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/dgraph.cpp",
-		"/Users/giorgiogiuffre/Documents/TeX output/SO_ggiuffre.tex",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/dgraph.h",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/main_prova.cpp",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/oop_ann.sublime-project",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/net.cpp",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/sigmoid.h",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/sigmoid.cpp",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/sigmoid_ascii_net.h",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/data.h",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/inter_neuron.cpp",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/prova_2.cpp",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/inter_neuron.h",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/doc/spiegazione.txt",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/spiegazione.txt"
+		"/Users/giorgiogiuffre/Documents/TeX output/SO_ggiuffre.tex"
 	],
 	"find":
 	{
@@ -571,7 +587,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 105.0,
 		"where_history":
 		[
 			"*.h,*.cpp,",
@@ -583,6 +599,17 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"warn",
+			"dir",
+			"showNetInterface",
+			"QFileInfo",
+			"absoluteFilePath",
+			"title",
+			"QString",
+			"logica/",
+			"warning",
+			"unsigned ",
+			"Box",
 			"QStringList",
 			"foreach",
 			"list",
@@ -699,18 +726,7 @@
 			"momentum",
 			"momentum_terms",
 			"momentum",
-			"(",
-			"!=",
-			"(",
-			"index",
-			"layeredNet",
-			"explicit",
-			"layeredNet",
-			"const float bias_value",
-			"0.2f",
-			"//protected",
-			"learning",
-			"bv"
+			"("
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -738,7 +754,7 @@
 					"file": "net_runner_widget.h",
 					"settings":
 					{
-						"buffer_size": 569,
+						"buffer_size": 591,
 						"regions":
 						{
 						},
@@ -765,15 +781,15 @@
 					"file": "net_runner_widget.cpp",
 					"settings":
 					{
-						"buffer_size": 1098,
+						"buffer_size": 1100,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1048,
-								1048
+								564,
+								564
 							]
 						],
 						"settings":
@@ -782,7 +798,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 360.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -792,7 +808,7 @@
 					"file": "net_trainer_widget.h",
 					"settings":
 					{
-						"buffer_size": 344,
+						"buffer_size": 453,
 						"regions":
 						{
 						},
@@ -818,15 +834,15 @@
 					"file": "net_trainer_widget.cpp",
 					"settings":
 					{
-						"buffer_size": 421,
+						"buffer_size": 451,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								293,
-								293
+								0,
+								0
 							]
 						],
 						"settings":
@@ -844,7 +860,7 @@
 					"file": "net_interface.h",
 					"settings":
 					{
-						"buffer_size": 366,
+						"buffer_size": 459,
 						"regions":
 						{
 						},
@@ -871,7 +887,7 @@
 					"file": "net_interface.cpp",
 					"settings":
 					{
-						"buffer_size": 311,
+						"buffer_size": 885,
 						"regions":
 						{
 						},
@@ -880,6 +896,60 @@
 							[
 								0,
 								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "nets_list.cpp",
+					"settings":
+					{
+						"buffer_size": 789,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "corn_window.cpp",
+					"settings":
+					{
+						"buffer_size": 1679,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								455,
+								455
 							]
 						],
 						"settings":
@@ -968,6 +1038,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 103.0,
+	"side_bar_width": 109.0,
 	"status_bar_visible": true
 }

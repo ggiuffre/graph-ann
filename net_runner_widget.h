@@ -16,11 +16,11 @@ class netRunnerWidget : public QWidget
 
 private:
 	QString title;
+	layeredBiasedNet * net;
 	QFormLayout * layout;
 	QTextEdit * input_text;
 	QPushButton * trigger;
 	QLabel * result;
-	layeredBiasedNet * net;
 
 public:
 	netRunnerWidget(QString t, layeredBiasedNet * n, QWidget * parent = nullptr);

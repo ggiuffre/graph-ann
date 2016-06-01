@@ -1,6 +1,7 @@
 #include "net_runner_widget.h"
 #include <QStringList>
 #include <vector>
+#include <QMessageBox>
 
 netRunnerWidget::netRunnerWidget(const QString t, layeredBiasedNet * n, QWidget * parent) : QWidget(parent), title(t), net(n), layout(new QFormLayout), input_text(new QTextEdit), trigger(new QPushButton("Calcola")), result(new QLabel)
 {
@@ -19,10 +20,11 @@ void netRunnerWidget::calculate()
 {
 	if (net)
 	{
+		QMessageBox::warning(this, "verifica", "ok");
 		QStringList input_list = input_text->toPlainText().split(" ", QString::SkipEmptyParts).filter(QRegularExpression("\\d+")); // QInputValidator ?
 		std::vector<float> input;
 		for(auto it = input_list.begin(); it < input_list.end(); ++it)
-    		input.push_back(it->toFloat());
+			input.push_back(it->toFloat());
 		std::vector<float> ans = (*net)(input);
 
 		QString output_list;

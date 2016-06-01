@@ -6,22 +6,20 @@
 #include "logica/nets.h"
 #include <QTabWidget>
 #include <QString>
+#include <QFileInfo>
 
 class netInterface : public QTabWidget
 {
 	Q_OBJECT
 
-	friend class netRunnerWidget;
-	friend class netTrainerWidget;
-
 private:
-	QString title;
+	const QFileInfo info;
+	layeredBiasedNet * net;
 	netRunnerWidget * runner;
 	netTrainerWidget * trainer;
-	layeredBiasedNet * net;
 
 public:
-	netInterface(QString t = "", QWidget * parent = nullptr);
+	netInterface(QFileInfo i, QWidget * parent = nullptr);
 	~netInterface();
 };
 

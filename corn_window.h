@@ -9,6 +9,7 @@
 #include <QMenuBar>
 #include <QStackedWidget>
 #include <QString>
+#include <QFileInfo>
 
 class CornWindow : public QMainWindow
 {
@@ -31,7 +32,7 @@ public:
 	QSize sizeHint() const Q_DECL_OVERRIDE;
 
 public slots:
-	void showNetInterface(QString t);
+	void showNetInterface(QFileInfo i);
 	void showNetBuilder();
 	void showInternetBuilder();
 	void showDataBuilder();

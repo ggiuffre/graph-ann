@@ -55,7 +55,7 @@ public:
 	void save(std::string netfile = "untitled.net") const;
 
 	virtual void addLayer(unsigned int n_nodes);
-	virtual void linkLayer(unsigned int l);
+	virtual void linkLayer(layers_iterator l);
 	void removeLayer(unsigned int l);
 };
 

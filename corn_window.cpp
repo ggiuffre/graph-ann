@@ -1,4 +1,5 @@
 #include "corn_window.h"
+#include <QMessageBox>
 
 CornWindow::CornWindow() : menu_bar(new QMenuBar), net_menu(new QMenu("Rete")), data_menu(new QMenu("Dati")),
 			ctrl(new QStackedWidget(this)), net_interface(nullptr), net_builder(new netBuilderWidget), data_builder(nullptr), nets_dock(new netsList(this))
@@ -13,7 +14,7 @@ CornWindow::CornWindow() : menu_bar(new QMenuBar), net_menu(new QMenu("Rete")), 
 	menu_bar->addMenu(data_menu);
 	setMenuBar(menu_bar);
 
-	connect(nets_dock, SIGNAL(netSelected(QString)), this, SLOT(showNetInterface(QString)));
+	connect(nets_dock, SIGNAL(netSelected(QFileInfo)), this, SLOT(showNetInterface(QFileInfo)));
 	addDockWidget(Qt::LeftDockWidgetArea, nets_dock);
 
 	ctrl->addWidget(net_builder);
@@ -40,11 +41,11 @@ void CornWindow::showInternetBuilder()
 	// ctrl->setCurrentWidget(internet_builder);
 }
 
-void CornWindow::showNetInterface(const QString t)
+void CornWindow::showNetInterface(const QFileInfo i)
 {
 	if (net_interface)
 		delete net_interface;
-	net_interface = new netInterface(t);
+	net_interface = new netInterface(i);
 	ctrl->addWidget(net_interface);
 	ctrl->setCurrentWidget(net_interface);
 }

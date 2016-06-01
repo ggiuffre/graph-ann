@@ -105,7 +105,7 @@ float network::activation_function(const float x) const
 	return x;
 }
 
-float network::activation_derivative(const float y) const
+float network::activation_derivative(const float) const
 {
 	return 1.0f;
 }

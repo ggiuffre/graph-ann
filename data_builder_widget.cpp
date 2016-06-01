@@ -40,7 +40,7 @@ void dataBuilderWidget::addExample()
 		return;
 	}
 
-	if (input_buffer->toPlainText().split(" ").size() != in_count || target_buffer->toPlainText().split(" ").size() != out_count)
+	if (input_buffer->toPlainText().split(" ").size() != static_cast<int>(in_count) || target_buffer->toPlainText().split(" ").size() != static_cast<int>(out_count))
 	{
 		QMessageBox::warning(this, "Errore di sintassi", "Gli esempi possono contenere solo input numerico (interi o floating point)");
 		return;
