@@ -40,7 +40,7 @@ int main()
 	net.addLayer(1);
 
 	net.init(0.5f);
-	net.incremental_training("./data/media.data", err);
+	net.train("./data/media.data", err);
 	net.save("./nets/media.net");
 //	net.init("./nets/media.net");
 

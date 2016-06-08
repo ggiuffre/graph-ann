@@ -40,8 +40,8 @@ public:
 
 	virtual std::vector<float> operator()(const std::vector<float>& in = std::vector<float>()) /*override*/;
 
-	void incremental_training(const std::vector<std::vector<float> >& examples, const std::vector<std::vector<float> >& targets, float& error, unsigned int max_epochs = 28000);
-	void incremental_training(std::string data_file, float& error, unsigned int max_epochs = 28000);
+	void train(const std::vector<std::vector<float> >& examples, const std::vector<std::vector<float> >& targets, float& error, unsigned int max_epochs = 28000);
+	void train(std::string data_file, float& error, unsigned int max_epochs = 28000);
 };
 
 #endif

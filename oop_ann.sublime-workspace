@@ -452,6 +452,7 @@
 	},
 	"file_history":
 	[
+		"/home/0/2014/ggiuffre/Desktop/bozza_3-06.sql",
 		"/home/0/2014/ggiuffre/Documents/ann_2/corn_window.h",
 		"/home/0/2014/ggiuffre/Documents/ann_2/nets_list.h",
 		"/home/0/2014/ggiuffre/Documents/ann_2/oop_ann.sublime-project",
@@ -578,8 +579,7 @@
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/or.net",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/makefile",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/makefile.GNUmakefile",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/dgraph.cpp",
-		"/Users/giorgiogiuffre/Documents/TeX output/SO_ggiuffre.tex"
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/dgraph.cpp"
 	],
 	"find":
 	{
@@ -587,7 +587,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 105.0,
+		"height": 0.0,
 		"where_history":
 		[
 			"*.h,*.cpp,",

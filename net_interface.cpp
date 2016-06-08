@@ -2,18 +2,18 @@
 #include <QMessageBox>
 #include <QDir>
 
-netInterface::netInterface(const QFileInfo i, QWidget * parent) : QTabWidget(parent), info(i), net(new layeredBiasedNet(info.absoluteFilePath().toStdString()))//, runner(new netRunnerWidget(info.completeBaseName(), net)), trainer(new netTrainerWidget(info.completeBaseName(), net)) // assume che i sia valido
+netInterface::netInterface(const QFileInfo i, QWidget * parent) : QTabWidget(parent), info(i), net(nullptr) // assume che i sia valido
 {
 	QString dir = info.absoluteDir().dirName();
-	if (dir == "sigmoid")
-		net = dynamic_cast<layeredSigmoidNet *>(net);
-	else if (dir == "arctan")
-		net = dynamic_cast<layeredAtanNet *>(net);
-	else if (dir == "tanh")
-		net = dynamic_cast<layeredTanhNet *>(net);
+	if (dir == "Sigmoide")
+		net = new layeredSigmoidNet(info.absoluteFilePath().toStdString());
+	else if (dir == "Arcotangente")
+		net = new layeredAtanNet(info.absoluteFilePath().toStdString());
+	else if (dir == "Tangente Iperbolica")
+		net = new layeredTanhNet(info.absoluteFilePath().toStdString());
 
-	runner = new netRunnerWidget(info.completeBaseName(), net);
-	trainer = new netTrainerWidget(info.completeBaseName(), net);
+	runner = new netRunnerWidget(net, this);
+	trainer = new netTrainerWidget(info.completeBaseName(), net, this);
 
 	addTab(runner, "Collauda la rete");
 	addTab(trainer, "Allena la rete");
@@ -21,5 +21,7 @@ netInterface::netInterface(const QFileInfo i, QWidget * parent) : QTabWidget(par
 
 netInterface::~netInterface()
 {
+	// delete trainer; ???
+	// delete runner;  ???
 	delete net;
 }

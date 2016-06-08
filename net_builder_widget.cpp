@@ -73,6 +73,6 @@ void netBuilderWidget::addNet()
 			new_net->addLayer(layers_arch[i]->value());
 
 		new_net->init(0.5f);
-		new_net->save("./logica/nets/" + name->text().toStdString() + ".net");
+		new_net->save("./logica/nets/" + neuron_type->currentText().toStdString() + "/" + name->text().toStdString() + ".net");
 	}
 }

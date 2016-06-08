@@ -10,7 +10,7 @@ using std::vector;
 
 
 
-void layeredBiasedNet::incremental_training(const vector<vector<float> >& examples, const vector<vector<float> >& targets, float& error, const unsigned int max_epochs)
+void layeredBiasedNet::train(const vector<vector<float> >& examples, const vector<vector<float> >& targets, float& error, const unsigned int max_epochs)
 {
 	vector<unit> units(size());
 	vector<float> momentum_terms(n_layers(), 0.0f);
@@ -97,7 +97,7 @@ void layeredBiasedNet::incremental_training(const vector<vector<float> >& exampl
 	std::cout << '\n';
 }
 
-void layeredBiasedNet::incremental_training(const std::string data_file, float& error, const unsigned int max_epochs)
+void layeredBiasedNet::train(const std::string data_file, float& error, const unsigned int max_epochs)
 {
 	std::ifstream fin(data_file);
 	unsigned int n_ex = 0, n_in = 0, n_out = 0;
@@ -115,5 +115,5 @@ void layeredBiasedNet::incremental_training(const std::string data_file, float& 
 
 	fin.close();
 
-	incremental_training(examples, targets, error, max_epochs);
+	train(examples, targets, error, max_epochs);
 }
