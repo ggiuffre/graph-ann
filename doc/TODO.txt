@@ -1,13 +1,10 @@
 DA FARE:
 
-(.) possibilità di creare inter-reti   <<<<<<<<<<<
-    ==============================================
+(.) possibilità di creare inter-reti   <<<<<<<<>>>
 (.) possibilità di creare una rete con UN SOLO livello (input = output)
-(.) documentazione built-in delle varie funzioni di attivazione
 (?) pagina iniziale con disegno carino
-(.) aggiungere nuovi fogli .data di default e togliere quelli meno didattici e carini
-(.) controllare i fogli .net, che siano allenati con una funzione
-(.) POSSIBILITA' DI SALVARE NEL FOGLIO .net ANCHE IL TIPO DI NEURONE
 (?) usare QHBoxLayout per mettere in riga (anziché in colonna) i vari pulsanti e i textedit
 (.) aggiungere esempio di creazione foglio dati sulla documentazione
 (?) trasferire il peso di indicare "logica/nets/... .net" al modulo logico
+(!) cornWindow potrebbe ereditare direttamente da QStackedWidget: provare!   <<<<<<<<>>>
+(.) aggiungere controllo di cicli in DAG   <<<<<<<<>>>
