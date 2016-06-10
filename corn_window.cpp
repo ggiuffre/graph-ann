@@ -2,22 +2,24 @@
 #include <QMessageBox>
 
 CornWindow::CornWindow() : menu_bar(new QMenuBar), net_menu(new QMenu("Rete")), data_menu(new QMenu("Dati")),
-			ctrl(new QStackedWidget(this)), net_interface(nullptr), net_builder(new netBuilderWidget), data_builder(nullptr), nets_dock(new netsList(this))
+			ctrl(new QStackedWidget(this)), net_interface(nullptr), net_builder(new netBuilderWidget), data_builder(nullptr), internet_interface(new internetInterface), nets_dock(new netsList(this))
 {
 	setWindowTitle("Piattaforma per allenare reti neurali");
 //	setStyleSheet("QMainWindow {border-image: url(./sfondo.jpg); border-width: 200px;}");
 
 	net_menu->addAction("Nuova Rete", this, SLOT(showNetBuilder()));
-	net_menu->addAction("Nuova Inter-rete", this, SLOT(showInternetBuilder()));
+	net_menu->addAction("Collauda Inter-rete", this, SLOT(showInternetBuilder()));
 	menu_bar->addMenu(net_menu);
 	data_menu->addAction("Nuovo Foglio di Esempi", this, SLOT(showDataBuilder()));
 	menu_bar->addMenu(data_menu);
 	setMenuBar(menu_bar);
 
 	connect(nets_dock, SIGNAL(netSelected(QFileInfo)), this, SLOT(showNetInterface(QFileInfo)));
+	connect(nets_dock, SIGNAL(netAddedToInternet(QFileInfo)), internet_interface, SLOT(addNet(QFileInfo)));
 	addDockWidget(Qt::LeftDockWidgetArea, nets_dock);
 
 	ctrl->addWidget(net_builder);
+	ctrl->addWidget(internet_interface);
 	setCentralWidget(ctrl);
 }
 
@@ -38,7 +40,7 @@ void CornWindow::showNetBuilder()
 
 void CornWindow::showInternetBuilder()
 {
-	// ctrl->setCurrentWidget(internet_builder);
+	ctrl->setCurrentWidget(internet_interface);
 }
 
 void CornWindow::showNetInterface(const QFileInfo i)

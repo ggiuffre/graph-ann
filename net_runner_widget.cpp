@@ -3,7 +3,7 @@
 #include <vector>
 #include <QMessageBox>
 
-netRunnerWidget::netRunnerWidget(layeredBiasedNet * n, QWidget * parent) : QWidget(parent), net(n), layout(new QFormLayout), input_text(new QTextEdit), trigger(new QPushButton("Calcola")), result(new QLabel)
+netRunnerWidget::netRunnerWidget(layeredBiasedNet * n, QWidget * parent) : QWidget(parent), net(n), layout(new QFormLayout), input_text(new QTextEdit), trigger(new QPushButton("Vai")), result(new QLabel)
 {
 	layout->addRow("Input:", input_text);
 
@@ -32,4 +32,6 @@ void netRunnerWidget::calculate()
 		result->setText(output_list);
 		update();
 	}
+	else
+		QMessageBox::warning(this, "Errore", "La rete non è definita: forse il file .net è stato ridenominato durante la sessione attuale.");
 }

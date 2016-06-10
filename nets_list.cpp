@@ -1,4 +1,6 @@
 #include "nets_list.h"
+#include <QGuiApplication>
+#include <QMessageBox>
 
 netsList::netsList(QWidget * parent) : QDockWidget(parent), fs(new QFileSystemModel(this)), files(new QListView(this))
 {
@@ -21,6 +23,10 @@ void netsList::selectNet(const QModelIndex i)
 	if (fs->fileInfo(i).isDir())
 		files->setRootIndex(fs->index(fs->fileInfo(i).absoluteFilePath()));
 	else
-		emit netSelected(fs->fileInfo(i));
-//		emit netSelected(fs->fileInfo(i).completeBaseName());
+	{
+		if (QGuiApplication::keyboardModifiers() == Qt::ControlModifier)
+			emit netAddedToInternet(fs->fileInfo(i));
+		else
+			emit netSelected(fs->fileInfo(i));
+	}
 }

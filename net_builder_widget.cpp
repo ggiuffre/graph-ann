@@ -5,11 +5,6 @@
 
 netBuilderWidget::netBuilderWidget(QWidget * parent) : QWidget(parent), layout(new QFormLayout), name(new QLineEdit), neuron_type(new QComboBox), n_layers(new QSpinBox), next(new QPushButton("Prosegui...")), trigger(new QPushButton("Crea")), new_net(nullptr)
 {
-//	QPalette pal(palette());
-//	pal.setColor(QPalette::Background, Qt::black);
-//	setAutoFillBackground(true);
-//	setPalette(pal);
-
 	neuron_type->insertItem(0, "Sigmoide");
 	neuron_type->insertItem(1, "Tangente Iperbolica");
 	neuron_type->insertItem(2, "Arcotangente");
