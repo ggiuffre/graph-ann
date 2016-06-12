@@ -39,11 +39,6 @@ void layeredBiasedNet::train(const vector<vector<float> >& examples, const vecto
 
 			// (SI PUO MIGLIORARE!)  ^^^^^
 
-//			std::cout << "(";
-//			for (nodes_iterator i = begin(end() - 1); i < end(end() - 1); ++i)
-//				std::cout << units[i].out << ", ";
-//			std::cout << "\b\b)\t";
-
 
 
 			// --- per ogni unità, calcola l'errore:
@@ -52,13 +47,11 @@ void layeredBiasedNet::train(const vector<vector<float> >& examples, const vecto
 			unsigned int t = 0;
 			for (nodes_iterator i = begin(end() - 1) + 1; i < end(end() - 1); ++i)
 			{
-				units[i].delta = activation_derivative(units[i].out) * (targets[*e][t] - units[i].out);		// (senza derivata va meglio...!)
+				units[i].delta = activation_derivative(units[i].out) * (targets[*e][t] - units[i].out);
 				err += fabs(targets[*e][t] - units[i].out);
-				// forse è meglio l'err quadratico medio...
 				++t;
 			}
 			err /= output_size() - 1;
-//			std::cout << err << '\n';
 
 			for (layers_iterator l = end() - 2; l >= begin(); --l)
 				for (nodes_iterator i = begin(l) + 1; i < end(l); ++i)
@@ -82,7 +75,7 @@ void layeredBiasedNet::train(const vector<vector<float> >& examples, const vecto
 							if (edge(i, j) + update != 0)
 								link(i, j, edge(i, j) + update);
 							else
-								link(i, j, 0.0000001f);	// <<< un po' troppo artigianale
+								link(i, j, 0.000001f);	// <<< un po' troppo artigianale
 							//  --------------------------------------------------------
 							momentum_terms[l] = update;
 						}

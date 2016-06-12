@@ -1,23 +1,23 @@
-#include "dag_4.h"
+#include "DGraph_4.h"
 
 
 
-// DAG_4::nodes_iterator
+// DGraph_4::nodes_iterator
 
-DAG_4::nodes_iterator::nodes_iterator(const unsigned int i) : index(i) {}
+DGraph_4::nodes_iterator::nodes_iterator(const unsigned int i) : index(i) {}
 
-DAG_4::nodes_iterator::operator unsigned int() const
+DGraph_4::nodes_iterator::operator unsigned int() const
 {
 	return index;
 }
 
-DAG_4::nodes_iterator& DAG_4::nodes_iterator::operator++()		// prefisso
+DGraph_4::nodes_iterator& DGraph_4::nodes_iterator::operator++()		// prefisso
 {
 	index++;
 	return *this;
 }
 
-DAG_4::nodes_iterator DAG_4::nodes_iterator::operator++(int)	// postfisso
+DGraph_4::nodes_iterator DGraph_4::nodes_iterator::operator++(int)	// postfisso
 {
 	nodes_iterator aux = *this;
 	index++;
@@ -26,11 +26,11 @@ DAG_4::nodes_iterator DAG_4::nodes_iterator::operator++(int)	// postfisso
 
 
 
-// DAG_4::weights_iterator
+// DGraph_4::weights_iterator
 
-DAG_4::weights_iterator::weights_iterator(const unsigned int i, const nodes_iterator n) : nodes_iterator(i), self(n) {}
+DGraph_4::weights_iterator::weights_iterator(const unsigned int i, const nodes_iterator n) : nodes_iterator(i), self(n) {}
 
-DAG_4::weights_iterator& DAG_4::weights_iterator::operator++()		// prefisso
+DGraph_4::weights_iterator& DGraph_4::weights_iterator::operator++()		// prefisso
 {
 	nodes_iterator::operator++();
 	if (*this == self)
@@ -39,7 +39,7 @@ DAG_4::weights_iterator& DAG_4::weights_iterator::operator++()		// prefisso
 	return *this;
 }
 
-DAG_4::weights_iterator DAG_4::weights_iterator::operator++(int)	// postfisso
+DGraph_4::weights_iterator DGraph_4::weights_iterator::operator++(int)	// postfisso
 {
 	weights_iterator aux = *this;
 	nodes_iterator::operator++();
@@ -51,9 +51,9 @@ DAG_4::weights_iterator DAG_4::weights_iterator::operator++(int)	// postfisso
 
 
 
-// DAG_4
+// DGraph_4
 
-DAG_4::DAG_4(const unsigned int s) : sz(0), cpty(0), weights(cpty ? new float * [cpty] : nullptr)
+DGraph_4::DGraph_4(const unsigned int s) : sz(0), cpty(0), weights(cpty ? new float * [cpty] : nullptr)
 {
 	resize(s);
 
@@ -65,7 +65,7 @@ DAG_4::DAG_4(const unsigned int s) : sz(0), cpty(0), weights(cpty ? new float * 
 	}
 }
 
-DAG_4::DAG_4(const DAG_4& g) : sz(g.sz), cpty(g.cpty), weights(sz ? new float * [cpty] : nullptr)
+DGraph_4::DGraph_4(const DGraph_4& g) : sz(g.sz), cpty(g.cpty), weights(sz ? new float * [cpty] : nullptr)
 {
 	for (unsigned int i = 0; i < cpty; ++i)
 		weights[i] = new float [cpty];
@@ -75,12 +75,12 @@ DAG_4::DAG_4(const DAG_4& g) : sz(g.sz), cpty(g.cpty), weights(sz ? new float * 
 			weights[i][j] = g.weights[i][j];
 }
 
-DAG_4::~DAG_4()
+DGraph_4::~DGraph_4()
 {
 	delete [] weights;
 }
 
-DAG_4& DAG_4::operator=(const DAG_4& g)
+DGraph_4& DGraph_4::operator=(const DGraph_4& g)
 {
 	resize(g.sz);
 	for (unsigned int i = 0; i < sz; ++i)
@@ -90,17 +90,17 @@ DAG_4& DAG_4::operator=(const DAG_4& g)
 	return *this;
 }
 
-DAG_4::nodes_iterator DAG_4::begin() const
+DGraph_4::nodes_iterator DGraph_4::begin() const
 {
 	return 0;
 }
 
-DAG_4::nodes_iterator DAG_4::end() const
+DGraph_4::nodes_iterator DGraph_4::end() const
 {
 	return sz;
 }
 
-DAG_4::weights_iterator DAG_4::begin(const nodes_iterator n) const
+DGraph_4::weights_iterator DGraph_4::begin(const nodes_iterator n) const
 {
 	if (n != begin())
 		return {0, n};
@@ -108,12 +108,12 @@ DAG_4::weights_iterator DAG_4::begin(const nodes_iterator n) const
 		return {0, 1};
 }
 
-DAG_4::weights_iterator DAG_4::end(const nodes_iterator n) const
+DGraph_4::weights_iterator DGraph_4::end(const nodes_iterator n) const
 {
 	return {sz, n};
 }
 
-float DAG_4::edge(const unsigned int a, const unsigned int b) const
+float DGraph_4::edge(const unsigned int a, const unsigned int b) const
 {
 //	if (a >= sz || b >= sz)				// eccezione (!)
 //		throw ...
@@ -121,22 +121,22 @@ float DAG_4::edge(const unsigned int a, const unsigned int b) const
 	return weights[b][a];
 }
 
-unsigned int DAG_4::size() const
+unsigned int DGraph_4::size() const
 {
 	return sz;
 }
 
-unsigned int DAG_4::capacity() const
+unsigned int DGraph_4::capacity() const
 {
 	return cpty;
 }
 
-bool DAG_4::empty() const
+bool DGraph_4::empty() const
 {
 	return sz == 0;
 }
 
-void DAG_4::push_back(const unsigned int n)
+void DGraph_4::push_back(const unsigned int n)
 {
 	// crea nuovo spazio e aggiorna sz:
 	resize(sz + n);
@@ -152,13 +152,13 @@ void DAG_4::push_back(const unsigned int n)
 			weights[i][j] = 0.0f;
 }
 
-void DAG_4::pop_back(const unsigned int n)
+void DGraph_4::pop_back(const unsigned int n)
 {
 	if (n <= sz)
 		resize(sz - n);
 }
 
-void DAG_4::remove(const unsigned int pos)
+void DGraph_4::remove(const unsigned int pos)
 {
 	if (pos < sz)
 	{
@@ -176,7 +176,7 @@ void DAG_4::remove(const unsigned int pos)
 	}
 }
 
-void DAG_4::clear()
+void DGraph_4::clear()
 {
 	sz = 0;
 	cpty = 0;
@@ -184,7 +184,7 @@ void DAG_4::clear()
 	weights = nullptr;
 }
 
-void DAG_4::reserve(const unsigned int new_capacity)
+void DGraph_4::reserve(const unsigned int new_capacity)
 {
 	if (sz > new_capacity)
 		sz = new_capacity;		// (?)
@@ -202,7 +202,7 @@ void DAG_4::reserve(const unsigned int new_capacity)
 	weights = new_weights;
 }
 
-void DAG_4::resize(const unsigned int new_size)
+void DGraph_4::resize(const unsigned int new_size)
 {
 	unsigned int new_capacity = cpty ? cpty : 1;
 	while (new_size < new_capacity)
@@ -214,13 +214,13 @@ void DAG_4::resize(const unsigned int new_size)
 	sz = new_size;
 }
 
-void DAG_4::link(const unsigned int a, const unsigned int b, const float w)
+void DGraph_4::link(const unsigned int a, const unsigned int b, const float w)
 {
 	if (a != b && a < sz && b < sz)		// eccezione...?
 		weights[b][a] = w;
 }
 
-void DAG_4::unlink(const unsigned int a, const unsigned int b)
+void DGraph_4::unlink(const unsigned int a, const unsigned int b)
 {
 	link(a, b, 0.0f);
 }

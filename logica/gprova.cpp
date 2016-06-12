@@ -29,20 +29,20 @@ int main()
 	cout << endl;*/
 
 	const unsigned int n_in = 2;
-	float err = 0.0015f;
+//	float err = 0.0015f;
 
 	layeredSigmoidNet net;		// --> ideale per input in [0,1]
 //	layeredTanhNet net;			// --> ideale per input in [-1,1]
 //	layeredAtanNet net;			// --> ideale per input in [-1,1]
 
-	net.addLayer(n_in);
+/*	net.addLayer(n_in);
 	net.addLayer(4);
 	net.addLayer(1);
 
 	net.init(0.5f);
 	net.train("./data/media.data", err);
-	net.save("./nets/media.net");
-//	net.init("./nets/media.net");
+	net.save("./nets/Sigmoide/media.net");*/
+	net.init("./nets/Sigmoide/media.net");
 
 	vector<float> in(n_in);
 	cout << "test: ";

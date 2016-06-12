@@ -8,7 +8,7 @@
 
 // network
 
-network::network(const unsigned int s) : DAG(s) {}
+network::network(const unsigned int s) : DGraph(s) {}
 
 network::network(const std::string netfile)
 {
@@ -17,7 +17,7 @@ network::network(const std::string netfile)
 		input_map[i] = 0.0f;
 }
 
-network::network(const network& net) : DAG(net), input_map()
+network::network(const network& net) : DGraph(net), input_map()
 {
 	for (unsigned int i = 0; i < input_size(); ++i)
 		input_map[i] = 0.0f;
@@ -91,13 +91,15 @@ unsigned int network::output_size() const
 
 void network::store(const std::vector<float>& in)
 {
-	if (in.size() >= input_size())		// eccezione...?
-	{
-		auto it = in.begin();
-		for (nodes_iterator i = begin(); i < end(); ++i)
-			if (is_input(i))
+	auto it = in.begin();
+	for (nodes_iterator i = begin(); i < end(); ++i)
+		if (is_input(i))
+		{
+			if (it < in.end())
 				input_map[i] = *(it++);
-	}
+			else
+				input_map[i] = 0.0f;
+		}
 }
 
 float network::activation_function(const float x) const
@@ -112,29 +114,32 @@ float network::activation_derivative(const float) const
 
 float network::neuron(const unsigned int i) const
 {
-	if (i >= size())		// eccezione
+	if (i < size())
+	{
+		if (is_input(i))
+			return input_map.find(i)->second;
+
+		float result = 0.0f;
+		for (weights_iterator j = begin(i); j < end(i); ++j)
+			if (edge(j, i))
+				result += edge(j, i) * neuron(j);
+
+		return activation_function(result);
+	}
+	else
 		return 0.0f;
-
-	if (is_input(i))
-		return input_map.find(i)->second;
-
-	float result = 0.0f;	// std::accumulate?
-	for (weights_iterator j = begin(i); j < end(i); ++j)
-		if (edge(j, i))
-			result += edge(j, i) * neuron(j);
-
-	return activation_function(result);
 }
 
 std::vector<float> network::operator()(const std::vector<float>& in)
 {
-	if (!in.empty())
+	if (!in.empty())	// if empty --> abbiamo già fatto una store()
 		store(in);
 
 	std::vector<float> result;
-	for (nodes_iterator i = begin(); i < end(); ++i)
-		if (is_output(i))
-			result.push_back(neuron(i));
+	if (!input_map.empty())
+		for (nodes_iterator i = begin(); i < end(); ++i)
+			if (is_output(i))
+				result.push_back(neuron(i));
 
 	input_map.clear();
 	return result;

@@ -76,16 +76,16 @@ netContainer& netContainer::operator=(const netContainer& nc)
 
 void netContainer::reserve(const unsigned int new_capacity)
 {
-	if (sz > new_capacity)
-		sz = new_capacity;		// (?)
+	if (new_capacity >= sz)
+	{
+		network ** new_nets = new network * [new_capacity];
+		for (unsigned int i = 0; i < sz; ++i)
+			new_nets[i] = nets[i];
 
-	network ** new_nets = new network * [new_capacity];
-	for (unsigned int i = 0; i < sz; ++i)
-		new_nets[i] = nets[i];
-
-	cpty = new_capacity;
-	delete [] nets;
-	nets = new_nets;
+		cpty = new_capacity;
+		delete [] nets;
+		nets = new_nets;
+	}
 }
 
 void netContainer::resize(const unsigned int new_size)

@@ -109,7 +109,7 @@ layeredNet::layers_iterator layeredNet::end() const
 	return n_lays;
 }
 
-DAG::nodes_iterator layeredNet::begin(const layeredNet::layers_iterator l) const
+DGraph::nodes_iterator layeredNet::begin(const layeredNet::layers_iterator l) const
 {
 	if (l < static_cast<int>(n_lays))
 		return layers[l].start();
@@ -117,7 +117,7 @@ DAG::nodes_iterator layeredNet::begin(const layeredNet::layers_iterator l) const
 	return end(end());
 }
 
-DAG::nodes_iterator layeredNet::end(const layeredNet::layers_iterator l) const
+DGraph::nodes_iterator layeredNet::end(const layeredNet::layers_iterator l) const
 {
 	if (l < static_cast<int>(n_lays))
 		return begin(l) + layers[l].size();

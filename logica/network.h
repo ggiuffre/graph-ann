@@ -1,13 +1,13 @@
 #ifndef NETWORK_H
 #define NETWORK_H
 
-#include "dag.h"
+#include "dgraph.h"
 #include <iostream>
 #include <string>
 #include <vector>
 #include <map>
 
-class network : public DAG
+class network : public DGraph
 {
 private:
 	virtual float activation_function(float x) const;

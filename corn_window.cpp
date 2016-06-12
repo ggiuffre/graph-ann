@@ -8,7 +8,7 @@ CornWindow::CornWindow() : menu_bar(new QMenuBar), net_menu(new QMenu("Rete")), 
 //	setStyleSheet("QMainWindow {border-image: url(./sfondo.jpg); border-width: 200px;}");
 
 	net_menu->addAction("Nuova Rete", this, SLOT(showNetBuilder()));
-	net_menu->addAction("Collauda Inter-rete", this, SLOT(showInternetBuilder()));
+	net_menu->addAction("Inter-rete", this, SLOT(showInternetBuilder()));
 	menu_bar->addMenu(net_menu);
 	data_menu->addAction("Nuovo Foglio di Esempi", this, SLOT(showDataBuilder()));
 	menu_bar->addMenu(data_menu);
