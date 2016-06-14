@@ -2,7 +2,7 @@
 \author{Giorgio Giuffr\`e}
 \date{}
 
-\documentclass[12pt]{article}
+\documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage{mathtools}
 \usepackage{amssymb}
@@ -50,14 +50,14 @@
 
 \subsection{Cos'è una rete neurale?}
 
-\paragraph{} Il miglior esempio di rete neurale è senza dubbio il cervello umano: una rete di cellule collegate tra loro --- dette \emph{neuroni} --- che si scambiano informazione sotto forma di segnali elettrici. Alcuni neuroni si interfacciano con l'ambiente esterno: sono i neuroni sensoriali (di input) e quelli motori (di output); altri invece stanno “nascosti” all'interno, nei meandri della rete. Possiamo vedere i neuroni di input e quelli di ouput come l'\textit{interfaccia} della rete con l'utente, mentre i neuroni nascosti costituiscono l'\textit{implementazione} di un algoritmo --- il comportamento umano, nel caso del nostro cervello. Nel cervello, ogni neurone manda un segnale a più neuroni e riceve segnali da neuroni diversi, determinando un'intricata catena parallela di segnali che termina con i neuroni motori, collegati ai muscoli. Quest'architettura, seppur strana, è alla base del pensiero e del comportamento umano.
+\paragraph{} Il miglior esempio di rete neurale è senza dubbio il cervello umano: una rete di cellule collegate tra loro --- dette \emph{neuroni} --- che si scambiano informazione sotto forma di segnali elettrici. Alcuni neuroni si interfacciano con l'ambiente esterno: sono i neuroni sensoriali (di input) e quelli motori (di output); altri invece stanno “nascosti” all'interno, nei meandri della rete. Possiamo vedere i neuroni di input e quelli di ouput come l'\textit{interfaccia} della rete con l'utente, mentre i neuroni nascosti costituiscono l'\textit{implementazione} di un algoritmo --- il comportamento umano, nel caso del nostro cervello. Nel cervello, ogni neurone manda un segnale a più neuroni e riceve segnali da neuroni diversi, determinando un'intricata catena parallela di segnali che termina con i neuroni motori, collegati ai muscoli.
 
 \paragraph{} Formalmente, una rete neurale è un grafo orientato in cui ogni nodo è un \textbf{neurone} e ogni arco è un \textbf{collegamento} che va da un neurone a un altro. Un neurone è una cellula che riceve uno o più segnali di input, li somma ed emette un solo segnale di output (quindi un neurone è una funzione $f : \mathbb{R}^n \rightarrow \mathbb{R}$, dove $n \ge 1$ è il numero di segnali in ingresso). In base al segnale totale di input $x$, ogni neurone emette quindi un certo segnale di output $f(x)$ che può poi ramificarsi, cioè può essere mandato a più di un neurone, a seconda di com'è disegnato il grafo. Le connessioni (gli archi) tra un neurone e l'altro sono pesate, cioè ogni input $x_i$ viene moltiplicato per una costante reale $w_i$ che può essere modificata dalla rete nel corso del tempo.
 
 \paragraph{} Tutti i neuroni della rete implementano la stessa semplice funzione $f$, detta \textbf{funzione di attivazione}. Chiaramente, l'output di due neuroni può essere diverso, per il fatto che gli archi della rete non hanno tutti lo stesso peso. La capacità della rete di modificare i pesi delle proprie connessioni fa sì che essa sia capace di associare ad ogni input un certo output desiderato. Ad esempio, una rete con due neuroni di input e un neurone di output può modificare i propri pesi in modo da imparare a calcolare la media di due numeri che le vengono dati in input:
 
 \begin{center}
-\begin{tikzpicture}[x=1.5cm, y=1.5cm, >=stealth]
+\begin{tikzpicture}[x=1.4cm, y=1.2cm, >=stealth]
 
 \foreach \m/\l [count=\y] in {1,2}
 	\node [every neuron/.try, neuron \m/.try] (input-\m) at (0,2-\y) {};
@@ -78,7 +78,7 @@
 		\draw [->] (input-\i) -- (output-\j);
 
 \foreach \l [count=\x from 0] in {Input, Ouput}
-  \node [align=center, above] at (\x*2,1.5) {\l};
+	\node [align=center, above] at (\x*2,1.5) {\l};
 
 \end{tikzpicture}
 \end{center}
@@ -88,7 +88,7 @@ La rete apprende grazie ad una serie di \textbf{esempi} che le vengono presentat
 \paragraph{} Oppure, una rete con 4 neuroni in ingresso e 4 in uscita (più un livello di neuroni “nascosti”) potrebbe imparare a calcolare il successore di un numero in formato binario\footnote{I pallini neri nel disegno indicano la presenza di eventuali altri neuroni nascosti, oltre ai due disegnati}:
 
 \begin{center}
-\begin{tikzpicture}[x=1.5cm, y=1.5cm, >=stealth]
+\begin{tikzpicture}[x=1.4cm, y=1.2cm, >=stealth]
 
 \foreach \m/\l [count=\y] in {1,2,3,4}
 	\node [every neuron/.try, neuron \m/.try] (input-\m) at (0,2-\y) {};
@@ -116,7 +116,7 @@ La rete apprende grazie ad una serie di \textbf{esempi} che le vengono presentat
 		\draw [->] (hidden-\i) -- (output-\j);
 
 \foreach \l [count=\x from 0] in {Input, Hidden, Ouput}
-  \node [align=center, above] at (\x*2,1.8) {\l \\ layer};
+	\node [align=center, above] at (\x*2,1.8) {\l \\ layer};
 
 \end{tikzpicture}
 \end{center}
@@ -148,8 +148,10 @@ La prima cosa da fare, quindi, è andare sul menù “Rete” e cliccare “Nuov
 
 \paragraph{} Per testare la rete che abbiamo appena allenato, selezioniamo l'altra tab (“Collauda la Rete”) dell'interfaccia utente-rete. Qui l'utente può mettere in input dei numeri (interi o reali, ma la rete li interpreta come reali) e premere “Vai” per osservare il risultato della rete. Si potrà notare come una rete allenata fornisca, con un certo grado di approssimazione, proprio gli output che è stata allenata a calcolare.
 
-\paragraph{} Possiamo anche collegare diverse reti tra loro creando una \emph{inter-rete}. È sufficiente fare \emph{ctrl-click} (\emph{cmd-click} sul Mac) per aggiungere una rete dall'elenco a sinistra nell'inter-rete che stiamo creando. Dopo aver aggiunto le reti che ci servono, dobbiamo cliccare “Inter-rete” dal menù “Rete”. Ci viene presentata una tabella (la matrice di adiacenza dell'inter-rete): per collegare l'output della rete $x$ all'input della rete $y$ dovremo cliccare la casella $x$ della riga $y$. [...]
+\paragraph{} Possiamo anche collegare diverse reti tra loro creando una \emph{inter-rete}. È sufficiente fare \emph{ctrl-click} (\emph{cmd-click} sul Mac) per aggiungere una rete dall'elenco a sinistra nell'inter-rete che stiamo creando. Dopo aver aggiunto le reti che ci servono, dobbiamo cliccare “Inter-rete” dal menù “Rete”. Ci viene presentata una tabella (la matrice di adiacenza dell'inter-rete): per collegare l'output della rete $x$ all'input della rete $y$ dovremo cliccare la casella $x$ della riga $y$.
 
+% >>>>>>>>>>>>>> [...]
+% --------------------
 
 
 %%% ========================================
@@ -157,15 +159,15 @@ La prima cosa da fare, quindi, è andare sul menù “Rete” e cliccare “Nuov
 
 \section{Implementazione}
 
-\paragraph{} Il programma è stato progettato seguendo lo schema \textit{Model-View} ed è diviso in due blocchi ben distinti: il modulo logico (nella cartella “logica”) e quello grafico. Il modulo logico è indipendente da quello grafico.
+\paragraph{} Il programma è stato progettato seguendo lo schema \textit{Model-View} ed è diviso in due blocchi ben distinti: il modulo logico (nella cartella “logica”) e quello grafico. Il modulo logico è indipendente da quello grafico. Mentre l'interfaccia è in italiano, l'implementazione è in inglese.
 
 \subsection{Parte logica}
 
 \paragraph{} Una rete neurale è una rete, che a sua volta è un grafo orientato. Un grafo orientato è rappresentabile per mezzo della sua matrice di adiacenza $W$, in cui l'elemento $w_{ij}$ rappresenta la presenza o meno di un collegamento dal nodo $j$-esimo al nodo $i$-esimo. Per modellare una rete neurale, in cui i collegamenti tra i neuroni sono pesati, la matrice di adiacenza deve avere elementi reali (\texttt{float}): ogni segnale dal neurone $j$ al neurone $i$ verrà moltiplicato per $w_{ij}$.
 
-\paragraph{} Alla base della gerarchia che implementa una rete neurale (in figura \ref{fig:M1}) sta la classe \texttt{DGraph} (\emph{Directed Graph}), sottotipo di \texttt{std::vector<std::vector<float> >}; è quindi una matrice di \texttt{float}. Non si sono scelti i \texttt{double} perché, anche biologicamente, una rete neurale non lavora a precisione elevata. La classe, per ereditarietà, è un contenitore. Sono stati introdotti due nuovi iteratori per il seguente motivo: di ogni nodo interessano solo i collegamenti con gli \emph{altri} nodi; per questo, la classe \texttt{weights\_iterator} itera sui collegamenti entranti (anche nulli) di un particolare nodo (specificato nel costruttore dell'iteratore) ma evita automaticamente i collegamenti del nodo con se stesso. Per completezza, questa classe è definita a partire da \texttt{nodes\_iterator}, una semplice classe iteratore che rappresenta un indice da utilizzare con l'operatore di subscripting \texttt{[ ]} per iterare sui nodi.
+\paragraph{} Alla base della gerarchia che implementa una rete neurale (in figura) sta la classe \texttt{DGraph} (\emph{Directed Graph}), sottotipo di \texttt{std::vector<std::vector<float> >}; è quindi una matrice di \texttt{float}. Non si sono scelti i \texttt{double} perché, anche biologicamente, una rete neurale non lavora a precisione elevata. \texttt{DGraph} implementa un grafo orientato ma \emph{non} aciclico, dato che in futuro il programma potrebbe essere dotato di reti cicliche (un'architettura ben più potente ma anche più complicata); per ora, la classe \texttt{layeredNetwork} implementa un'architettura che garantisce assenza di cicli. texttt{DGraph}, per ereditarietà, è un contenitore. Sono stati introdotti due nuovi iteratori per il seguente motivo: di ogni nodo interessano solo i collegamenti con gli \emph{altri} nodi; per questo, la classe \texttt{weights\_iterator} itera sui collegamenti entranti (anche nulli) di un particolare nodo (specificato nel costruttore dell'iteratore) ma evita automaticamente i collegamenti del nodo con se stesso. Per completezza, questa classe è definita a partire da \texttt{nodes\_iterator}, una semplice classe iteratore che rappresenta un indice da utilizzare con l'operatore di subscripting \texttt{[ ]} per iterare sui nodi.
 
-\begin{figure}
+\begin{center}
 \begin{tikzpicture}
 \tikzset{VertexStyle/.style = {shape=rectangle, fill=white, draw}}
 \tikzset{EdgeStyle/.style = {->}}
@@ -173,19 +175,18 @@ La prima cosa da fare, quindi, è andare sul menù “Rete” e cliccare “Nuov
 \Vertex[L=\emph{vector$<$vector$<$float$>$$>$}]{vector}
 	\Vertex[x=0,y=-1]{DGraph}
 		\Vertex[x=0,y=-2]{network}
-			\Vertex[x=-2,y=-4]{layeredNetwork}
+			\Vertex[x=-1.7,y=-4]{layeredNetwork}
 				\Vertex[x=-3,y=-5.5]{layeredBiasedNetwork}
-			\Vertex[x=1.5,y=-4]{sigmoidNet}
-			\Vertex[x=3.9,y=-4]{tanhNet}
+			\Vertex[x=1.8,y=-4]{sigmoidNet}
+			\Vertex[x=4,y=-4]{tanhNet}
 			\Vertex[x=6,y=-4]{atanNet}
 
 					\Vertex[x=-2.64,y=-8]{layeredSigmoidNet}
-					\Vertex[x=1.28,y=-8]{layeredTanhNet}
-					\Vertex[x=5,y=-8]{layeredAtanNet}
+					\Vertex[x=0.8,y=-8]{layeredTanhNet}
+					\Vertex[x=4,y=-8]{layeredAtanNet}
 
-					\Vertex[x=-6,y=-4]{internetwork}
-
-		\Vertex[x=-6,y=-2,L=\textbf{netContainer}]{netContainer}
+		\Vertex[x=-5.4,y=-2,L=\textbf{netContainer}]{netContainer}
+			\Vertex[x=-5.4,y=-4]{internetwork}
 
 \Edge(DGraph)(vector)
 \Edge(network)(DGraph)
@@ -203,8 +204,8 @@ La prima cosa da fare, quindi, è andare sul menù “Rete” e cliccare “Nuov
 \Edge(internetwork)(network)
 \Edge(internetwork)(netContainer)
 \end{tikzpicture}
-\emph{\caption{Gerarchia del modulo logico (frecce tratteggiate indicano ereditarietà virtuale)} \label{fig:M1}}
-\end{figure}
+%\emph{\caption{Gerarchia del modulo logico (frecce tratteggiate indicano ereditarietà virtuale)} \label{fig:M1}}
+\end{center}
 
 \paragraph{} Da \texttt{DGraph} eredita la classe \texttt{network}, che implementa alcune funzionalità specifiche delle reti come il passaggio d'informazione (con \texttt{activation\_function}), l'inizializzazione dei pesi e il calcolo del flusso (\texttt{operator()}). Da \texttt{network} discendono varie classi:
 \begin{itemize}
@@ -218,7 +219,13 @@ La prima cosa da fare, quindi, è andare sul menù “Rete” e cliccare “Nuov
 
 \subsection{Interfaccia grafica}
 
-L'utente si interfaccia con una sola finestra principale, che cambia apparenza durante le varie fasi della progettazione di una rete neurale. ...
+L'utente si interfaccia con una finestra unica di tipo \texttt{cornWindow}, chiamata nel \emph{main}, che consiste di:
+\begin{itemize}
+ 	\item una barra dei menù --- membro puntatore a \texttt{QMenuBar};
+ 	\item un \emph{dock} laterale --- membro puntatore a \texttt{netsList}, che eredita da \texttt{QDockWidget};
+ 	\item un'area che cambia apparenza a seconda di ciò che l'utente vuole fare --- membro puntatore a \texttt{QStackedWidget}, che si avvale degli altri membri di \texttt{cornWindow} (puntatori a \texttt{netInterface}, \texttt{netBuilderWidget}, \texttt{dataBuilderWidget} e \texttt{internetInterface}).
+ \end{itemize}
+I membri a cui punta lo \texttt{QStackedWidget} ereditano tutti da \texttt{QWidget}, tranne \texttt{netInterface} che eredita da \texttt{QTabWidget}; infatti, quest'ultima classe rappresenta l'interfaccia dell'utente con la singola rete neurale (scelta dal \emph{dock}) e dalle due tab si può scegliere se interrogare la rete (per mezzo di un \texttt{netRunnerWidget}) o allenarla (per mezzo di un \texttt{netTrainerWidget}).
 
 
 
