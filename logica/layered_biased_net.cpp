@@ -3,16 +3,15 @@
 
 const float layeredBiasedNet::bias_value = 1.0f;
 
-layeredBiasedNet::layeredBiasedNet(const float lr, const float mc, const bool bp) : learning_rate(lr), momentum_coeff(mc), bias_plasticity(bp) {}
+layeredBiasedNet::layeredBiasedNet(const float lr, const float mc) : learning_rate(lr), momentum_coeff(mc) {}
 
-layeredBiasedNet::layeredBiasedNet(const std::string netfile, const float lr, const float mc, const bool bp) : layeredNet(netfile), learning_rate(lr), momentum_coeff(mc), bias_plasticity(bp) {}
+layeredBiasedNet::layeredBiasedNet(const std::string netfile, const float lr, const float mc) : layeredNet(netfile), learning_rate(lr), momentum_coeff(mc) {}
 
 layeredBiasedNet& layeredBiasedNet::operator=(const layeredBiasedNet& net)
 {
 	layeredNet::operator=(net);
 	learning_rate = net.learning_rate;
 	momentum_coeff = net.momentum_coeff;
-	// bias_plasticity rimane com'era... bisogna forse NON permettere l'operatore di uguaglianza? <<<<<<<<<<<<<<<
 	return *this;
 }
 

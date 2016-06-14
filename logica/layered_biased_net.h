@@ -17,7 +17,6 @@ class layeredBiasedNet : public layeredNet
 private:
 	float learning_rate;	// coefficiente di apprendimento
 	float momentum_coeff;	// coefficiente d'inerzia per l'apprendimento
-	const bool bias_plasticity;
 	static const float bias_value;
 
 protected:
@@ -25,8 +24,8 @@ protected:
 	virtual void linkLayer(layers_iterator l) /*override*/;			// virtual...
 
 public:
-	explicit layeredBiasedNet(float lr = 0.5f, float m = 0.2f, bool bp = true);		// i float sono soltanto parametri, non caratterizzano univocamente la rete
-	layeredBiasedNet(std::string netfile, float lr = 0.5f, float m = 0.2f, bool bp = true);
+	explicit layeredBiasedNet(float lr = 0.5f, float m = 0.2f);		// i float sono soltanto parametri, non caratterizzano univocamente la rete
+	layeredBiasedNet(std::string netfile, float lr = 0.5f, float m = 0.2f);
 	layeredBiasedNet& operator=(const layeredBiasedNet& net);
 
 	bool is_bias(unsigned int n) const;

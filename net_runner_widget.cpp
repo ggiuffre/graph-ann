@@ -28,7 +28,7 @@ void netRunnerWidget::calculate()
 
 		QString output_list;
 		for (auto it = ans.begin(); it < ans.end(); ++it)
-			output_list += QString::number(*it) + " ";
+			output_list += QString::number(*it, 'f', 3) + " ";
 		result->setText(output_list);
 		update();
 	}

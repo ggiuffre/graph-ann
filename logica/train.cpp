@@ -22,8 +22,8 @@ void layeredBiasedNet::train(const vector<vector<float> >& examples, const vecto
 
 	do
 	{
-		tot_err = 0.0f;
 		++epoch;
+		tot_err = 0.0f;
 		std::cout << "\r[" << epoch << "]\t";
 
 		std::random_shuffle(inds.begin(), inds.end());
@@ -37,8 +37,6 @@ void layeredBiasedNet::train(const vector<vector<float> >& examples, const vecto
 				for (nodes_iterator i = begin(l); i < end(l); ++i)
 					units[i].out = neuron(i);
 
-			// (SI PUO MIGLIORARE!)  ^^^^^
-
 
 
 			// --- per ogni unità, calcola l'errore:
@@ -48,8 +46,7 @@ void layeredBiasedNet::train(const vector<vector<float> >& examples, const vecto
 			for (nodes_iterator i = begin(end() - 1) + 1; i < end(end() - 1); ++i)
 			{
 				units[i].delta = activation_derivative(units[i].out) * (targets[*e][t] - units[i].out);
-				err += fabs(targets[*e][t] - units[i].out);
-				++t;
+				err += fabs(targets[*e][t++] - units[i].out);
 			}
 			err /= output_size() - 1;
 
@@ -64,19 +61,15 @@ void layeredBiasedNet::train(const vector<vector<float> >& examples, const vecto
 
 
 
-			// --- aggiorna i collegamenti sinaptici:
+			// --- aggiorna i collegamenti sinaptici, tranne quelli col bias:
 
 			for (layers_iterator l = begin(); l < end() - 1; ++l)
-				for (nodes_iterator i = begin(l) + !bias_plasticity; i < end(l); ++i)
+				for (nodes_iterator i = begin(l); i < end(l); ++i)
 					for (nodes_iterator j = begin(l + 1); j < end(l + 1); ++j)
 						if (edge(i, j))
 						{
 							float update = learningRate() * units[j].delta * units[i].out + momentum() * momentum_terms[l];
-							if (edge(i, j) + update != 0)
 								link(i, j, edge(i, j) + update);
-							else
-								link(i, j, 0.000001f);	// <<< un po' troppo artigianale
-							//  --------------------------------------------------------
 							momentum_terms[l] = update;
 						}
 

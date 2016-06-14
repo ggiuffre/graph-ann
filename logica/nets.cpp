@@ -1,7 +1,5 @@
 #include "nets.h"
 #include <cmath>
-#include <algorithm>
-#include <iostream>
 
 sigmoidNet::sigmoidNet(const unsigned int s) : network(s) {}
 
@@ -51,22 +49,22 @@ float atanNet::activation_derivative(const float y) const
 
 
 
-layeredSigmoidNet::layeredSigmoidNet(const float lr, const float m, const bool bp) : layeredBiasedNet(lr, m, bp) {}
+layeredSigmoidNet::layeredSigmoidNet(const float lr, const float m) : layeredBiasedNet(lr, m) {}
 
-layeredSigmoidNet::layeredSigmoidNet(const std::string netfile, const float lr, const float m, const bool bp) : layeredBiasedNet(netfile, lr, m, bp) {}
-
-
-
-
-
-layeredTanhNet::layeredTanhNet(const float lr, const float m, const bool bp) : layeredBiasedNet(lr, m, bp) {}
-
-layeredTanhNet::layeredTanhNet(const std::string netfile, const float lr, const float m, const bool bp) : layeredBiasedNet(netfile, lr, m, bp) {}
+layeredSigmoidNet::layeredSigmoidNet(const std::string netfile, const float lr, const float m) : layeredBiasedNet(netfile, lr, m) {}
 
 
 
 
 
-layeredAtanNet::layeredAtanNet(const float lr, const float m, const bool bp) : layeredBiasedNet(lr, m, bp) {}
+layeredTanhNet::layeredTanhNet(const float lr, const float m) : layeredBiasedNet(lr, m) {}
 
-layeredAtanNet::layeredAtanNet(const std::string netfile, const float lr, const float m, const bool bp) : layeredBiasedNet(netfile, lr, m, bp) {}
+layeredTanhNet::layeredTanhNet(const std::string netfile, const float lr, const float m) : layeredBiasedNet(netfile, lr, m) {}
+
+
+
+
+
+layeredAtanNet::layeredAtanNet(const float lr, const float m) : layeredBiasedNet(lr, m) {}
+
+layeredAtanNet::layeredAtanNet(const std::string netfile, const float lr, const float m) : layeredBiasedNet(netfile, lr, m) {}

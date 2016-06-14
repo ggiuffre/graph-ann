@@ -28,21 +28,21 @@ int main()
 		cout << out[i] << ' ';
 	cout << endl;*/
 
-	const unsigned int n_in = 2;
-//	float err = 0.0015f;
+	const unsigned int n_in = 4;
+	float err = 0.02f;
 
-	layeredSigmoidNet net;		// --> ideale per input in [0,1]
+//	layeredSigmoidNet net;		// --> ideale per input in [0,1]
 //	layeredTanhNet net;			// --> ideale per input in [-1,1]
-//	layeredAtanNet net;			// --> ideale per input in [-1,1]
+	layeredAtanNet net;			// --> ideale per input in [-1,1]
 
-/*	net.addLayer(n_in);
+	net.addLayer(n_in);
+	net.addLayer(6);
 	net.addLayer(4);
-	net.addLayer(1);
 
 	net.init(0.5f);
-	net.train("./data/media.data", err);
-	net.save("./nets/Sigmoide/media.net");*/
-	net.init("./nets/Sigmoide/media.net");
+	net.train("./data/bin++_2.data", err);
+//	net.save("./nets/_____/bin++_2.net");
+//	net.init("./nets/_____/bin++_2.net");
 
 	vector<float> in(n_in);
 	cout << "test: ";

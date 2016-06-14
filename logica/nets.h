@@ -4,7 +4,6 @@
 #include "layered_biased_net.h"
 #include "network.h"
 #include <string>
-#include <vector>
 
 
 
@@ -60,8 +59,6 @@ public:
 
 
 
-// =====   RETI A STRATI:
-
 
 
 // Rete a strati ad attivazione sigmoidale:
@@ -69,8 +66,8 @@ public:
 class layeredSigmoidNet : public layeredBiasedNet, public sigmoidNet
 {
 public:
-	explicit layeredSigmoidNet(float lr = 0.5f, float m = 0.7f, bool bp = true);
-	layeredSigmoidNet(std::string netfile, float lr = 0.5f, float m = 0.7f, bool bp = true);
+	explicit layeredSigmoidNet(float lr = 0.5f, float m = 0.7f);
+	layeredSigmoidNet(std::string netfile, float lr = 0.5f, float m = 0.7f);
 };
 
 
@@ -80,8 +77,8 @@ public:
 class layeredTanhNet : public layeredBiasedNet, public tanhNet
 {
 public:
-	explicit layeredTanhNet(float lr = 0.5f, float m = 0.2f, bool bp = true);
-	layeredTanhNet(std::string netfile, float lr = 0.5f, float m = 0.2f, bool bp = true);
+	explicit layeredTanhNet(float lr = 0.4f, float m = 0.3f);
+	layeredTanhNet(std::string netfile, float lr = 0.4f, float m = 0.3f);
 };
 
 
@@ -91,8 +88,8 @@ public:
 class layeredAtanNet : public layeredBiasedNet, public atanNet
 {
 public:
-	explicit layeredAtanNet(float lr = 0.2f, float m = 0.7f, bool bp = false);
-	layeredAtanNet(std::string netfile, float lr = 0.2f, float m = 0.7f, bool bp = false);
+	explicit layeredAtanNet(float lr = 0.1f, float m = 0.2f);
+	layeredAtanNet(std::string netfile, float lr = 0.1f, float m = 0.2f);
 };
 
 #endif
