@@ -3,7 +3,6 @@
 
 #include <QFileInfo>
 #include <QTableWidget>
-#include <QCheckBox>
 #include <QPushButton>
 #include <QFormLayout>
 
@@ -19,8 +18,9 @@ public:
 	internetInterface(QWidget * parent = nullptr);
 
 public slots:
-	void keep_checked(int row, int column, int x, int y);
+	void link(int row, int column);
 	void addNet(QFileInfo net_info);
+	void createInternet();
 };
 
 #endif

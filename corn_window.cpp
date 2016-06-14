@@ -4,8 +4,7 @@
 CornWindow::CornWindow() : menu_bar(new QMenuBar), net_menu(new QMenu("Rete")), data_menu(new QMenu("Dati")),
 			ctrl(new QStackedWidget(this)), net_interface(nullptr), net_builder(new netBuilderWidget), data_builder(nullptr), internet_interface(new internetInterface), nets_dock(new netsList(this))
 {
-	setWindowTitle("Piattaforma per allenare reti neurali");
-//	setStyleSheet("QMainWindow {border-image: url(./sfondo.jpg); border-width: 200px;}");
+	setWindowTitle("CORN");
 
 	net_menu->addAction("Nuova Rete", this, SLOT(showNetBuilder()));
 	net_menu->addAction("Inter-rete", this, SLOT(showInternetBuilder()));
