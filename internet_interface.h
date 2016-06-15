@@ -2,7 +2,6 @@
 #define INTERNET_INTERFACE_H
 
 #include "logica/internetwork.h"
-#include "logica/network.h"
 #include "net_runner_widget.h"
 #include <QFileInfo>
 #include <QTableWidget>
@@ -26,7 +25,7 @@ public:
 	~internetInterface();
 
 public slots:
-	void link(int row, int column);
+	void toggle_link(int row, int column);
 	void addNet(QFileInfo net_info);
 	void showRunner();
 };

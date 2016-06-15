@@ -1,12 +1,12 @@
 #include "internet_interface.h"
 #include "net_interface.h"
-#include "logica/nets.h"
-#include <QMessageBox>
-#include <QString>
+#include "logica/nets.h" // layered...
+#include <QMessageBox> // debugging
+#include <QString>     // debugging
 
 internetInterface::internetInterface(QWidget * parent) : QWidget(parent), internet(new internetwork), adj_matrix(new QTableWidget(0, 0)), trigger(new QPushButton("Collauda...")), layout(new QFormLayout), runner(nullptr)
 {
-	connect(adj_matrix, SIGNAL(cellClicked(int, int)), this, SLOT(link(int, int)));
+	connect(adj_matrix, SIGNAL(cellClicked(int, int)), this, SLOT(toggle_link(int, int)));
 	layout->addWidget(adj_matrix);
 
 	connect(trigger, SIGNAL(clicked()), this, SLOT(showRunner()));
@@ -21,7 +21,7 @@ internetInterface::~internetInterface()
 	delete internet;
 }
 
-void internetInterface::link(const int row, const int column)
+void internetInterface::toggle_link(const int row, const int column)
 {
 	if (row != column)
 	{
@@ -29,7 +29,6 @@ void internetInterface::link(const int row, const int column)
 		{
 			adj_matrix->item(row, column)->setBackground(QBrush(QColor(0, 0, 0)));
 			internet->link(column, row);
-//			QMessageBox::warning(this, "...", QString::number((*internet)({1, 0, 1, 1})[0]));
 		}
 		else
 		{
@@ -66,9 +65,9 @@ void internetInterface::addNet(const QFileInfo net_info)
 
 void internetInterface::showRunner()
 {
-	layeredSigmoidNet net_1("/home/0/2014/ggiuffre/Documents/graph-ann/logica/nets/Sigmoide/and.net");
-	layeredSigmoidNet net_2("/home/0/2014/ggiuffre/Documents/graph-ann/logica/nets/Sigmoide/or.net");
-	layeredSigmoidNet net_3("/home/0/2014/ggiuffre/Documents/graph-ann/logica/nets/Sigmoide/xor.net");
+	layeredSigmoidNet net_1("./logica/nets/Sigmoide/and.net");
+	layeredSigmoidNet net_2("./logica/nets/Sigmoide/or.net");
+	layeredSigmoidNet net_3("./logica/nets/Sigmoide/xor.net");
 
 	internetwork prova;
 	prova.push_back(&net_1);
@@ -77,7 +76,7 @@ void internetInterface::showRunner()
 	prova.link(0, 2);
 	prova.link(1, 2);
 
-	QMessageBox::warning(this, "...", QString::number(prova({0, 0, 1, 1})[0]));
+	QMessageBox::warning(this, "verifica", QString::number(prova({0, 0, 1, 1})[0]));
 	runner = new netRunnerWidget(internet);
 	runner->show();
 }

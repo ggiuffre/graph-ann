@@ -1,7 +1,7 @@
 # Generato manualmente
 
 TEMPLATE = app
-TARGET = GUI
+TARGET = CORN
 INCLUDEPATH += .
 INCLUDEPATH += $$PWD/logica/
 QT += widgets
