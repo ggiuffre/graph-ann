@@ -11,7 +11,7 @@ protected:
 	virtual float neuron(unsigned int index) const;
 
 public:
-	void push_back(network& n);		// inserisce la rete n in testa all'interrete
+	void push_back(network * n);			// inserisce il puntatore a n nell'interrete
 	void pop_back(unsigned int n = 1);		// rimuovi gli ultimi n nodi immessi
 	void clear();
 	virtual void store(const std::vector<float>& in);
@@ -22,7 +22,7 @@ public:
 	nodes_iterator end() const;
 	weights_iterator begin(nodes_iterator n) const;
 	weights_iterator end(nodes_iterator n) const;
-	network& operator[](int i) const;
+	network * operator[](int i) const;
 };
 
 #endif

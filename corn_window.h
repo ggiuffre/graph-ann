@@ -9,7 +9,6 @@
 #include <QMainWindow>
 #include <QMenuBar>
 #include <QStackedWidget>
-#include <QString>
 #include <QFileInfo>
 
 class CornWindow : public QMainWindow

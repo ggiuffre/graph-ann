@@ -39,16 +39,16 @@ public:
 	class const_iterator : public iterator
 	{
 	public:
-		network * const operator*() const;
+		const network * operator*() const;
 	};
 
 	iterator begin() const;
 	iterator end() const;
 	unsigned int size() const;
 
-	void push_back(network& net);			// inserisce la rete net in testa
+	void push_back(network * net);			// inserisce il puntatore a net nella rete
 	void pop_back(unsigned int n = 1);		// rimuovi gli ultimi n nodi immessi
-	network& operator[](int i) const;
+	network * operator[](int i) const;
 	void clear();
 };
 

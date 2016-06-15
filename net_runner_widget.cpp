@@ -3,7 +3,7 @@
 #include <vector>
 #include <QMessageBox>
 
-netRunnerWidget::netRunnerWidget(layeredBiasedNet * n, QWidget * parent) : QWidget(parent), net(n), layout(new QFormLayout), input_text(new QTextEdit), trigger(new QPushButton("Vai")), result(new QLabel)
+netRunnerWidget::netRunnerWidget(network * n, QWidget * parent) : QWidget(parent), net(n), layout(new QFormLayout), input_text(new QTextEdit), trigger(new QPushButton("Vai")), result(new QLabel)
 {
 	layout->addRow("Input:", input_text);
 
@@ -20,7 +20,7 @@ void netRunnerWidget::calculate()
 {
 	if (net)
 	{
-		QStringList input_list = input_text->toPlainText().split(" ", QString::SkipEmptyParts).filter(QRegularExpression("\\d+")); // QInputValidator ?
+		QStringList input_list = input_text->toPlainText().split(" ", QString::SkipEmptyParts).filter(QRegularExpression("\\d+"));
 		std::vector<float> input;
 		for(auto it = input_list.begin(); it < input_list.end(); ++it)
 			input.push_back(it->toFloat());
@@ -28,7 +28,7 @@ void netRunnerWidget::calculate()
 
 		QString output_list;
 		for (auto it = ans.begin(); it < ans.end(); ++it)
-			output_list += QString::number(*it, 'f', 3) + " ";
+			output_list += QString::number(*it, 'f', 3) + "    ";
 		result->setText(output_list);
 		update();
 	}

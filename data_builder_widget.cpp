@@ -22,8 +22,8 @@ dataBuilderWidget::dataBuilderWidget(QWidget * parent) : QWidget(parent), layout
 
 void dataBuilderWidget::addExample()
 {
-	int in_count = input_buffer->toPlainText().split(" ").filter(QRegularExpression("\\d+")).size();
-	int out_count = target_buffer->toPlainText().split(" ").filter(QRegularExpression("\\d+")).size();
+	unsigned int in_count = input_buffer->toPlainText().split(" ").filter(QRegularExpression("\\d+")).size();
+	unsigned int out_count = target_buffer->toPlainText().split(" ").filter(QRegularExpression("\\d+")).size();
 	if (n_examples == 0)
 	{
 		n_in = in_count;
@@ -40,7 +40,7 @@ void dataBuilderWidget::addExample()
 		return;
 	}
 
-	if (input_buffer->toPlainText().split(" ").size() != in_count || target_buffer->toPlainText().split(" ").size() != out_count)
+	if (input_buffer->toPlainText().split(" ").size() != static_cast<int>(in_count) || target_buffer->toPlainText().split(" ").size() != static_cast<int>(out_count))
 	{
 		QMessageBox::warning(this, "Errore di sintassi", "Gli esempi possono contenere solo input numerico (interi o floating point)");
 		return;

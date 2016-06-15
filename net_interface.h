@@ -5,7 +5,6 @@
 #include "net_trainer_widget.h"
 #include "logica/nets.h"
 #include <QTabWidget>
-#include <QString>
 #include <QFileInfo>
 
 class netInterface : public QTabWidget
@@ -21,6 +20,7 @@ private:
 public:
 	netInterface(QFileInfo i, QWidget * parent = nullptr);
 	~netInterface();
+	static layeredBiasedNet * fromFile(QFileInfo i);
 };
 
 #endif

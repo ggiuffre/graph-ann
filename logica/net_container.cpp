@@ -43,7 +43,7 @@ netContainer::iterator netContainer::iterator::operator++(int)	// postfisso
 
 // netContainer::const_iterator
 
-network * const netContainer::const_iterator::operator*() const
+const network * netContainer::const_iterator::operator*() const
 {
 	return iterator::operator*();
 }
@@ -100,10 +100,10 @@ void netContainer::resize(const unsigned int new_size)
 	sz = new_size;
 }
 
-void netContainer::push_back(network& net)
+void netContainer::push_back(network * const net)
 {
 	resize(sz + 1);
-	nets[sz - 1] = &net;
+	nets[sz - 1] = net;
 }
 
 void netContainer::pop_back(const unsigned int n)
@@ -112,9 +112,9 @@ void netContainer::pop_back(const unsigned int n)
 		resize(sz - n);
 }
 
-network& netContainer::operator[](const int i) const
+network * netContainer::operator[](const int i) const
 {
-	return *(nets[i]);
+	return nets[i];
 }
 
 void netContainer::clear()

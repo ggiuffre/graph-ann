@@ -1,5 +1,4 @@
 #include "corn_window.h"
-#include <QMessageBox>
 
 CornWindow::CornWindow() : menu_bar(new QMenuBar), net_menu(new QMenu("Rete")), data_menu(new QMenu("Dati")),
 			ctrl(new QStackedWidget(this)), net_interface(nullptr), net_builder(new netBuilderWidget), data_builder(nullptr), internet_interface(new internetInterface), nets_dock(new netsList(this))

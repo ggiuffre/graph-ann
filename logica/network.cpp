@@ -132,14 +132,13 @@ float network::neuron(const unsigned int i) const
 
 std::vector<float> network::operator()(const std::vector<float>& in)
 {
-	if (!in.empty())	// if empty --> abbiamo già fatto una store()
+	if (input_map.empty())
 		store(in);
 
 	std::vector<float> result;
-	if (!input_map.empty())
-		for (nodes_iterator i = begin(); i < end(); ++i)
-			if (is_output(i))
-				result.push_back(neuron(i));
+	for (nodes_iterator i = begin(); i < end(); ++i)
+		if (is_output(i))
+			result.push_back(neuron(i));
 
 	input_map.clear();
 	return result;
