@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2016.2.25)  16 JUN 2016 17:44
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2016.2.25)  16 JUN 2016 18:36
 entering extended mode
  %&-line parsing enabled.
 **relazione.tex
@@ -865,7 +865,7 @@ Here is how much of TeX's memory you used:
  18055 multiletter control sequences out of 15000+50000
  14047 words of font info for 54 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 56i,8n,69p,1510b,694s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 56i,8n,69p,1626b,694s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/sha
 re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-te
 xlive/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texmf-texlive/fonts/
@@ -882,7 +882,7 @@ onts/cm/cmr9.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy1
 -texlive/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fo
 nts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texmf-texlive/fonts/type1/pu
 blic/amsfonts/symbols/msbm10.pfb>
-Output written on relazione.pdf (7 pages, 231020 bytes).
+Output written on relazione.pdf (7 pages, 232120 bytes).
 PDF statistics:
  173 PDF objects out of 1000 (max. 8388607)
  36 named destinations out of 1000 (max. 500000)

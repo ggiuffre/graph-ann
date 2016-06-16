@@ -408,10 +408,25 @@
 	},
 	"file_history":
 	[
+		"/home/0/2014/ggiuffre/Documents/ann_2/logica/train.cpp",
+		"/home/0/2014/ggiuffre/Documents/ann_2/logica/layered_net.h",
+		"/home/0/2014/ggiuffre/Documents/ann_2/net_trainer_widget.cpp",
+		"/home/0/2014/ggiuffre/Documents/ann_2/logica/layered_biased_net.h",
+		"/home/0/2014/ggiuffre/Documents/ann_2/logica/layered_biased_net.cpp",
+		"/home/0/2014/ggiuffre/Documents/ann_2/logica/internetwork.cpp",
+		"/home/0/2014/ggiuffre/Documents/ann_2/corn_window.cpp",
+		"/home/0/2014/ggiuffre/Documents/ann_2/corn_window.h",
+		"/home/0/2014/ggiuffre/Documents/ann_2/nets_list.h",
+		"/home/0/2014/ggiuffre/Documents/ann_2/nets_list.cpp",
+		"/home/0/2014/ggiuffre/Documents/ann_2/net_runner_widget.h",
+		"/home/0/2014/ggiuffre/Documents/ann_2/net_trainer_widget.h",
+		"/home/0/2014/ggiuffre/Documents/ann_2/net_runner_widget.cpp",
+		"/home/0/2014/ggiuffre/Documents/ann_2/net_builder_widget.cpp",
+		"/home/0/2014/ggiuffre/Documents/ann_2/net_builder_widget.h",
+		"/home/0/2014/ggiuffre/Documents/ann_2/doc/relazione.tex",
+		"/home/0/2014/ggiuffre/Documents/ann_2/data_builder_widget.cpp",
 		"/home/0/2014/ggiuffre/Documents/ann_2/logica/network.cpp",
 		"/home/0/2014/ggiuffre/Documents/ann_2/logica/network.h",
-		"/home/0/2014/ggiuffre/Documents/ann_2/doc/relazione.tex",
-		"/home/0/2014/ggiuffre/Documents/ann_2/logica/internetwork.cpp",
 		"/home/0/2014/ggiuffre/Documents/ann_2/logica/dgraph.h",
 		"/home/0/2014/ggiuffre/Documents/ann_2/logica/dgraph.cpp",
 		"/home/0/2014/ggiuffre/Documents/ann_2/internet_interface.cpp",
@@ -450,23 +465,12 @@
 		"/home/0/2014/ggiuffre/Documents/graph-ann/net_builder_widget.h",
 		"/home/0/2014/ggiuffre/Documents/graph-ann/doc/relazione.tex",
 		"/home/0/2014/ggiuffre/Desktop/bozza_3-06.sql",
-		"/home/0/2014/ggiuffre/Documents/ann_2/corn_window.h",
-		"/home/0/2014/ggiuffre/Documents/ann_2/nets_list.h",
 		"/home/0/2014/ggiuffre/Documents/ann_2/oop_ann.sublime-project",
-		"/home/0/2014/ggiuffre/Documents/ann_2/data_builder_widget.cpp",
 		"/home/0/2014/ggiuffre/Documents/ann_2/logica/layered_net.cpp",
-		"/home/0/2014/ggiuffre/Documents/ann_2/logica/layered_net.h",
-		"/home/0/2014/ggiuffre/Documents/ann_2/logica/layered_biased_net.h",
-		"/home/0/2014/ggiuffre/Documents/ann_2/logica/layered_biased_net.cpp",
-		"/home/0/2014/ggiuffre/Documents/ann_2/net_builder_widget.cpp",
-		"/home/0/2014/ggiuffre/Documents/ann_2/corn_window.cpp",
 		"/home/0/2014/ggiuffre/Documents/graph-ann/palestra.cpp",
 		"/home/0/2014/ggiuffre/Documents/graph-ann/palestra.h",
 		"/home/0/2014/ggiuffre/Documents/ann_2/GUI.pro",
-		"/home/0/2014/ggiuffre/Documents/ann_2/net_builder_widget.h",
 		"/home/0/2014/ggiuffre/Documents/ann_2/data_builder_widget.h",
-		"/home/0/2014/ggiuffre/Documents/ann_2/net_trainer_widget.cpp",
-		"/home/0/2014/ggiuffre/Documents/ann_2/net_trainer_widget.h",
 		"/home/0/2014/ggiuffre/Documents/graph-ann/logica/nets.h",
 		"/Users/giorgiogiuffre/Desktop/uni/Basi di Dati/progetto/relazione.tex",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/logica/data/tris.data",
@@ -531,11 +535,7 @@
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/nets/pigeon.net",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/prepare.cpp",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/nets/bin++.net",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/data/bin++.data",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/data/qam_16_gray.data",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/data/shift_right_2.data",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/GUI/train_operations.h",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/GUI/train_operations.cpp"
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/data/bin++.data"
 	],
 	"find":
 	{
@@ -543,7 +543,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 108.0,
+		"height": 0.0,
 		"where_history":
 		[
 			"*.h, *.cpp",
@@ -558,6 +558,13 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			" (reti ad un solo output)",
+			"(*((*this)[i]))()[0]",
+			"QMessageBox",
+			"QLabel",
+			"internet",
+			"estensione",
+			"relazione",
 			"vector",
 			"sar",
 			"“Collauda”",
@@ -678,14 +685,7 @@
 			"builder",
 			"240",
 			"QInputDialog",
-			"error",
-			"err_box",
-			"QMessageBox",
-			"newnet",
-			"connect",
-			"builder",
-			"Builder",
-			"builder"
+			"error"
 		],
 		"highlight": true,
 		"in_selection": false,

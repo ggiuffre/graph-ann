@@ -1,7 +1,6 @@
 #include "data_builder_widget.h"
 #include <QRegularExpression>
 #include <QInputDialog>
-#include <QVector>
 #include <QMessageBox>
 #include <fstream>
 
@@ -57,6 +56,6 @@ void dataBuilderWidget::storeData()
 {
 	tot_data.prepend(QString::number(n_examples) + " " + QString::number(n_in) + " " + QString::number(n_out) + "\n\n");
 	QString file_title = QInputDialog::getText(this, "Salva file", "Titolo del file (con estensione .data):");
-	std::ofstream result("./logica/data/" + file_title.toStdString() + ".data");
+	std::ofstream result("./logica/data/" + file_title.toStdString());
 	result << tot_data.toStdString();
 }
