@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"layere",
+				"layeredBiasedNet"
+			],
+			[
 				"net",
 				"netInterface"
 			],
@@ -220,10 +224,6 @@
 				"init"
 			],
 			[
-				"layere",
-				"layeredNet"
-			],
-			[
 				"n_la",
 				"n_layers"
 			],
@@ -371,46 +371,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "internet_interface.h",
-			"settings":
-			{
-				"buffer_size": 627,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "internet_interface.cpp",
-			"settings":
-			{
-				"buffer_size": 2765,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "logica/gprova.cpp",
-			"settings":
-			{
-				"buffer_size": 1490,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "net_interface.h",
-			"settings":
-			{
-				"buffer_size": 490,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "net_interface.cpp",
-			"settings":
-			{
-				"buffer_size": 873,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -448,6 +408,21 @@
 	},
 	"file_history":
 	[
+		"/home/0/2014/ggiuffre/Documents/ann_2/logica/network.cpp",
+		"/home/0/2014/ggiuffre/Documents/ann_2/logica/network.h",
+		"/home/0/2014/ggiuffre/Documents/ann_2/doc/relazione.tex",
+		"/home/0/2014/ggiuffre/Documents/ann_2/logica/internetwork.cpp",
+		"/home/0/2014/ggiuffre/Documents/ann_2/logica/dgraph.h",
+		"/home/0/2014/ggiuffre/Documents/ann_2/logica/dgraph.cpp",
+		"/home/0/2014/ggiuffre/Documents/ann_2/internet_interface.cpp",
+		"/home/0/2014/ggiuffre/Documents/ann_2/internet_interface.h",
+		"/home/0/2014/ggiuffre/Documents/ann_2/logica/internetwork.h",
+		"/home/0/2014/ggiuffre/Documents/ann_2/prova.cpp",
+		"/home/0/2014/ggiuffre/Documents/ann_2/logica/gprova.cpp",
+		"/home/0/2014/ggiuffre/Documents/ann_2/logica/net_container.cpp",
+		"/home/0/2014/ggiuffre/Documents/ann_2/logica/net_container.h",
+		"/home/0/2014/ggiuffre/Documents/ann_2/net_interface.cpp",
+		"/home/0/2014/ggiuffre/Documents/ann_2/net_interface.h",
 		"/home/0/2014/ggiuffre/Documents/graph-ann/logica/gprova.cpp",
 		"/home/0/2014/ggiuffre/Documents/graph-ann/logica/internetwork.cpp",
 		"/home/0/2014/ggiuffre/Documents/graph-ann/logica/internetwork.h",
@@ -479,23 +454,17 @@
 		"/home/0/2014/ggiuffre/Documents/ann_2/nets_list.h",
 		"/home/0/2014/ggiuffre/Documents/ann_2/oop_ann.sublime-project",
 		"/home/0/2014/ggiuffre/Documents/ann_2/data_builder_widget.cpp",
-		"/home/0/2014/ggiuffre/Documents/ann_2/logica/network.cpp",
-		"/home/0/2014/ggiuffre/Documents/ann_2/logica/network.h",
 		"/home/0/2014/ggiuffre/Documents/ann_2/logica/layered_net.cpp",
 		"/home/0/2014/ggiuffre/Documents/ann_2/logica/layered_net.h",
 		"/home/0/2014/ggiuffre/Documents/ann_2/logica/layered_biased_net.h",
 		"/home/0/2014/ggiuffre/Documents/ann_2/logica/layered_biased_net.cpp",
 		"/home/0/2014/ggiuffre/Documents/ann_2/net_builder_widget.cpp",
-		"/home/0/2014/ggiuffre/Documents/ann_2/logica/internetwork.cpp",
-		"/home/0/2014/ggiuffre/Documents/ann_2/logica/internetwork.h",
-		"/home/0/2014/ggiuffre/Documents/ann_2/logica/net_container.h",
 		"/home/0/2014/ggiuffre/Documents/ann_2/corn_window.cpp",
 		"/home/0/2014/ggiuffre/Documents/graph-ann/palestra.cpp",
 		"/home/0/2014/ggiuffre/Documents/graph-ann/palestra.h",
 		"/home/0/2014/ggiuffre/Documents/ann_2/GUI.pro",
 		"/home/0/2014/ggiuffre/Documents/ann_2/net_builder_widget.h",
 		"/home/0/2014/ggiuffre/Documents/ann_2/data_builder_widget.h",
-		"/home/0/2014/ggiuffre/Documents/ann_2/logica/gprova.cpp",
 		"/home/0/2014/ggiuffre/Documents/ann_2/net_trainer_widget.cpp",
 		"/home/0/2014/ggiuffre/Documents/ann_2/net_trainer_widget.h",
 		"/home/0/2014/ggiuffre/Documents/graph-ann/logica/nets.h",
@@ -566,16 +535,7 @@
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/data/qam_16_gray.data",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/data/shift_right_2.data",
 		"/Users/giorgiogiuffre/Documents/C++/oop-ann/GUI/train_operations.h",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/GUI/train_operations.cpp",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/GUI/datafiles_list.h",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/random_train.cpp",
-		"/Users/giorgiogiuffre/Desktop/zoox.cpp",
-		"/Users/giorgiogiuffre/Downloads/Telegram Desktop/zoox.cpp",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/data/media.data",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/data/xor_2.data",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/data/or_2.data",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/data/and.data",
-		"/Users/giorgiogiuffre/Documents/C++/oop-ann/data/or.data"
+		"/Users/giorgiogiuffre/Documents/C++/oop-ann/GUI/train_operations.cpp"
 	],
 	"find":
 	{
@@ -583,7 +543,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 108.0,
 		"where_history":
 		[
 			"*.h, *.cpp",
@@ -598,6 +558,18 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"vector",
+			"sar",
+			"“Collauda”",
+			"sar",
+			"cos",
+			"end",
+			"it !=",
+			"i !=",
+			"!= end",
+			"QString",
+			"st",
+			"vector",
 			"logica",
 			"internet",
 			"nets",
@@ -713,19 +685,7 @@
 			"connect",
 			"builder",
 			"Builder",
-			"builder",
-			"Builder",
-			"builder",
-			"setLayers",
-			"\"\\\\d\"",
-			"numbers",
-			"in",
-			"text",
-			"input",
-			"_data",
-			"data",
-			"tris",
-			"-1 1 0\n0 -1 0\n1 1 -1"
+			"builder"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -745,143 +705,8 @@
 	"groups":
 	[
 		{
-			"selected": 1,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "internet_interface.h",
-					"settings":
-					{
-						"buffer_size": 627,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "internet_interface.cpp",
-					"settings":
-					{
-						"buffer_size": 2765,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2626,
-								2626
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1242.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "logica/gprova.cpp",
-					"settings":
-					{
-						"buffer_size": 1490,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								519,
-								519
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "net_interface.h",
-					"settings":
-					{
-						"buffer_size": 490,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "net_interface.cpp",
-					"settings":
-					{
-						"buffer_size": 873,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],

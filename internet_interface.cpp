@@ -1,8 +1,6 @@
 #include "internet_interface.h"
 #include "net_interface.h"
-#include "logica/nets.h" // layered...
-#include <QMessageBox> // debugging
-#include <QString>     // debugging
+#include "logica/layered_biased_net.h"
 
 internetInterface::internetInterface(QWidget * parent) : QWidget(parent), internet(new internetwork), adj_matrix(new QTableWidget(0, 0)), trigger(new QPushButton("Collauda...")), layout(new QFormLayout), runner(nullptr)
 {
@@ -65,18 +63,6 @@ void internetInterface::addNet(const QFileInfo net_info)
 
 void internetInterface::showRunner()
 {
-	layeredSigmoidNet net_1("./logica/nets/Sigmoide/and.net");
-	layeredSigmoidNet net_2("./logica/nets/Sigmoide/or.net");
-	layeredSigmoidNet net_3("./logica/nets/Sigmoide/xor.net");
-
-	internetwork prova;
-	prova.push_back(&net_1);
-	prova.push_back(&net_2);
-	prova.push_back(&net_3);
-	prova.link(0, 2);
-	prova.link(1, 2);
-
-	QMessageBox::warning(this, "verifica", QString::number(prova({0, 0, 1, 1})[0]));
 	runner = new netRunnerWidget(internet);
 	runner->show();
 }

@@ -1,7 +1,4 @@
 #include "internetwork.h"
-#include <iostream>
-
-using std::vector;
 
 void internetwork::push_back(network * net)
 {
@@ -61,12 +58,17 @@ network * internetwork::operator[](const int i) const
 	return this->netContainer::operator[](i);
 }
 
-void internetwork::store(const vector<float>& in)
+void internetwork::store(const std::vector<float>& in)
 {
 	auto it = in.begin();
-	for (nodes_iterator i = begin(); i < end() && it != in.end(); ++i)
+	for (nodes_iterator i = begin(); i < end() && it < in.end(); ++i)
 		if (is_input(i))
-			(*this)[i]->store({it, it += (*this)[i]->input_size()});
+		{
+			auto new_it = it + (*this)[i]->input_size();
+			std::vector<float> input_vector(it, new_it);
+			(*this)[i]->store(input_vector);
+			it = new_it;
+		}
 }
 
 float internetwork::neuron(const unsigned int i) const
@@ -77,7 +79,7 @@ float internetwork::neuron(const unsigned int i) const
 			return (*((*this)[i]))()[0];		// solo il primo membro (reti ad un solo output)
 
 
-		vector<float> result;
+		std::vector<float> result;
 		for (weights_iterator j = begin(i); j < end(i); ++j)
 			if (edge(j, i))
 				result.push_back(edge(j, i) * neuron(j));

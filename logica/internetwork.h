@@ -11,7 +11,7 @@ protected:
 	virtual float neuron(unsigned int index) const;
 
 public:
-	void push_back(network * n);			// inserisce il puntatore a n nell'interrete
+	void push_back(network * net);			// inserisce il puntatore a n nell'interrete
 	void pop_back(unsigned int n = 1);		// rimuovi gli ultimi n nodi immessi
 	void clear();
 	virtual void store(const std::vector<float>& in);

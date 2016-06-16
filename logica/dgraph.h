@@ -7,7 +7,7 @@ class DGraph : public std::vector<std::vector<float> >
 {
 protected:
 	void remove(unsigned int pos);			// rimuovi il nodo in pos
-	// PROBLEMA: dopo una remove(), gli indici con cui l'utente si interfaccia non sono più validi
+	// N.B. dopo una remove(), gli indici con cui l'utente si interfaccia non sono più validi
 
 public:
 	explicit DGraph(unsigned int s = 0);	// un int non definisce univocamente un DGraph
@@ -40,7 +40,6 @@ public:
 
 	void push_back(unsigned int n = 1);		// inserisci n nodi in testa
 	void pop_back(unsigned int n = 1);		// rimuovi gli ultimi n nodi immessi
-//	void insert(unsigned int pos);			// inserisci un nodo in pos
 
 	void link(unsigned int a, unsigned int b, float w = 1.0f);
 	void unlink(unsigned int a, unsigned int b);

@@ -47,8 +47,8 @@ void network::init(const std::string netfile)
 
 bool network::is_output(const unsigned int node) const
 {
-	if (node >= size())		// eccezione
-		return 0;
+	if (node >= size())
+		return false;
 
 	bool is_out = true;
 	for (nodes_iterator i = begin(); i < end() && is_out; ++i)
@@ -59,8 +59,8 @@ bool network::is_output(const unsigned int node) const
 
 bool network::is_input(const unsigned int node) const
 {
-	if (node >= size())		// eccezione
-		return 0;
+	if (node >= size())
+		return false;
 
 	bool has_in = false;
 	for (weights_iterator i = begin(node); i < end(node) && !has_in; ++i)

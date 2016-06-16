@@ -2,20 +2,20 @@
 #define NETWORK_H
 
 #include "dgraph.h"
-#include <iostream>
 #include <string>
-#include <vector>
 #include <map>
+#include <vector>
+#include <iostream>
 
 class network : public DGraph
 {
 private:
 	virtual float activation_function(float x) const;
-	std::map<unsigned int, float> input_map;			// private?
+	std::map<unsigned int, float> input_map;
 
 protected:
 	virtual float activation_derivative(float y) const;
-	virtual float neuron(unsigned int index) const;		// private? (train.cpp la usa...)
+	virtual float neuron(unsigned int index) const;
 
 public:
 	virtual void store(const std::vector<float>& in);
