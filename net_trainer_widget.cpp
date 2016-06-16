@@ -11,7 +11,7 @@ netTrainerWidget::netTrainerWidget(layeredBiasedNet * n, QWidget * parent) : QWi
 
 	desired_error->setDecimals(4);
 	desired_error->setMinimum(0.0000);
-	desired_error->setMaximum(0.5);
+	desired_error->setMaximum(1.0000);
 	desired_error->setSingleStep(0.0001);
 	layout->addRow("Massimo errore tollerato:", desired_error);
 

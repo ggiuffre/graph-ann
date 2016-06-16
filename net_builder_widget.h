@@ -24,12 +24,12 @@ private:
 	layeredBiasedNet * new_net;
 	std::vector<QSpinBox *> layers_arch;
 
+public:
+	netBuilderWidget(QWidget * parent = nullptr);
+
 public slots:
 	void setLayers();
 	void addNet();
-
-public:
-	netBuilderWidget(QWidget * parent = nullptr);
 };
 
 #endif

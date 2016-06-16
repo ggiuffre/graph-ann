@@ -72,7 +72,6 @@ void layeredBiasedNet::linkLayer(const layeredNet::layers_iterator l)
 
 	// scollega le connessioni verso il bias:
 	if (l > begin() && l < end())
-	// if (l > static_cast<unsigned int>(begin()) && l < static_cast<unsigned int>(end()))
 		for (nodes_iterator j = begin(l - 1); j < end(l - 1); ++j)
 				unlink(j, begin(l));
 }

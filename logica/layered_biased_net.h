@@ -21,10 +21,10 @@ private:
 
 protected:
 	virtual void store(const std::vector<float>& in) /*override*/;
-	virtual void linkLayer(layers_iterator l) /*override*/;			// virtual...
+	virtual void linkLayer(layers_iterator l) /*override*/;
 
 public:
-	explicit layeredBiasedNet(float lr = 0.5f, float m = 0.2f);		// i float sono soltanto parametri, non caratterizzano univocamente la rete
+	explicit layeredBiasedNet(float lr = 0.5f, float m = 0.2f);
 	layeredBiasedNet(std::string netfile, float lr = 0.5f, float m = 0.2f);
 	layeredBiasedNet& operator=(const layeredBiasedNet& net);
 

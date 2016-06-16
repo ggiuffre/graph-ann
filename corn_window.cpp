@@ -21,11 +21,6 @@ CornWindow::CornWindow() : menu_bar(new QMenuBar), net_menu(new QMenu("Rete")), 
 	setCentralWidget(ctrl);
 }
 
-QSize CornWindow::minimumSizeHint() const
-{
-	return QSize(600, 337);
-}
-
 QSize CornWindow::sizeHint() const
 {
 	return QSize(810, 500);

@@ -76,14 +76,14 @@ float internetwork::neuron(const unsigned int i) const
 	if (i < size())
 	{
 		if (is_input(i))
-			return (*((*this)[i]))()[0];		// solo il primo membro (reti ad un solo output)
+			return (*((*this)[i]))()[0];		// solo il primo elemento dell'output
 
 
 		std::vector<float> result;
 		for (weights_iterator j = begin(i); j < end(i); ++j)
 			if (edge(j, i))
 				result.push_back(edge(j, i) * neuron(j));
-		return (*((*this)[i]))(result)[0];		// solo il primo membro (reti ad un solo output)
+		return (*((*this)[i]))(result)[0];		// solo il primo elemento dell'output
 	}
 	else
 		return 0.0f;

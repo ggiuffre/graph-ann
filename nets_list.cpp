@@ -1,6 +1,5 @@
 #include "nets_list.h"
 #include <QGuiApplication>
-#include <QMessageBox>
 
 netsList::netsList(QWidget * parent) : QDockWidget(parent), fs(new QFileSystemModel(this)), files(new QListView(this))
 {

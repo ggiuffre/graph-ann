@@ -47,7 +47,7 @@ public:
 	layers_iterator end() const;
 	nodes_iterator begin(layers_iterator l) const;
 	nodes_iterator end(layers_iterator l) const;
-	virtual unsigned int input_size() const /*override*/;		// virtual, per internetwork! <<<<<<<<<<<<<<<
+	virtual unsigned int input_size() const /*override*/;		// virtual, per aiutare internetwork
 	unsigned int n_layers() const;
 
 	void init(float bound = 0.5f);

@@ -4,7 +4,6 @@
 #include <cmath>
 #include <time.h>
 #include <stdlib.h>
-#include <iostream>	// debugging
 
 using std::vector;
 
@@ -24,7 +23,6 @@ void layeredBiasedNet::train(const vector<vector<float> >& examples, const vecto
 	{
 		++epoch;
 		tot_err = 0.0f;
-		std::cout << "\r[" << epoch << "]\t";
 
 		std::random_shuffle(inds.begin(), inds.end());
 
@@ -76,11 +74,9 @@ void layeredBiasedNet::train(const vector<vector<float> >& examples, const vecto
 			tot_err += err;
 		}
 		tot_err /= examples.size();
-		std::cout << "error: " << tot_err;
 	} while (tot_err > error && epoch < max_epochs);
 
 	error = tot_err;
-	std::cout << '\n';
 }
 
 void layeredBiasedNet::train(const std::string data_file, float& error, const unsigned int max_epochs)

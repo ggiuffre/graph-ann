@@ -29,7 +29,6 @@ private:
 
 public:
 	CornWindow();
-	QSize minimumSizeHint() const Q_DECL_OVERRIDE;
 	QSize sizeHint() const Q_DECL_OVERRIDE;
 
 public slots:

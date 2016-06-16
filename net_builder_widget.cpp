@@ -37,7 +37,6 @@ void netBuilderWidget::setLayers()
 		new_net = new layeredTanhNet;
 	else if (type == "Arcotangente")
 		new_net = new layeredAtanNet;
-//	else... nullptr
 
 	QSpacerItem * spacer = new QSpacerItem(1, 20);
 	layout->addItem(spacer);

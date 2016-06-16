@@ -8,7 +8,7 @@
 #include <QLineEdit>
 #include <QPushButton>
 #include <QLabel>
-#include "logica/layered_biased_net.h"		// meglio: nets.h   ?
+#include "logica/layered_biased_net.h"
 
 class netTrainerWidget : public QWidget
 {

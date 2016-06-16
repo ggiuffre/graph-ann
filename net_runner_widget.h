@@ -7,7 +7,7 @@
 #include <QPushButton>
 #include <QTextEdit>
 #include <QLabel>
-#include "logica/network.h"		// meglio: nets.h   ?
+#include "logica/network.h"
 
 class netRunnerWidget : public QWidget
 {
