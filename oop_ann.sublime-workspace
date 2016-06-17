@@ -408,6 +408,8 @@
 	},
 	"file_history":
 	[
+		"/home/0/2014/ggiuffre/Documents/ann_2/doc/relazione.tex",
+		"/home/0/2014/ggiuffre/Documents/ann_2/data_builder_widget.cpp",
 		"/home/0/2014/ggiuffre/Documents/ann_2/logica/train.cpp",
 		"/home/0/2014/ggiuffre/Documents/ann_2/logica/layered_net.h",
 		"/home/0/2014/ggiuffre/Documents/ann_2/net_trainer_widget.cpp",
@@ -423,8 +425,6 @@
 		"/home/0/2014/ggiuffre/Documents/ann_2/net_runner_widget.cpp",
 		"/home/0/2014/ggiuffre/Documents/ann_2/net_builder_widget.cpp",
 		"/home/0/2014/ggiuffre/Documents/ann_2/net_builder_widget.h",
-		"/home/0/2014/ggiuffre/Documents/ann_2/doc/relazione.tex",
-		"/home/0/2014/ggiuffre/Documents/ann_2/data_builder_widget.cpp",
 		"/home/0/2014/ggiuffre/Documents/ann_2/logica/network.cpp",
 		"/home/0/2014/ggiuffre/Documents/ann_2/logica/network.h",
 		"/home/0/2014/ggiuffre/Documents/ann_2/logica/dgraph.h",
@@ -558,6 +558,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"), (",
+			"rightarrow",
+			"-->",
+			"Defini",
+			"QVector",
 			" (reti ad un solo output)",
 			"(*((*this)[i]))()[0]",
 			"QMessageBox",
@@ -680,12 +685,7 @@
 			"Pal",
 			"m_pMyWidget",
 			"trainer",
-			"Trainer",
-			"trainer",
-			"builder",
-			"240",
-			"QInputDialog",
-			"error"
+			"Trainer"
 		],
 		"highlight": true,
 		"in_selection": false,
