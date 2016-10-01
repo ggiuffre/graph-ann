@@ -1,0 +1,6 @@
+{
+  "name": "Graph-ann",
+  "tagline": "ANN building and training platform",
+  "body": "# graph-ann\r\nANN building and training platform written in C++ with the Qt library.",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
